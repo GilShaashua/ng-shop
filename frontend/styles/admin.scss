@@ -1,0 +1,27 @@
+//Base
+@import './base/colors';
+@import './base/fonts';
+@import './base/mixins';
+@import './base/configurations';
+
+//Libraries
+@import 'primeicons/primeicons.css';
+@import 'primeng/resources/themes/saga-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeflex/primeflex.css';
+
+//Shared
+@import './apps/admin/shared/shell';
+
+//Pages
+@import './apps/admin/pages/categories';
+@import './apps/admin/pages/products-list';
+
+// Categories
+@import './apps/admin/categories/categories-form/categories-form.scss';
+
+// Products
+@import './apps/admin/products/products-form/products-form.scss';
+
+//Libs
+@import './libs/ui/ui';

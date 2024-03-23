@@ -1,0 +1,26 @@
+{
+  "name": "products",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/products/src",
+  "prefix": "frontend",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/products/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/products/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/products/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}

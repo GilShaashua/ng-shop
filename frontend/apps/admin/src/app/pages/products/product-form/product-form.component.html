@@ -1,0 +1,316 @@
+<div
+    class="products-form-modal"
+    *ngIf="categories && isCmpInitialized; else loader"
+>
+    <div class="products-form-container">
+        <div class="products-form-heading">
+            <h1>{{ productId ? 'Edit' : 'Add' }} Product</h1>
+            <p>You can {{ productId ? 'edit' : 'add' }} products here</p>
+        </div>
+
+        <div class="btns-container">
+            <button class="btn-create" (click)="onSubmitForm()">
+                <i
+                    class="pi {{ productId ? 'pi-cloud-upload' : 'pi-plus' }}"
+                ></i
+                ><span>{{ productId ? 'Edit' : 'Add' }}</span>
+            </button>
+            <button class="btn-cancel" routerLink="/products">
+                <i class="pi pi-arrow-circle-left"></i><span>Cancel</span>
+            </button>
+        </div>
+
+        <form [formGroup]="form">
+            <div class="inputs-container">
+                <div class="name-input">
+                    <label for="name">Name</label>
+                    <input
+                        formControlName="name"
+                        type="text"
+                        name="name"
+                        id="name"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['name'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Name is required!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['name'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 3 characters!</small
+                    >
+                </div>
+
+                <div class="brand-input">
+                    <label for="brand">Brand</label>
+
+                    <input
+                        formControlName="brand"
+                        type="text"
+                        name="brand"
+                        id="brand"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+
+                    <small
+                        *ngIf="
+                            controlsForm['brand'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Brand is required!</small
+                    >
+
+                    <small
+                        *ngIf="
+                            controlsForm['brand'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 5 characters!</small
+                    >
+                </div>
+
+                <div class="price-input">
+                    <label for="price">Price</label>
+
+                    <input
+                        formControlName="price"
+                        type="number"
+                        name="price"
+                        id="price"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+
+                    <small
+                        *ngIf="
+                            controlsForm['price'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Price is requried!</small
+                    >
+                </div>
+
+                <div class="category-input">
+                    <label for="category">Category</label>
+
+                    <p-dropdown
+                        formControlName="category"
+                        [options]="categories"
+                        optionLabel="name"
+                        [filter]="true"
+                        filterBy="name"
+                        placeholder="Select a Category"
+                    ></p-dropdown>
+
+                    <small
+                        *ngIf="
+                            controlsForm['category'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Category is required!</small
+                    >
+
+                    <small
+                        *ngIf="
+                            controlsForm['category'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 3 characters!</small
+                    >
+                </div>
+
+                <div class="stock-input">
+                    <label for="stock">Stock</label>
+
+                    <input
+                        formControlName="countInStock"
+                        type="number"
+                        name="stock"
+                        id="stock"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+
+                    <small
+                        *ngIf="
+                            controlsForm['countInStock'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Stock is required!</small
+                    >
+                </div>
+
+                <div class="rating-input">
+                    <label for="rating">Rating</label>
+
+                    <input
+                        formControlName="rating"
+                        type="number"
+                        name="rating"
+                        id="rating"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+
+                    <small
+                        *ngIf="
+                            controlsForm['rating'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Rating is required!</small
+                    >
+                </div>
+
+                <div class="reviews-input">
+                    <label for="reviews">Reviews</label>
+
+                    <input
+                        formControlName="numReviews"
+                        type="number"
+                        name="reviews"
+                        id="reviews"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+
+                    <small
+                        *ngIf="
+                            controlsForm['numReviews'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Reviews is required!</small
+                    >
+                </div>
+
+                <div class="featured-input">
+                    <label for="featured">Featured</label>
+
+                    <p-inputSwitch
+                        formControlName="isFeatured"
+                        inputId="featured"
+                    ></p-inputSwitch>
+                </div>
+            </div>
+
+            <div class="images-container">
+                <div class="main-image">
+                    <label for="main-image">Main image</label>
+                    <input
+                        (change)="onImageUpload($event)"
+                        type="file"
+                        name="main-image"
+                        id="main-image"
+                        accept="image/*"
+                    />
+                    <label
+                        for="main-image"
+                        *ngIf="
+                            controlsForm['image'].value &&
+                            isImageFormControlString()
+                        "
+                        ><img
+                            [src]="controlsForm['image'].value"
+                            alt="main image"
+                    /></label>
+                    <label for="main-image" *ngIf="imageSelectedUrl"
+                        ><img [src]="imageSelectedUrl" alt="main image"
+                    /></label>
+
+                    <label for="main-image" *ngIf="!controlsForm['image'].value"
+                        ><i class="pi pi-image" style="font-size: 40px"></i
+                    ></label>
+
+                    <small
+                        *ngIf="
+                            controlsForm['image'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Image is required!</small
+                    >
+                </div>
+            </div>
+
+            <div class="descriptions-container">
+                <div class="description-input">
+                    <label for="description">Description</label>
+
+                    <textarea
+                        formControlName="description"
+                        type="text"
+                        name="description"
+                        id="description"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    ></textarea>
+
+                    <small
+                        *ngIf="
+                            controlsForm['description'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Description is required!</small
+                    >
+
+                    <small
+                        *ngIf="
+                            controlsForm['description'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 20 characters!</small
+                    >
+                </div>
+
+                <div class="rich-description-input">
+                    <label for="rich-description">Rich Description</label>
+                    <textarea
+                        formControlName="richDescription"
+                        name="rich-description"
+                        id="rich-description"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    ></textarea>
+                    <small
+                        *ngIf="
+                            controlsForm['richDescription'].hasError(
+                                'required'
+                            ) && isSubmitted
+                        "
+                        class="p-error"
+                        >Description is required!</small
+                    >
+
+                    <small
+                        *ngIf="
+                            controlsForm['richDescription'].hasError(
+                                'minlength'
+                            ) && isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 40 characters!</small
+                    >
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p-toast></p-toast>
+
+<ng-template #loader>
+    <div class="loader">
+        <i class="pi pi-spin pi-spinner"></i>
+    </div>
+</ng-template>

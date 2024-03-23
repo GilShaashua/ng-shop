@@ -1,0 +1,94 @@
+<div class="categories-form-modal" *ngIf="isCmpInizialized; else loader">
+    <div class="categories-form-container">
+        <div class="categories-form-heading">
+            <h1>{{ categoryId ? 'Edit' : 'Add' }} Category</h1>
+            <p>You can {{ categoryId ? 'edit' : 'add' }} categories here</p>
+        </div>
+
+        <div class="btns-container">
+            <button class="btn-create" (click)="onSubmitForm()">
+                <i
+                    class="pi {{ categoryId ? 'pi-cloud-upload' : 'pi-plus' }}"
+                ></i
+                ><span>{{ categoryId ? 'Edit' : 'Add' }}</span>
+            </button>
+            <button class="btn-cancel" routerLink="/categories">
+                <i class="pi pi-arrow-circle-left"></i><span>Cancel</span>
+            </button>
+        </div>
+
+        <form [formGroup]="form">
+            <div class="inputs-container">
+                <div class="name-input">
+                    <label for="name">Name</label>
+                    <input
+                        formControlName="name"
+                        type="text"
+                        name="name"
+                        id="name"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['name'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Name is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['name'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 3 characters!</small
+                    >
+                </div>
+
+                <div class="icon-input">
+                    <label for="icon">Icon</label>
+
+                    <input
+                        formControlName="icon"
+                        type="text"
+                        name="icon"
+                        id="icon"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+
+                    <small
+                        *ngIf="
+                            controlsForm['icon'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Icon is requried!</small
+                    >
+
+                    <small
+                        *ngIf="
+                            controlsForm['icon'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 3 characters!</small
+                    >
+                </div>
+            </div>
+
+            <div class="color-input">
+                <label for="color">Color</label>
+                <p-colorPicker formControlName="color"></p-colorPicker>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p-toast></p-toast>
+
+<ng-template #loader>
+    <div class="loader">
+        <i class="pi pi-spin pi-spinner"></i>
+    </div>
+</ng-template>

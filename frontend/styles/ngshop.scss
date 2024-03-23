@@ -1,0 +1,22 @@
+//Base
+@import './base/colors';
+@import './base/fonts';
+@import './base/mixins';
+@import './base/configurations';
+
+//Libraries
+@import 'primeicons/primeicons.css';
+@import 'primeng/resources/themes/saga-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeflex/primeflex.css';
+
+//Pages
+@import './apps/ngshop/pages/home-page';
+@import './apps/ngshop/pages/product-list-page';
+
+//Shared
+@import './apps/ngshop/shared/header';
+@import './apps/ngshop/shared/footer';
+
+//Libs
+@import './libs/ui/ui';
