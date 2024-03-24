@@ -10,7 +10,14 @@
         </button>
     </div>
 
-    <p-table [columns]="cols" [value]="products" class="p-table">
+    <p-table
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [columns]="cols"
+        [value]="products"
+        class="p-table"
+    >
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th
