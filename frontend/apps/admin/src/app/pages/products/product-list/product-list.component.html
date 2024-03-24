@@ -16,10 +16,10 @@
                 <th
                     *ngFor="let col of columns; let i = index"
                     [pSortableColumn]="col.field"
-                    [pSortableColumnDisabled]="i !== 0"
+                    [pSortableColumnDisabled]="i === 1"
                 >
                     <p-sortIcon
-                        *ngIf="col.field === 'name'"
+                        *ngIf="col.field !== 'image'"
                         [field]="col.field"
                     ></p-sortIcon>
                     {{ col.header }}
@@ -41,7 +41,7 @@
                     />
 
                     <span *ngIf="col.field === 'category'">
-                        {{ rowData[col.field].name }}</span
+                        {{ rowData[col.field] }}</span
                     >
 
                     <span *ngIf="col.field === 'dateCreated'">
@@ -67,12 +67,12 @@
                     <p-button
                         styleClass="p-button-trash"
                         icon="pi pi-trash"
-                        (click)="onDeleteProduct(rowData._id)"
+                        (click)="onDeleteProduct(rowData.id)"
                     ></p-button>
                     <p-button
                         styleClass="p-button-pencil"
                         icon="pi pi-pencil"
-                        routerLink="/products/form/{{ rowData._id }}"
+                        routerLink="/products/form/{{ rowData.id }}"
                     ></p-button>
                 </td>
             </tr>

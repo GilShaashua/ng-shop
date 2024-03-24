@@ -6,13 +6,13 @@ import {
     RouterLink,
     RouterOutlet,
 } from '@angular/router';
-import { Column, Product, ProductsService } from '@frontend/products';
+import { Category, Column, Product, ProductsService } from '@frontend/products';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { filter, Subscription } from 'rxjs';
+import { filter, map, Subscription } from 'rxjs';
 
 @Component({
     selector: 'admin-product-list',
@@ -54,14 +54,26 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     getProducts() {
-        this.productsService.getProducts().subscribe({
-            next: (products) => {
-                this.products = products;
-            },
-            error: (err) => {
-                console.error('Cannot get products', err);
-            },
-        });
+        this.productsService
+            .getProducts()
+            .pipe(
+                map((products) => {
+                    return products.map((product) => {
+                        return {
+                            ...product,
+                            category: (product.category as Category).name,
+                        };
+                    });
+                })
+            )
+            .subscribe({
+                next: (products) => {
+                    this.products = products;
+                },
+                error: (err) => {
+                    console.error('Cannot get products', err);
+                },
+            });
     }
 
     onDeleteProduct(productId: string) {
