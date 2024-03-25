@@ -16,6 +16,7 @@
 //Pages
 @import './apps/admin/pages/categories';
 @import './apps/admin/pages/products-list';
+@import './apps/admin/pages/users-list';
 
 // Categories
 @import './apps/admin/categories/categories-form/categories-form.scss';
@@ -23,5 +24,12 @@
 // Products
 @import './apps/admin/products/products-form/products-form.scss';
 
+// Users
+@import './apps/admin/users/users-form/users-form.scss';
+
 //Libs
 @import './libs/ui/ui';
+
+@import 'quill/dist/quill.core.css';
+@import 'quill/dist/quill.bubble.css';
+@import 'quill/dist/quill.snow.css';

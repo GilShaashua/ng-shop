@@ -4,9 +4,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CategoriesComponent } from './pages/categories/categories-list/categories.component';
 import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
 import { OrdersComponent } from '@frontend/orders';
-import { UsersComponent } from '@frontend/users';
 import { ProductFormComponent } from './pages/products/product-form/product-form.component';
 import { ProductListComponent } from './pages/products/product-list/product-list.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
 
 export const appRoutes: Route[] = [
     {
@@ -37,7 +38,14 @@ export const appRoutes: Route[] = [
                 ],
             },
             { path: 'orders', component: OrdersComponent },
-            { path: 'users', component: UsersComponent },
+            {
+                path: 'users',
+                component: UsersListComponent,
+                children: [
+                    { path: 'form', component: UsersFormComponent },
+                    { path: 'form/:userId', component: UsersFormComponent },
+                ],
+            },
         ],
     },
 ];

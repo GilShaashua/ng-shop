@@ -18,6 +18,7 @@ import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { ToastModule } from 'primeng/toast';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
 
 @Component({
     selector: 'admin-product-form',
@@ -30,6 +31,7 @@ import { DropdownModule } from 'primeng/dropdown';
         RouterLink,
         InputSwitchModule,
         DropdownModule,
+        EditorModule,
     ],
     templateUrl: './product-form.component.html',
     styleUrl: './product-form.component.scss',

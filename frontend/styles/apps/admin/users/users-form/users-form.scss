@@ -1,0 +1,198 @@
+.p-toast-message {
+    padding: 0.7em;
+
+    span {
+        margin-inline-end: 1em;
+    }
+}
+
+.loader {
+    position: fixed;
+    top: 10vh;
+    left: calc(175px + ((100% - 175px) / 2));
+    transform: translate(-50%, 0);
+
+    i {
+        font-size: 3em;
+    }
+}
+
+.users-form-modal {
+    position: absolute;
+    left: 175px;
+    top: 10px;
+    width: calc(100% - 175px);
+    padding-block: 1em;
+    display: grid;
+    grid-template-columns: minmax(25px, 1fr) minmax(auto, 1200px) minmax(
+            25px,
+            1fr
+        );
+
+    & > * {
+        &.full {
+            grid-column: 1/-1;
+        }
+
+        &:not(.full) {
+            grid-column: 2;
+        }
+    }
+
+    router-outlet {
+        display: none;
+    }
+
+    .users-form-container {
+        width: 100%;
+        padding-inline: 2em;
+        padding-block: 2em;
+        background-color: $backgroundColorDark2;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        .users-form-heading {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        .btns-container {
+            background-color: $backgroundColorDark;
+            padding: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5em;
+
+            button {
+                display: flex;
+                align-items: center;
+                gap: 0.5em;
+                border: none;
+                height: 35px;
+                padding-inline: 0.8em;
+                font-weight: bolder;
+                font-size: 15px;
+
+                &.btn-create {
+                    background-color: $primary-color;
+                    color: $text-color;
+
+                    &:hover {
+                        background-color: $primary-color-dark;
+                        cursor: pointer;
+                    }
+                }
+
+                &.btn-cancel {
+                    background-color: $backgroundColorDark3;
+                    color: $text-color;
+
+                    &:hover {
+                        background-color: $backgroundColorDark2;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2em;
+            justify-content: space-between;
+            background-color: $backgroundColorDark;
+            padding: 1.5em;
+            height: 236px;
+
+            .inputs-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1em;
+                width: 100%;
+
+                .name-input {
+                    display: flex;
+                    flex: 1;
+                    flex-direction: column;
+                    gap: 0.5em;
+                    height: 100%;
+
+                    label {
+                        cursor: pointer;
+                        align-self: flex-start;
+                    }
+
+                    #name {
+                        height: 38px;
+                        padding-inline: 0.5em;
+                        border: none;
+
+                        &.ng-invalid.submitted {
+                            border-inline-start: 3px solid $primary-color;
+                        }
+
+                        &.ng-valid.submitted {
+                            border-inline-start: 4.5px solid rgb(48, 187, 48);
+                        }
+                    }
+                }
+
+                .icon-input {
+                    display: flex;
+                    flex: 1;
+                    flex-direction: column;
+                    gap: 0.5em;
+                    height: 100%;
+
+                    label {
+                        cursor: pointer;
+                        align-self: flex-start;
+                    }
+
+                    #icon {
+                        height: 38px;
+                        padding-inline: 0.5em;
+                        border: none;
+
+                        &.ng-invalid.submitted {
+                            border-inline-start: 3px solid $primary-color;
+                        }
+
+                        &.ng-valid.submitted {
+                            border-inline-start: 4.5px solid rgb(48, 187, 48);
+                        }
+                    }
+                }
+            }
+
+            .color-input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;
+                align-items: center;
+
+                label {
+                    margin-inline-start: 2px;
+                }
+
+                .p-element {
+                    input {
+                        width: 4em;
+                        height: 4em;
+                        border: none;
+                        border-radius: 50%;
+
+                        &:hover {
+                            border: 1px solid $text-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

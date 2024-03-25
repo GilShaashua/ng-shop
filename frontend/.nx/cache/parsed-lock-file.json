@@ -5940,6 +5940,15 @@
         "hash": "sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg=="
       }
     },
+    "npm:clone@2.1.2": {
+      "type": "npm",
+      "name": "npm:clone@2.1.2",
+      "data": {
+        "version": "2.1.2",
+        "packageName": "clone",
+        "hash": "sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w=="
+      }
+    },
     "npm:clone-deep": {
       "type": "npm",
       "name": "npm:clone-deep",
@@ -6516,6 +6525,15 @@
         "hash": "sha512-+LxW+KLWxu3HW3M2w2ympwtqPrqYRzU8fqi6Fhd18fBALe15blJPI/I4+UHveMVG6lJqB4JNd4UG0S5cnVHwIg=="
       }
     },
+    "npm:deep-equal": {
+      "type": "npm",
+      "name": "npm:deep-equal",
+      "data": {
+        "version": "1.1.2",
+        "packageName": "deep-equal",
+        "hash": "sha512-5tdhKF6DbU7iIzrIOa1AOUt39ZRm13cmL1cGEh//aqR8x9+tNfbywRf0n5FD/18OKMdo7DNEtrX2t22ZAkI+eg=="
+      }
+    },
     "npm:deep-is": {
       "type": "npm",
       "name": "npm:deep-is",
@@ -6568,6 +6586,15 @@
         "version": "2.0.0",
         "packageName": "define-lazy-prop",
         "hash": "sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og=="
+      }
+    },
+    "npm:define-properties": {
+      "type": "npm",
+      "name": "npm:define-properties",
+      "data": {
+        "version": "1.2.1",
+        "packageName": "define-properties",
+        "hash": "sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg=="
       }
     },
     "npm:delayed-stream": {
@@ -7128,6 +7155,15 @@
         "hash": "sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw=="
       }
     },
+    "npm:eventemitter3@2.0.3": {
+      "type": "npm",
+      "name": "npm:eventemitter3@2.0.3",
+      "data": {
+        "version": "2.0.3",
+        "packageName": "eventemitter3",
+        "hash": "sha512-jLN68Dx5kyFHaePoXWPsCGW5qdyZQtLYHkxkg02/Mz6g0kYpDx4FyP6XfArhQdlOC4b8Mv+EMxPo/8La7Tzghg=="
+      }
+    },
     "npm:events": {
       "type": "npm",
       "name": "npm:events",
@@ -7243,6 +7279,15 @@
         "version": "3.1.3",
         "packageName": "fast-deep-equal",
         "hash": "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="
+      }
+    },
+    "npm:fast-diff": {
+      "type": "npm",
+      "name": "npm:fast-diff",
+      "data": {
+        "version": "1.1.2",
+        "packageName": "fast-diff",
+        "hash": "sha512-KaJUt+M9t1qaIteSvjc6P3RbMdXsNhK61GRftR6SNxqmhthcd9MGIi4T+o0jD8LUSpSnSKXE20nLtJ3fOHxQig=="
       }
     },
     "npm:fast-json-stable-stringify": {
@@ -7524,6 +7569,15 @@
         "hash": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA=="
       }
     },
+    "npm:functions-have-names": {
+      "type": "npm",
+      "name": "npm:functions-have-names",
+      "data": {
+        "version": "1.2.3",
+        "packageName": "functions-have-names",
+        "hash": "sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ=="
+      }
+    },
     "npm:gensync": {
       "type": "npm",
       "name": "npm:gensync",
@@ -7684,6 +7738,15 @@
         "version": "1.0.3",
         "packageName": "has-symbols",
         "hash": "sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A=="
+      }
+    },
+    "npm:has-tostringtag": {
+      "type": "npm",
+      "name": "npm:has-tostringtag",
+      "data": {
+        "version": "1.0.2",
+        "packageName": "has-tostringtag",
+        "hash": "sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw=="
       }
     },
     "npm:hasown": {
@@ -8136,6 +8199,15 @@
         "hash": "sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g=="
       }
     },
+    "npm:is-arguments": {
+      "type": "npm",
+      "name": "npm:is-arguments",
+      "data": {
+        "version": "1.1.1",
+        "packageName": "is-arguments",
+        "hash": "sha512-8Q7EARjzEnKpt/PCD7e1cgUS0a6X8u5tdSiMqXhojOdoV9TsMsiO+9VLC5vAmO8N7/GmXn7yjR8qnA6bVAEzfA=="
+      }
+    },
     "npm:is-arrayish": {
       "type": "npm",
       "name": "npm:is-arrayish",
@@ -8179,6 +8251,15 @@
         "version": "2.13.1",
         "packageName": "is-core-module",
         "hash": "sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw=="
+      }
+    },
+    "npm:is-date-object": {
+      "type": "npm",
+      "name": "npm:is-date-object",
+      "data": {
+        "version": "1.0.5",
+        "packageName": "is-date-object",
+        "hash": "sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ=="
       }
     },
     "npm:is-docker": {
@@ -8305,6 +8386,15 @@
         "version": "1.0.1",
         "packageName": "is-potential-custom-element-name",
         "hash": "sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ=="
+      }
+    },
+    "npm:is-regex": {
+      "type": "npm",
+      "name": "npm:is-regex",
+      "data": {
+        "version": "1.1.4",
+        "packageName": "is-regex",
+        "hash": "sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg=="
       }
     },
     "npm:is-stream": {
@@ -9414,6 +9504,15 @@
         "hash": "sha512-H7WRiqbM91lOItixrKc9XP1ZLpsxwIk3l0JDnhSePvKQlMe1UsNrnYHzBek6iVyMolCuz86YR0Dovbpyi4aOzA=="
       }
     },
+    "npm:ngx-quill": {
+      "type": "npm",
+      "name": "npm:ngx-quill",
+      "data": {
+        "version": "25.1.2",
+        "packageName": "ngx-quill",
+        "hash": "sha512-Ua4FiQMijM4YYVfx34DEaRLWXU6EGuzOy+W7VYgZOIn8iBmM3MNxedS21lMu6zRu4C0d9tBZ+KyOD5fPGRc+Cg=="
+      }
+    },
     "npm:nice-napi": {
       "type": "npm",
       "name": "npm:nice-napi",
@@ -9639,6 +9738,24 @@
         "hash": "sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ=="
       }
     },
+    "npm:object-is": {
+      "type": "npm",
+      "name": "npm:object-is",
+      "data": {
+        "version": "1.1.6",
+        "packageName": "object-is",
+        "hash": "sha512-F8cZ+KfGlSGi09lJT7/Nd6KJZ9ygtvYC0/UYYLI9nmQKLMnydpB9yvbv9K1uSkEu7FU9vYPmVwLg328tX+ot3Q=="
+      }
+    },
+    "npm:object-keys": {
+      "type": "npm",
+      "name": "npm:object-keys",
+      "data": {
+        "version": "1.1.1",
+        "packageName": "object-keys",
+        "hash": "sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA=="
+      }
+    },
     "npm:obuf": {
       "type": "npm",
       "name": "npm:obuf",
@@ -9772,6 +9889,15 @@
         "version": "1.0.11",
         "packageName": "pako",
         "hash": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw=="
+      }
+    },
+    "npm:parchment": {
+      "type": "npm",
+      "name": "npm:parchment",
+      "data": {
+        "version": "1.1.4",
+        "packageName": "parchment",
+        "hash": "sha512-J5FBQt/pM2inLzg4hEWmzQx/8h8D0CiDxaG3vyp9rKrQRSDgBlhjdP5jQGgosEajXPSQouXGHOmVdgo7QmJuOg=="
       }
     },
     "npm:parent-module": {
@@ -10449,6 +10575,24 @@
         "hash": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
       }
     },
+    "npm:quill": {
+      "type": "npm",
+      "name": "npm:quill",
+      "data": {
+        "version": "1.3.7",
+        "packageName": "quill",
+        "hash": "sha512-hG/DVzh/TiknWtE6QmWAF/pxoZKYxfe3J/d/+ShUWkDvvkZQVTPeVmUJVu1uE6DDooC4fWTiCLh84ul89oNz5g=="
+      }
+    },
+    "npm:quill-delta": {
+      "type": "npm",
+      "name": "npm:quill-delta",
+      "data": {
+        "version": "3.6.3",
+        "packageName": "quill-delta",
+        "hash": "sha512-wdIGBlcX13tCHOXGMVnnTVFtGRLoP0imqxM696fIPwIf5ODIYUHIvHbZcyvGlZFiFhK5XzDC2lpjbxRhnM05Tg=="
+      }
+    },
     "npm:randombytes": {
       "type": "npm",
       "name": "npm:randombytes",
@@ -10573,6 +10717,15 @@
         "version": "2.3.0",
         "packageName": "regex-parser",
         "hash": "sha512-TVILVSz2jY5D47F4mA4MppkBrafEaiUWJO/TcZHEIuI13AqoZMkK1WMA4Om1YkYbTx+9Ki1/tSUXbceyr9saRg=="
+      }
+    },
+    "npm:regexp.prototype.flags": {
+      "type": "npm",
+      "name": "npm:regexp.prototype.flags",
+      "data": {
+        "version": "1.5.2",
+        "packageName": "regexp.prototype.flags",
+        "hash": "sha512-NcDiDkTLuPR+++OCKB0nWafEmhg/Da8aUPLPMQbK+bxKKCm1/S5he+AqYa4PlMCVBalb4/yxIRub6qkEx5yJbw=="
       }
     },
     "npm:regexpu-core": {
@@ -10870,6 +11023,15 @@
         "version": "1.2.1",
         "packageName": "set-function-length",
         "hash": "sha512-j4t6ccc+VsKwYHso+kElc5neZpjtq9EnRICFZtWyBsLojhmeF/ZBd/elqm22WJh/BziDe/SBiOeAt0m2mfLD0g=="
+      }
+    },
+    "npm:set-function-name": {
+      "type": "npm",
+      "name": "npm:set-function-name",
+      "data": {
+        "version": "2.0.2",
+        "packageName": "set-function-name",
+        "hash": "sha512-7PGFlmtwsEADb0WYyvCMa1t+yke6daIG4Wirafur5kcf+MhUnPms1UeR0CKQdTZD81yESwMHbtn+TR+dMviakQ=="
       }
     },
     "npm:shallow-clone": {
@@ -21515,6 +21677,36 @@
       "type": "static"
     },
     {
+      "source": "npm:deep-equal",
+      "target": "npm:is-arguments",
+      "type": "static"
+    },
+    {
+      "source": "npm:deep-equal",
+      "target": "npm:is-date-object",
+      "type": "static"
+    },
+    {
+      "source": "npm:deep-equal",
+      "target": "npm:is-regex",
+      "type": "static"
+    },
+    {
+      "source": "npm:deep-equal",
+      "target": "npm:object-is",
+      "type": "static"
+    },
+    {
+      "source": "npm:deep-equal",
+      "target": "npm:object-keys",
+      "type": "static"
+    },
+    {
+      "source": "npm:deep-equal",
+      "target": "npm:regexp.prototype.flags",
+      "type": "static"
+    },
+    {
       "source": "npm:default-gateway",
       "target": "npm:execa",
       "type": "static"
@@ -21537,6 +21729,21 @@
     {
       "source": "npm:define-data-property",
       "target": "npm:gopd",
+      "type": "static"
+    },
+    {
+      "source": "npm:define-properties",
+      "target": "npm:define-data-property",
+      "type": "static"
+    },
+    {
+      "source": "npm:define-properties",
+      "target": "npm:has-property-descriptors",
+      "type": "static"
+    },
+    {
+      "source": "npm:define-properties",
+      "target": "npm:object-keys",
       "type": "static"
     },
     {
@@ -22885,6 +23092,11 @@
       "type": "static"
     },
     {
+      "source": "npm:has-tostringtag",
+      "target": "npm:has-symbols",
+      "type": "static"
+    },
+    {
       "source": "npm:hasown",
       "target": "npm:function-bind",
       "type": "static"
@@ -23395,6 +23607,16 @@
       "type": "static"
     },
     {
+      "source": "npm:is-arguments",
+      "target": "npm:call-bind",
+      "type": "static"
+    },
+    {
+      "source": "npm:is-arguments",
+      "target": "npm:has-tostringtag",
+      "type": "static"
+    },
+    {
       "source": "npm:is-binary-path",
       "target": "npm:binary-extensions",
       "type": "static"
@@ -23415,6 +23637,11 @@
       "type": "static"
     },
     {
+      "source": "npm:is-date-object",
+      "target": "npm:has-tostringtag",
+      "type": "static"
+    },
+    {
       "source": "npm:is-glob",
       "target": "npm:is-extglob",
       "type": "static"
@@ -23432,6 +23659,16 @@
     {
       "source": "npm:is-plain-object",
       "target": "npm:isobject",
+      "type": "static"
+    },
+    {
+      "source": "npm:is-regex",
+      "target": "npm:call-bind",
+      "type": "static"
+    },
+    {
+      "source": "npm:is-regex",
+      "target": "npm:has-tostringtag",
       "type": "static"
     },
     {
@@ -25595,6 +25832,21 @@
       "type": "static"
     },
     {
+      "source": "npm:ngx-quill",
+      "target": "npm:@angular/core",
+      "type": "static"
+    },
+    {
+      "source": "npm:ngx-quill",
+      "target": "npm:rxjs",
+      "type": "static"
+    },
+    {
+      "source": "npm:ngx-quill",
+      "target": "npm:tslib",
+      "type": "static"
+    },
+    {
       "source": "npm:nice-napi",
       "target": "npm:node-addon-api",
       "type": "static"
@@ -26037,6 +26289,16 @@
     {
       "source": "npm:nx",
       "target": "npm:@nx/nx-win32-x64-msvc",
+      "type": "static"
+    },
+    {
+      "source": "npm:object-is",
+      "target": "npm:call-bind",
+      "type": "static"
+    },
+    {
+      "source": "npm:object-is",
+      "target": "npm:define-properties",
       "type": "static"
     },
     {
@@ -26935,6 +27197,51 @@
       "type": "static"
     },
     {
+      "source": "npm:quill",
+      "target": "npm:clone@2.1.2",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill",
+      "target": "npm:deep-equal",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill",
+      "target": "npm:eventemitter3@2.0.3",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill",
+      "target": "npm:extend",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill",
+      "target": "npm:parchment",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill",
+      "target": "npm:quill-delta",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill-delta",
+      "target": "npm:deep-equal",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill-delta",
+      "target": "npm:extend",
+      "type": "static"
+    },
+    {
+      "source": "npm:quill-delta",
+      "target": "npm:fast-diff",
+      "type": "static"
+    },
+    {
       "source": "npm:randombytes",
       "target": "npm:safe-buffer",
       "type": "static"
@@ -27052,6 +27359,26 @@
     {
       "source": "npm:regenerator-transform",
       "target": "npm:@babel/runtime",
+      "type": "static"
+    },
+    {
+      "source": "npm:regexp.prototype.flags",
+      "target": "npm:call-bind",
+      "type": "static"
+    },
+    {
+      "source": "npm:regexp.prototype.flags",
+      "target": "npm:define-properties",
+      "type": "static"
+    },
+    {
+      "source": "npm:regexp.prototype.flags",
+      "target": "npm:es-errors",
+      "type": "static"
+    },
+    {
+      "source": "npm:regexp.prototype.flags",
+      "target": "npm:set-function-name",
       "type": "static"
     },
     {
@@ -27501,6 +27828,26 @@
     },
     {
       "source": "npm:set-function-length",
+      "target": "npm:has-property-descriptors",
+      "type": "static"
+    },
+    {
+      "source": "npm:set-function-name",
+      "target": "npm:define-data-property",
+      "type": "static"
+    },
+    {
+      "source": "npm:set-function-name",
+      "target": "npm:es-errors",
+      "type": "static"
+    },
+    {
+      "source": "npm:set-function-name",
+      "target": "npm:functions-have-names",
+      "type": "static"
+    },
+    {
+      "source": "npm:set-function-name",
       "target": "npm:has-property-descriptors",
       "type": "static"
     },

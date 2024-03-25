@@ -1,0 +1,92 @@
+<section class="users-page" *ngIf="users; else loader">
+    <div class="name-page">
+        <h1>Users</h1>
+        <p>List of all users</p>
+    </div>
+
+    <div class="btn-container">
+        <button routerLink="/users/form" class="btn-create-edit-user">
+            <i class="pi pi-plus"></i><span>New</span>
+        </button>
+    </div>
+
+    <p-table [columns]="cols" [value]="users" class="p-table">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th
+                    *ngFor="let col of columns; let i = index"
+                    [pSortableColumn]="col.field"
+                    [pSortableColumnDisabled]="i !== 0"
+                >
+                    <p-sortIcon
+                        *ngIf="col.field === 'name'"
+                        [field]="col.field"
+                    ></p-sortIcon>
+                    {{ col.header }}
+                </th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    {{ rowData[col.field] }}
+                </td>
+                <td>
+                    <p-button
+                        styleClass="p-button-trash"
+                        icon="pi pi-trash"
+                        (click)="onDeleteUser(rowData.id)"
+                    ></p-button>
+                    <p-button
+                        styleClass="p-button-pencil"
+                        icon="pi pi-pencil"
+                        routerLink="/users/form/{{ rowData.id }}"
+                    ></p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>
+
+<ng-template #loader>
+    <div class="loader-container">
+        <p><i class="pi pi-spin pi-spinner"></i></p>
+    </div>
+</ng-template>
+
+<p-toast></p-toast>
+
+<p-confirmDialog #cd>
+    <ng-template pTemplate="headless" let-message>
+        <div
+            class="confirm-modal flex flex-column align-items-center p-5 border-round"
+        >
+            <div
+                class="icon border-circle inline-flex justify-content-center align-items-center h-6rem w-6rem -mt-8"
+            >
+                <i class="pi pi-question text-5xl"></i>
+            </div>
+            <span class="font-bold text-2xl block mb-2 mt-4">{{
+                message.header
+            }}</span>
+            <p class="mb-0">{{ message.message }}</p>
+            <div class="flex align-items-center gap-2 mt-4">
+                <button
+                    pButton
+                    label="Save"
+                    (click)="cd.accept()"
+                    class="w-8rem"
+                ></button>
+                <button
+                    pButton
+                    label="Cancel"
+                    (click)="cd.reject()"
+                    class="p-button-outlined w-8rem"
+                ></button>
+            </div>
+        </div>
+    </ng-template>
+</p-confirmDialog>
+
+<router-outlet></router-outlet>

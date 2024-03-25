@@ -104,7 +104,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4em;
+            gap: 1em;
             justify-content: space-between;
             background-color: $backgroundColorDark;
             padding: 1.5em;
@@ -403,13 +403,13 @@
                 gap: 1em;
                 align-items: center;
                 width: 100%;
+                margin-block-start: 1em;
 
                 .description-input {
                     flex: 1;
                     display: flex;
                     flex-direction: column;
                     gap: 0.5em;
-                    align-items: center;
 
                     label {
                         margin-inline-start: 2px;
@@ -442,7 +442,6 @@
                     display: flex;
                     flex-direction: column;
                     gap: 0.5em;
-                    align-items: center;
                     flex: 1;
 
                     label {

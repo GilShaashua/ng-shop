@@ -1,4 +1,25 @@
 {
+  "16884181559479913796": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
   "8720809409821918379": {
     "test": {
       "command": "jest",
@@ -41,6 +62,27 @@
       ]
     }
   },
+  "11823408569919276984": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/products"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\products"
+      ]
+    }
+  },
   "7105853805507169298": {
     "test": {
       "command": "jest",
@@ -62,7 +104,7 @@
       ]
     }
   },
-  "11094162146829145650": {
+  "10317675447027989125": {
     "test": {
       "command": "jest",
       "options": {
@@ -80,48 +122,6 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\libs\\users"
-      ]
-    }
-  },
-  "774145715890948811": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "apps/admin"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\apps\\admin"
-      ]
-    }
-  },
-  "11823408569919276984": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/products"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\products"
       ]
     }
   }
