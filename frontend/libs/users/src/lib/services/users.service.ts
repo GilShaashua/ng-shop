@@ -20,7 +20,12 @@ export class UsersService {
     }
 
     addUser(user: User): Observable<User> {
-        return this.http.post('http://localhost:3000/api/v1/users', user);
+        console.log('user', user);
+
+        return this.http.post(
+            'http://localhost:3000/api/v1/users/register',
+            user
+        );
     }
 
     editUser(user: User): Observable<User> {
@@ -32,5 +37,9 @@ export class UsersService {
 
     deleteUser(userId: string): Observable<User> {
         return this.http.delete(`http://localhost:3000/api/v1/users/${userId}`);
+    }
+
+    getContries() {
+        return this.http.get('https://i18n-iso-countries/langs/en.json');
     }
 }

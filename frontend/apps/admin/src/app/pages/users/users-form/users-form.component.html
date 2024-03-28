@@ -1,4 +1,7 @@
-<div class="users-form-modal" *ngIf="isCmpInizialized; else loader">
+<div
+    class="users-form-modal"
+    *ngIf="isCmpInizialized && countries.length; else loader"
+>
     <div class="users-form-container">
         <div class="users-form-heading">
             <h1>{{ userId ? 'Edit' : 'Add' }} User</h1>
@@ -37,6 +40,225 @@
                     <small
                         *ngIf="
                             controlsForm['name'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 3 characters!</small
+                    >
+                </div>
+
+                <div class="email-input">
+                    <label for="email">Email</label>
+                    <input
+                        formControlName="email"
+                        type="email"
+                        name="email"
+                        id="email"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['email'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Email is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['email'].hasError('email') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Must contain email with "&#64;"</small
+                    >
+                </div>
+
+                <div class="password-input">
+                    <label for="password">Password</label>
+                    <input
+                        formControlName="password"
+                        type="password"
+                        name="password"
+                        id="password"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['password'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Password is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['password'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 5 characters!</small
+                    >
+                </div>
+
+                <div class="phone-input">
+                    <label for="phone">Phone</label>
+                    <input
+                        formControlName="phone"
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['phone'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Phone is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['phone'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 8 characters!</small
+                    >
+                </div>
+
+                <div class="admin-input">
+                    <label for="admin">Admin</label>
+                    <p-inputSwitch
+                        formControlName="isAdmin"
+                        inputId="admin"
+                    ></p-inputSwitch>
+                </div>
+
+                <div class="street-input">
+                    <label for="phone">Street</label>
+                    <input
+                        formControlName="street"
+                        type="text"
+                        name="street"
+                        id="street"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['street'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Street is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['street'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 8 characters!</small
+                    >
+                </div>
+
+                <div class="apartment-input">
+                    <label for="apartment">Apartment</label>
+                    <input
+                        formControlName="apartment"
+                        type="text"
+                        name="apartment"
+                        id="apartment"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['apartment'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Apartment is requried!</small
+                    >
+                </div>
+
+                <div class="zip-input">
+                    <label for="zip">Zip</label>
+                    <input
+                        formControlName="zip"
+                        type="text"
+                        name="zip"
+                        id="zip"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['zip'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Zip is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['zip'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 5 characters!</small
+                    >
+                </div>
+
+                <div class="city-input">
+                    <label for="city">City</label>
+                    <input
+                        formControlName="city"
+                        type="text"
+                        name="city"
+                        id="city"
+                        [ngClass]="{ submitted: isSubmitted }"
+                    />
+                    <small
+                        *ngIf="
+                            controlsForm['city'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >City is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['city'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Minimum 3 characters!</small
+                    >
+                </div>
+
+                <div class="country-input">
+                    <label for="country">Country</label>
+
+                    <p-dropdown
+                        formControlName="country"
+                        [options]="countries"
+                        [filter]="true"
+                        filterBy=""
+                        placeholder="Select a country"
+                        styleClass="w-20rem"
+                    ></p-dropdown>
+
+                    <small
+                        *ngIf="
+                            controlsForm['country'].hasError('required') &&
+                            isSubmitted
+                        "
+                        class="p-error"
+                        >Country is requried!</small
+                    >
+                    <small
+                        *ngIf="
+                            controlsForm['country'].hasError('minlength') &&
                             isSubmitted
                         "
                         class="p-error"

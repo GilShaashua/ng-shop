@@ -16,6 +16,12 @@ import { UsersService } from '@frontend/users';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Subscription, firstValueFrom, timer } from 'rxjs';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
+import * as countriesLib from 'i18n-iso-countries';
+import test1 from 'i18n-iso-countries/langs/en.json';
+
+declare const require: any;
 
 @Component({
     selector: 'admin-users-form',
@@ -26,6 +32,8 @@ import { Subscription, firstValueFrom, timer } from 'rxjs';
         RouterModule,
         ToastModule,
         ReactiveFormsModule,
+        InputSwitchModule,
+        DropdownModule,
     ],
     templateUrl: './users-form.component.html',
     styleUrl: './users-form.component.scss',
@@ -42,18 +50,31 @@ export class UsersFormComponent {
     form: FormGroup = this.formBuilder.group({
         id: [''],
         name: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(5)]],
+        phone: ['', [Validators.required, Validators.minLength(8)]],
+        isAdmin: [false],
+        street: ['', [Validators.required, Validators.minLength(8)]],
+        apartment: ['', [Validators.required]],
+        zip: ['', [Validators.required, Validators.minLength(5)]],
+        city: ['', [Validators.required, Validators.minLength(3)]],
+        country: ['', [Validators.required]],
     });
 
-    userId: string = '';
+    userId = '';
+    countries: any[] = [];
     isCmpInizialized = false;
     isSubmitted = false;
     paramsSubscription!: Subscription;
 
     ngOnInit(): void {
         this._checkParams();
+        this._getContries();
     }
 
     onSubmitForm() {
+        console.log(this.form.value);
+
         if (this.form.untouched) {
             if (this.userId) {
                 return this.messageService.add({
@@ -87,6 +108,7 @@ export class UsersFormComponent {
                     next: (user) => {
                         this.userId = user.id!;
                         this.form.patchValue(user);
+                        this.form.controls['password'].setValidators([]);
                         this.isCmpInizialized = true;
                     },
                     error: (err) => {
@@ -97,6 +119,17 @@ export class UsersFormComponent {
                 this.isCmpInizialized = true;
             }
         });
+    }
+
+    private _getContries() {
+        countriesLib.registerLocale(test1);
+        const countriesRes = Object.entries(
+            countriesLib.getNames('en', { select: 'official' })
+        );
+        const countries = countriesRes.map((country) => {
+            return country[1];
+        });
+        this.countries = countries;
     }
 
     private _addUser() {

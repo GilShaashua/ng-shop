@@ -42,21 +42,18 @@ router.get('/get/count', async (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    const user = new User(
-        {
-            name: req.body.name,
-            email: req.body.email,
-            passwordHash: bcrypt.hashSync(req.body.password, 10),
-            phone: req.body.phone,
-            isAdmin: req.body.isAdmin,
-            street: req.body.street,
-            apartment: req.body.apartment,
-            zip: req.body.zip,
-            city: req.body.city,
-            country: req.body.country,
-        },
-        { new: true }
-    );
+    const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        passwordHash: bcrypt.hashSync(req.body.password, 10),
+        phone: req.body.phone,
+        isAdmin: req.body.isAdmin,
+        street: req.body.street,
+        apartment: req.body.apartment,
+        zip: req.body.zip,
+        city: req.body.city,
+        country: req.body.country,
+    });
 
     try {
         const createdUser = await user.save();

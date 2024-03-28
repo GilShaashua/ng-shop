@@ -13188,11 +13188,6 @@
         "source": "admin",
         "target": "users",
         "type": "static"
-      },
-      {
-        "source": "admin",
-        "target": "npm:i18n-iso-countries",
-        "type": "static"
       }
     ],
     "users": [

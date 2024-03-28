@@ -14,6 +14,7 @@ import { User, UsersService } from '@frontend/users';
 import { Column } from '@frontend/products';
 import { Subscription, filter } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TagModule } from 'primeng/tag';
 
 @Component({
     selector: 'admin-users-list',
@@ -26,6 +27,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
         ButtonModule,
         TableModule,
         ConfirmDialogModule,
+        TagModule,
     ],
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',

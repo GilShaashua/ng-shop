@@ -7551,15 +7551,6 @@
         "hash": "sha512-aBzdj76lueB6uUst5iAs7+0H/oOjqI5D16XUWxlWMIMROhcM0rfsNVk93zTngq1dDNpoXRr++Sus7ETAExppAQ=="
       }
     },
-    "npm:diacritics": {
-      "type": "npm",
-      "name": "npm:diacritics",
-      "data": {
-        "version": "1.3.0",
-        "packageName": "diacritics",
-        "hash": "sha512-wlwEkqcsaxvPJML+rDh/2iS824jbREk6DUMUKkEaSlxdYHeS43cClJtsWglvw2RfeXGm6ohKDqsXteJ5sP5enA=="
-      }
-    },
     "npm:diff": {
       "type": "npm",
       "name": "npm:diff",
@@ -8854,15 +8845,6 @@
         "version": "5.0.1",
         "packageName": "https-proxy-agent",
         "hash": "sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA=="
-      }
-    },
-    "npm:i18n-iso-countries": {
-      "type": "npm",
-      "name": "npm:i18n-iso-countries",
-      "data": {
-        "version": "7.11.0",
-        "packageName": "i18n-iso-countries",
-        "hash": "sha512-MP2+aAJwvBTuruaMEj+mPEhu4D9rn03GkkbuP8/xkvNzhVwNe2cAg1ivkL5Oj+vwqEwvIcf5C7Q+5Y/UZNLBHw=="
       }
     },
     "npm:icss-utils": {
@@ -10393,6 +10375,15 @@
         "version": "17.1.2",
         "packageName": "ng-packagr",
         "hash": "sha512-H7WRiqbM91lOItixrKc9XP1ZLpsxwIk3l0JDnhSePvKQlMe1UsNrnYHzBek6iVyMolCuz86YR0Dovbpyi4aOzA=="
+      }
+    },
+    "npm:ngx-quill": {
+      "type": "npm",
+      "name": "npm:ngx-quill",
+      "data": {
+        "version": "25.1.2",
+        "packageName": "ngx-quill",
+        "hash": "sha512-Ua4FiQMijM4YYVfx34DEaRLWXU6EGuzOy+W7VYgZOIn8iBmM3MNxedS21lMu6zRu4C0d9tBZ+KyOD5fPGRc+Cg=="
       }
     },
     "npm:nice-napi": {
@@ -13187,11 +13178,6 @@
       {
         "source": "admin",
         "target": "users",
-        "type": "static"
-      },
-      {
-        "source": "admin",
-        "target": "npm:i18n-iso-countries",
         "type": "static"
       }
     ],
@@ -24837,13 +24823,6 @@
         "type": "static"
       }
     ],
-    "npm:i18n-iso-countries": [
-      {
-        "source": "npm:i18n-iso-countries",
-        "target": "npm:diacritics",
-        "type": "static"
-      }
-    ],
     "npm:iconv-lite": [
       {
         "source": "npm:iconv-lite",
@@ -27262,6 +27241,23 @@
       {
         "source": "npm:ng-packagr",
         "target": "npm:rollup",
+        "type": "static"
+      }
+    ],
+    "npm:ngx-quill": [
+      {
+        "source": "npm:ngx-quill",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-quill",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-quill",
+        "target": "npm:tslib",
         "type": "static"
       }
     ],

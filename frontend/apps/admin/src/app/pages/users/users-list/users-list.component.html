@@ -30,7 +30,23 @@
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
                 <td *ngFor="let col of columns">
+                    @if (col.field==='isAdmin') { @if (rowData[col.field]) {
+                    <p-tag
+                        styleClass="p-mr-2"
+                        icon="pi pi-check"
+                        severity="success"
+                    >
+                    </p-tag>
+                    }@else {
+                    <p-tag
+                        styleClass="p-mr-2"
+                        icon="pi pi-times"
+                        severity="danger"
+                    >
+                    </p-tag>
+                    } }@else {
                     {{ rowData[col.field] }}
+                    }
                 </td>
                 <td>
                     <p-button
