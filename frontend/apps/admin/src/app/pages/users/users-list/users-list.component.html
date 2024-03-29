@@ -44,7 +44,9 @@
                         severity="danger"
                     >
                     </p-tag>
-                    } }@else {
+                    } } @else if (col.field==='country'){
+                    {{ rowData[col.field] | country }}
+                    }@else {
                     {{ rowData[col.field] }}
                     }
                 </td>

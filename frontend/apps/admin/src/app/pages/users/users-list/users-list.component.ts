@@ -15,6 +15,7 @@ import { Column } from '@frontend/products';
 import { Subscription, filter } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TagModule } from 'primeng/tag';
+import { CountryPipe } from '@frontend/utils';
 
 @Component({
     selector: 'admin-users-list',
@@ -28,6 +29,7 @@ import { TagModule } from 'primeng/tag';
         TableModule,
         ConfirmDialogModule,
         TagModule,
+        CountryPipe,
     ],
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',

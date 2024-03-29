@@ -13051,6 +13051,11 @@
       },
       {
         "source": "ngshop-e2e",
+        "target": "npm:@nx/cypress",
+        "type": "static"
+      },
+      {
+        "source": "ngshop-e2e",
         "target": "npm:cypress",
         "type": "static"
       }
@@ -13063,6 +13068,11 @@
       },
       {
         "source": "admin-e2e",
+        "target": "npm:@nx/cypress",
+        "type": "static"
+      },
+      {
+        "source": "admin-e2e",
         "target": "npm:cypress",
         "type": "static"
       }
@@ -13070,12 +13080,7 @@
     "products": [
       {
         "source": "products",
-        "target": "npm:@angular/router",
-        "type": "static"
-      },
-      {
-        "source": "products",
-        "target": "npm:@angular/core",
+        "target": "npm:tslib",
         "type": "static"
       },
       {
@@ -13085,7 +13090,22 @@
       },
       {
         "source": "products",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "products",
+        "target": "npm:@angular/router",
+        "type": "static"
+      },
+      {
+        "source": "products",
         "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "products",
+        "target": "npm:jest-preset-angular",
         "type": "static"
       }
     ],
@@ -13119,12 +13139,22 @@
         "source": "ngshop",
         "target": "npm:primeng",
         "type": "static"
+      },
+      {
+        "source": "ngshop",
+        "target": "npm:jest-preset-angular",
+        "type": "static"
       }
     ],
     "orders": [
       {
         "source": "orders",
-        "target": "npm:@angular/router",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "orders",
+        "target": "npm:@angular/common",
         "type": "static"
       },
       {
@@ -13134,7 +13164,12 @@
       },
       {
         "source": "orders",
-        "target": "npm:@angular/common",
+        "target": "npm:@angular/router",
+        "type": "static"
+      },
+      {
+        "source": "orders",
+        "target": "npm:jest-preset-angular",
         "type": "static"
       }
     ],
@@ -13193,12 +13228,22 @@
         "source": "admin",
         "target": "npm:i18n-iso-countries",
         "type": "static"
+      },
+      {
+        "source": "admin",
+        "target": "npm:jest-preset-angular",
+        "type": "static"
       }
     ],
     "users": [
       {
         "source": "users",
-        "target": "npm:@angular/router",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:@angular/common",
         "type": "static"
       },
       {
@@ -13208,16 +13253,31 @@
       },
       {
         "source": "users",
-        "target": "npm:@angular/common",
+        "target": "npm:@angular/router",
         "type": "static"
       },
       {
         "source": "users",
         "target": "npm:rxjs",
         "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:jest-preset-angular",
+        "type": "static"
       }
     ],
     "ui": [
+      {
+        "source": "ui",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "ui",
+        "target": "npm:@angular/common",
+        "type": "static"
+      },
       {
         "source": "ui",
         "target": "npm:@angular/core",
@@ -13230,7 +13290,7 @@
       },
       {
         "source": "ui",
-        "target": "npm:@angular/common",
+        "target": "npm:jest-preset-angular",
         "type": "static"
       }
     ],

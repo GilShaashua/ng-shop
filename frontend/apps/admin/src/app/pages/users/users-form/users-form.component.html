@@ -242,10 +242,11 @@
                     <p-dropdown
                         formControlName="country"
                         [options]="countries"
+                        optionLabel="name"
+                        optionValue="id"
                         [filter]="true"
-                        filterBy=""
+                        filterBy="name"
                         placeholder="Select a country"
-                        styleClass="w-20rem"
                     ></p-dropdown>
 
                     <small

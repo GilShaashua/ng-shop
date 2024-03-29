@@ -15,13 +15,10 @@ import {
 import { UsersService } from '@frontend/users';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { Subscription, firstValueFrom, timer } from 'rxjs';
+import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import * as countriesLib from 'i18n-iso-countries';
-import test1 from 'i18n-iso-countries/langs/en.json';
-
-declare const require: any;
 
 @Component({
     selector: 'admin-users-form',
@@ -73,8 +70,6 @@ export class UsersFormComponent {
     }
 
     onSubmitForm() {
-        console.log(this.form.value);
-
         if (this.form.untouched) {
             if (this.userId) {
                 return this.messageService.add({
@@ -122,12 +117,14 @@ export class UsersFormComponent {
     }
 
     private _getContries() {
-        countriesLib.registerLocale(test1);
         const countriesRes = Object.entries(
             countriesLib.getNames('en', { select: 'official' })
         );
         const countries = countriesRes.map((country) => {
-            return country[1];
+            return {
+                id: country[0],
+                name: country[1],
+            };
         });
         this.countries = countries;
     }
