@@ -13292,6 +13292,11 @@
       },
       {
         "source": "admin",
+        "target": "orders",
+        "type": "static"
+      },
+      {
+        "source": "admin",
         "target": "npm:@angular/forms",
         "type": "static"
       },

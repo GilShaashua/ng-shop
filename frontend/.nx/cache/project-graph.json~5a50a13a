@@ -780,97 +780,6 @@
         "implicitDependencies": []
       }
     },
-    "utils": {
-      "name": "utils",
-      "type": "lib",
-      "data": {
-        "root": "libs/utils",
-        "name": "utils",
-        "targets": {
-          "nx-release-publish": {
-            "dependsOn": [
-              "^nx-release-publish"
-            ],
-            "executor": "@nx/js:release-publish",
-            "options": {},
-            "configurations": {}
-          },
-          "lint": {
-            "cache": true,
-            "inputs": [
-              "default",
-              "{workspaceRoot}/.eslintrc.json",
-              "{workspaceRoot}/libs/utils/.eslintrc.json",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
-            "executor": "nx:run-commands",
-            "options": {
-              "cwd": "libs/utils",
-              "command": "eslint ."
-            },
-            "configurations": {}
-          },
-          "test": {
-            "options": {
-              "cwd": "libs/utils",
-              "command": "jest"
-            },
-            "cache": true,
-            "inputs": [
-              "default",
-              "^production",
-              {
-                "externalDependencies": [
-                  "jest"
-                ]
-              }
-            ],
-            "outputs": [
-              "{workspaceRoot}\\coverage\\libs\\utils"
-            ],
-            "executor": "nx:run-commands",
-            "configurations": {}
-          },
-          "build": {
-            "executor": "@nx/angular:ng-packagr-lite",
-            "cache": true,
-            "dependsOn": [
-              "^build"
-            ],
-            "inputs": [
-              "production",
-              "^production"
-            ],
-            "outputs": [
-              "{workspaceRoot}/dist/{projectRoot}"
-            ],
-            "options": {
-              "project": "libs/utils/ng-package.json"
-            },
-            "configurations": {
-              "production": {
-                "tsConfig": "libs/utils/tsconfig.lib.prod.json"
-              },
-              "development": {
-                "tsConfig": "libs/utils/tsconfig.lib.json"
-              }
-            },
-            "defaultConfiguration": "production"
-          }
-        },
-        "$schema": "../../node_modules/nx/schemas/project-schema.json",
-        "sourceRoot": "libs/utils/src",
-        "prefix": "frontend",
-        "tags": [],
-        "projectType": "library",
-        "implicitDependencies": []
-      }
-    },
     "ui": {
       "name": "ui",
       "type": "lib",
@@ -13292,6 +13201,11 @@
       },
       {
         "source": "admin",
+        "target": "orders",
+        "type": "static"
+      },
+      {
+        "source": "admin",
         "target": "npm:@angular/forms",
         "type": "static"
       },
@@ -13313,11 +13227,6 @@
       {
         "source": "admin",
         "target": "npm:i18n-iso-countries",
-        "type": "static"
-      },
-      {
-        "source": "admin",
-        "target": "utils",
         "type": "static"
       },
       {
@@ -13354,38 +13263,6 @@
       },
       {
         "source": "users",
-        "target": "npm:i18n-iso-countries",
-        "type": "static"
-      },
-      {
-        "source": "users",
-        "target": "npm:jest-preset-angular",
-        "type": "static"
-      }
-    ],
-    "utils": [
-      {
-        "source": "utils",
-        "target": "npm:tslib",
-        "type": "static"
-      },
-      {
-        "source": "utils",
-        "target": "npm:@angular/common",
-        "type": "static"
-      },
-      {
-        "source": "utils",
-        "target": "npm:@angular/core",
-        "type": "static"
-      },
-      {
-        "source": "utils",
-        "target": "npm:i18n-iso-countries",
-        "type": "static"
-      },
-      {
-        "source": "utils",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }

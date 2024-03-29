@@ -91,12 +91,9 @@ router.post('/login', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const deletedUser = await Product.findByIdAndDelete(req.params.id);
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
         if (deletedUser) {
-            return res.status(200).json({
-                success: true,
-                message: 'The user has been removed!',
-            });
+            return res.json(deletedUser);
         } else {
             return res
                 .status(404)

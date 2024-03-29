@@ -10,6 +10,7 @@
       <project name="products" file="file://$PROJECT_DIR$/libs/products/project.json" />
       <project name="ui" file="file://$PROJECT_DIR$/libs/ui/project.json" />
       <project name="users" file="file://$PROJECT_DIR$/libs/users/project.json" />
+      <project name="utils" file="file://$PROJECT_DIR$/libs/utils/project.json" />
     </projects>
   </component>
 </project>

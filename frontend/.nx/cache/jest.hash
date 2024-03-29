@@ -1,25 +1,4 @@
 {
-  "2213659630827196784": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "apps/admin"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\apps\\admin"
-      ]
-    }
-  },
   "8720809409821918379": {
     "test": {
       "command": "jest",
@@ -38,27 +17,6 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\apps\\ngshop"
-      ]
-    }
-  },
-  "13792997274669720892": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/orders"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\orders"
       ]
     }
   },
@@ -104,7 +62,49 @@
       ]
     }
   },
-  "15367066244446217801": {
+  "9239194038936393158": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "5200173951378041422": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/orders"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\orders"
+      ]
+    }
+  },
+  "15317837357454844103": {
     "test": {
       "command": "jest",
       "options": {
@@ -122,6 +122,27 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\libs\\users"
+      ]
+    }
+  },
+  "7725017248052835651": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/utils"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\utils"
       ]
     }
   }

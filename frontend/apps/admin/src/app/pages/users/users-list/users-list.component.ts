@@ -12,7 +12,7 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { User, UsersService } from '@frontend/users';
 import { Column } from '@frontend/products';
-import { Subscription, filter } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TagModule } from 'primeng/tag';
 import { CountryPipe } from '@frontend/utils';
@@ -69,6 +69,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
     }
 
     onDeleteUser(userId: string) {
+        console.log('userId', userId);
         this.confirmationService.confirm({
             header: 'Delete User',
             message: 'Are you sure you want to delete this User?',
