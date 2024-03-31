@@ -34,8 +34,8 @@
 
                     <ng-container *ngIf="col.field === 'status'"
                         ><p-tag
-                            [value]="orderStatuses[rowData[col.field]].label"
-                            [severity]="orderStatuses[rowData[col.field]].color"
+                            [value]="orderStatus[rowData[col.field]].label"
+                            [severity]="orderStatus[rowData[col.field]].color"
                             [style]="{
                                 fontSize: '14px',
                                 paddingInline: '10px',

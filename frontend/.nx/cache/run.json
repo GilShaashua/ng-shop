@@ -1,8 +1,8 @@
 {
   "run": {
     "command": "nx serve admin",
-    "startTime": "2024-03-28T08:18:04.283Z",
-    "endTime": "2024-03-29T15:18:09.033Z",
+    "startTime": "2024-03-29T16:07:41.551Z",
+    "endTime": "2024-03-29T22:02:07.450Z",
     "inner": false
   },
   "tasks": [
@@ -10,9 +10,9 @@
       "taskId": "admin:serve:development",
       "target": "serve",
       "projectName": "admin",
-      "hash": "12292134221883055733",
-      "startTime": "2024-03-28T08:18:04.291Z",
-      "endTime": "2024-03-29T15:18:09.031Z",
+      "hash": "13467499627418653103",
+      "startTime": "2024-03-29T16:07:41.559Z",
+      "endTime": "2024-03-29T22:02:07.447Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 1

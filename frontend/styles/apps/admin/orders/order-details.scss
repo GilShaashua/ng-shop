@@ -1,0 +1,184 @@
+.order-details-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+
+    button {
+        width: fit-content;
+        border: none;
+        background-color: unset;
+        cursor: pointer;
+        display: flex;
+
+        .pi-angle-left {
+            color: #fff;
+            font-size: 30px;
+            font-weight: lighter;
+        }
+
+        &:hover {
+            background-color: $backgroundColorDark3;
+        }
+    }
+
+    .fieldset {
+        padding: 1em;
+        background-color: $backgroundColorDark3;
+        color: $text-color;
+        border-radius: unset;
+
+        .p-fieldset-legend {
+            padding: 0.8em;
+            background-color: $primary-color;
+            border-radius: unset;
+
+            .p-ripple {
+                gap: 0.5em;
+                color: $text-color;
+            }
+        }
+
+        .p-fieldset-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1em;
+            padding-block-end: 1em;
+        }
+
+        &.order-details {
+            .order-container {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;
+
+                h4 {
+                    font-size: 17px;
+                }
+
+                .p-inputwrapper {
+                    &.p-dropdown {
+                        padding: 0.5em;
+                        border-radius: unset;
+                        border: none;
+                        width: 100%;
+                    }
+
+                    .p-dropdown-trigger {
+                        justify-content: flex-end;
+
+                        .p-icon {
+                            margin-block-start: 4px;
+                        }
+                    }
+
+                    .p-overlay {
+                        ul {
+                            li {
+                                padding: 0.5em;
+
+                                &:hover {
+                                    background-color: $primary-color;
+                                    color: $text-color;
+                                }
+
+                                &.p-focus {
+                                    background-color: $primary-color-opacity;
+                                    color: $text-color;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            position: relative;
+
+            .headers {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1em;
+
+                h4 {
+                    flex: 1;
+                    font-size: 17px;
+
+                    &:nth-child(6) {
+                        text-align: end;
+                    }
+                }
+            }
+
+            .order-items {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1em;
+
+                .order-item {
+                    flex: 1;
+
+                    &:nth-child(6) {
+                        text-align: end;
+                    }
+                }
+            }
+
+            .total-price {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                padding-block: 0.5em;
+                padding-inline: 1em;
+                background-color: $backgroundColorDark2;
+                border: 1px solid $text-color;
+                position: absolute;
+                right: -1px;
+                bottom: 0;
+                transform: translate(0%, 50%);
+            }
+        }
+
+        &.order-address {
+            .headers {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                justify-content: space-between;
+                width: 100%;
+
+                h4 {
+                    font-size: 17px;
+                }
+            }
+
+            .content {
+                display: flex;
+                gap: 1em;
+                justify-content: space-between;
+                width: 100%;
+
+                .address {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5em;
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5em;
+                }
+            }
+        }
+    }
+}

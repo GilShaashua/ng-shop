@@ -3,7 +3,7 @@ import { User } from '@frontend/users';
 
 export interface Order {
     id: string;
-    orderItem: OrderItem;
+    orderItems: OrderItem[];
     shippingAddress1: string;
     shippingAddress2: string;
     city: string;

@@ -61,7 +61,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
                     return products.map((product) => {
                         return {
                             ...product,
-                            category: (product.category as Category).name,
+                            category: product.category
+                                .name as unknown as Category,
                         };
                     });
                 })

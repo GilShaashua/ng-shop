@@ -13260,6 +13260,16 @@
       },
       {
         "source": "orders",
+        "target": "users",
+        "type": "static"
+      },
+      {
+        "source": "orders",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "orders",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }
@@ -13303,6 +13313,11 @@
       {
         "source": "admin",
         "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "admin",
+        "target": "orders",
         "type": "static"
       },
       {

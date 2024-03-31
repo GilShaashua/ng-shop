@@ -1,1 +1,129 @@
-<p>orders-details works!</p>
+<section class="order-details-page" *ngIf="order; else loader">
+    <button routerLink="/orders">
+        <i class="pi pi-angle-left"></i>
+    </button>
+
+    <p-fieldset
+        legend="Order details"
+        styleClass="fieldset order-details"
+        [toggleable]="true"
+    >
+        <div class="order-container order-id">
+            <h4>Id</h4>
+            <p>{{ order.id }}</p>
+        </div>
+
+        <div class="order-container order-user">
+            <h4>User</h4>
+            <p>{{ order.user.name }}</p>
+        </div>
+
+        <div class="order-container order-date">
+            <h4>Date</h4>
+            <p>{{ order.dateOrdered | date : 'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+
+        <div class="order-container order-total-price">
+            <h4>Total price</h4>
+            <p>
+                {{ order.totalPrice | currency : 'USD' : 'symbol' : '1.0-0' }}
+            </p>
+        </div>
+
+        <div class="order-container order-status">
+            <h4>Status</h4>
+            <p-dropdown
+                [(ngModel)]="order.status"
+                [options]="orderStatuses"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select a status"
+            ></p-dropdown>
+        </div>
+    </p-fieldset>
+
+    <p-fieldset
+        legend="Order items"
+        styleClass="fieldset order-items"
+        [toggleable]="true"
+    >
+        <div class="headers">
+            <h4>Name</h4>
+            <h4>Brand</h4>
+            <h4>Category</h4>
+            <h4>Price</h4>
+            <h4>Quantity</h4>
+            <h4>Subtotal</h4>
+        </div>
+
+        <div class="order-items" *ngFor="let orderItem of order.orderItems">
+            <div class="order-item product-name">
+                {{ orderItem.product.name }}
+            </div>
+
+            <div class="order-item product-brand">
+                {{ orderItem.product.brand }}
+            </div>
+
+            <div class="order-item product-category">
+                {{ orderItem.product.category.name }}
+            </div>
+
+            <div class="order-item product-price">
+                {{
+                    orderItem.product.price
+                        | currency : 'USD' : 'symbol' : '1.0-0'
+                }}
+            </div>
+
+            <div class="order-item product-quantity">
+                {{ orderItem.quantity }}
+            </div>
+
+            <div class="order-item subtotal">
+                {{
+                    orderItem.quantity * orderItem.product.price
+                        | currency : 'USD' : 'symbol' : '1.0-0'
+                }}
+            </div>
+        </div>
+
+        <div class="total-price">
+            <h4>Total price</h4>
+            <span>{{
+                order.totalPrice | currency : 'USD' : 'symbol' : '1.0-0'
+            }}</span>
+        </div>
+    </p-fieldset>
+
+    <p-fieldset
+        legend="Order address"
+        styleClass="fieldset order-address"
+        [toggleable]="true"
+    >
+        <div class="headers">
+            <h4>Order address</h4>
+            <h4>Customer info</h4>
+        </div>
+
+        <div class="content">
+            <div class="address">
+                <p>{{ order.shippingAddress1 }}</p>
+                <p>{{ order.city }}</p>
+                <p>{{ order.zip }}</p>
+                <p>{{ order.country }}</p>
+            </div>
+
+            <div class="info">
+                <p>{{ order.user.name }}</p>
+                <p>{{ order.phone }}</p>
+            </div>
+        </div>
+    </p-fieldset>
+</section>
+
+<ng-template #loader>
+    <div class="loader-container">
+        <p><i class="pi pi-spin pi-spinner"></i></p>
+    </div>
+</ng-template>
