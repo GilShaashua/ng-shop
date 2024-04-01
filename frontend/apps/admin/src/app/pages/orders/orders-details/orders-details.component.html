@@ -14,7 +14,7 @@
         </div>
 
         <div class="order-container order-user">
-            <h4>User</h4>
+            <h4>Ordered by</h4>
             <p>{{ order.user.name }}</p>
         </div>
 
@@ -34,10 +34,11 @@
             <h4>Status</h4>
             <p-dropdown
                 [(ngModel)]="order.status"
-                [options]="orderStatuses"
+                [options]="statusOptions"
                 optionLabel="label"
                 optionValue="value"
                 placeholder="Select a status"
+                (onChange)="onHandleOrderStatus($event)"
             ></p-dropdown>
         </div>
     </p-fieldset>
@@ -127,3 +128,5 @@
         <p><i class="pi pi-spin pi-spinner"></i></p>
     </div>
 </ng-template>
+
+<p-toast></p-toast>

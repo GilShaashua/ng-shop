@@ -34,11 +34,12 @@
 
                     <ng-container *ngIf="col.field === 'status'"
                         ><p-tag
+                            [rounded]="true"
                             [value]="orderStatus[rowData[col.field]].label"
                             [severity]="orderStatus[rowData[col.field]].color"
                             [style]="{
                                 fontSize: '14px',
-                                paddingInline: '10px',
+                                paddingInline: '15px',
                                 height: '30px',
                                 
                             }"

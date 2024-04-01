@@ -19,7 +19,7 @@ export class OrdersService {
         );
     }
 
-    editCategory(order: Order): Observable<Order> {
+    editOrder(order: Order): Observable<Order> {
         return this.http.put<Order>(
             `http://localhost:3000/api/v1/orders/${order.id}`,
             order

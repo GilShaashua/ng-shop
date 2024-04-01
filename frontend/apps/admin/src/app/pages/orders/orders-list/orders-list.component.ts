@@ -52,7 +52,7 @@ export class OrdersListComponent implements OnInit, OnDestroy {
         },
         2: {
             label: 'Shipped',
-            color: 'warning',
+            color: 'info',
         },
         3: {
             label: 'Delivered',
