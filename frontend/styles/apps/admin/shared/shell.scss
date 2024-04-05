@@ -45,6 +45,12 @@
                     li {
                         width: fit-content;
 
+                        &.active {
+                            a {
+                                color: red;
+                            }
+                        }
+
                         a {
                             display: flex;
                             align-items: center;

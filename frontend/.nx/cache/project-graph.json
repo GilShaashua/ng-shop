@@ -13260,6 +13260,11 @@
       },
       {
         "source": "orders",
+        "target": "products",
+        "type": "static"
+      },
+      {
+        "source": "orders",
         "target": "users",
         "type": "static"
       },
