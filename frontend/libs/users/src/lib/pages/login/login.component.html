@@ -1,1 +1,99 @@
-<p>login works!</p>
+<section class="login-page">
+    <div class="login-container">
+        <div class="img">
+            <img
+                src="http://localhost:3000/public/uploads/login-register/login-register.jpg"
+                alt="login"
+            />
+            <div class="red-cover"></div>
+        </div>
+
+        <div class="login-inner-container">
+            <div class="header">
+                <h1>eShop</h1>
+                <h2>Admin Panel</h2>
+            </div>
+
+            <form
+                [formGroup]="form"
+                class="form-login"
+                (ngSubmit)="onSubmitLogin()"
+            >
+                <div class="email-input">
+                    <div class="email">
+                        <label for="email"><i class="pi pi-user"></i></label>
+
+                        <input
+                            formControlName="email"
+                            type="email"
+                            name="email"
+                            id="email"
+                            [ngClass]="{ submitted: isSubmitted }"
+                            placeholder="Email"
+                        />
+                    </div>
+
+                    <small
+                        *ngIf="
+                            formControls['email'].hasError('required') &&
+                            isSubmitted
+                        "
+                        >Email is required!</small
+                    >
+
+                    <small
+                        *ngIf="
+                            formControls['email'].hasError('email') &&
+                            isSubmitted
+                        "
+                        >Email is not valid!</small
+                    >
+                </div>
+
+                <div class="password-input">
+                    <div class="password">
+                        <label for="password"
+                            ><i class="pi pi-ellipsis-h"></i
+                        ></label>
+
+                        <input
+                            formControlName="password"
+                            type="{{ isPasswordShown ? 'text' : 'password' }}"
+                            name="password"
+                            id="password"
+                            [ngClass]="{ submitted: isSubmitted }"
+                            placeholder="Password"
+                        />
+
+                        <i
+                            (click)="isPasswordShown = !isPasswordShown"
+                            class="eye pi"
+                            [class]="
+                                isPasswordShown ? 'pi-eye-slash' : 'pi-eye'
+                            "
+                            [title]="isPasswordShown ? 'Hide' : 'Show'"
+                        ></i>
+                    </div>
+
+                    <small
+                        *ngIf="
+                            formControls['password'].hasError('required') &&
+                            isSubmitted
+                        "
+                        >Password is required!</small
+                    >
+
+                    <small
+                        *ngIf="
+                            formControls['password'].hasError('minlength') &&
+                            isSubmitted
+                        "
+                        >Minimum 6 characters!</small
+                    >
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+        </div>
+    </div>
+</section>

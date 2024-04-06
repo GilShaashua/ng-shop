@@ -13,10 +13,8 @@ export const appRoutes: Route[] = [
 
     {
         path: 'login',
-        loadComponent: () =>
-            import('@frontend/users').then(
-                (component) => component.LoginComponent
-            ),
+        loadChildren: () =>
+            import('@frontend/users').then((route) => route.usersRoutes),
         title: 'Login',
     },
     { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
