@@ -13282,12 +13282,22 @@
     "admin": [
       {
         "source": "admin",
-        "target": "npm:@angular/core",
+        "target": "npm:@angular/router",
         "type": "static"
       },
       {
         "source": "admin",
-        "target": "npm:@angular/router",
+        "target": "users",
+        "type": "static"
+      },
+      {
+        "source": "admin",
+        "target": "users",
+        "type": "dynamic"
+      },
+      {
+        "source": "admin",
+        "target": "npm:@angular/core",
         "type": "static"
       },
       {
@@ -13327,11 +13337,6 @@
       },
       {
         "source": "admin",
-        "target": "users",
-        "type": "static"
-      },
-      {
-        "source": "admin",
         "target": "npm:i18n-iso-countries",
         "type": "static"
       },
@@ -13365,6 +13370,16 @@
       {
         "source": "users",
         "target": "npm:@angular/router",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:@angular/forms",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:primeng",
         "type": "static"
       },
       {

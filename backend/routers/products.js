@@ -219,13 +219,13 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/get/count', async (req, res) => {
     try {
-        const productCount = await Product.countDocuments();
+        const productsCount = await Product.countDocuments();
 
-        if (!productCount) {
+        if (!productsCount) {
             return res.status(500).send('There is no count!');
         }
 
-        res.status(200).json({ productCount });
+        res.status(200).json({ productsCount });
     } catch (err) {
         res.status(500).json({
             success: false,

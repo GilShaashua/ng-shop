@@ -1,1 +1,48 @@
-<p>dashboard works!</p>
+<section class="dashboard-page" *ngIf="statistics">
+    <div class="header">
+        <h1>Dashboard</h1>
+        <h4>Latest updates</h4>
+    </div>
+
+    <div class="summary">
+        <article class="orders">
+            <div class="icon-heading">
+                <i class="pi pi-shopping-cart"></i>
+                <h3>Orders</h3>
+            </div>
+            <div class="value">
+                <p>{{ statistics[0].ordersCount }}</p>
+            </div>
+        </article>
+
+        <article class="users">
+            <div class="icon-heading">
+                <i class="pi pi-user"></i>
+                <h3>Users</h3>
+            </div>
+            <div class="value">
+                <p>{{ statistics[1].usersCount }}</p>
+            </div>
+        </article>
+
+        <article class="products">
+            <div class="icon-heading">
+                <i class="pi pi-th-large"></i>
+                <h3>Products</h3>
+            </div>
+            <div class="value">
+                <p>{{ statistics[2].productsCount }}</p>
+            </div>
+        </article>
+
+        <article class="total-sales">
+            <div class="icon-heading">
+                <i class="pi pi-dollar"></i>
+                <h3>Total Sales</h3>
+            </div>
+            <div class="value">
+                <p>{{ statistics[3].totalSales | currency }}</p>
+            </div>
+        </article>
+    </div>
+</section>

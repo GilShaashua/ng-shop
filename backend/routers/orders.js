@@ -5,7 +5,7 @@ const OrderItem = require('../models/order-item');
 
 router.get('/', async (req, res) => {
     try {
-        const orders = await Order.find()
+        let orders = await Order.find()
             .populate({
                 path: 'orderItems',
                 populate: { path: 'product', populate: 'category' },
@@ -75,6 +75,8 @@ router.get('/get/total-sales', async (req, res) => {
             },
         ]);
 
+        console.log('totalSales', totalSales);
+
         if (!totalSales) {
             return res.status(400).send('The order sales cannot be generated!');
         }
@@ -87,13 +89,13 @@ router.get('/get/total-sales', async (req, res) => {
 
 router.get('/get/count', async (req, res) => {
     try {
-        const orderCount = await Order.countDocuments();
+        const ordersCount = await Order.countDocuments();
 
-        if (!orderCount) {
+        if (!ordersCount) {
             return res.status(500).send('There are no orders yet!');
         }
 
-        res.send({ orderCount });
+        res.send({ ordersCount });
     } catch (err) {
         res.status(500).json({ success: false, message: err });
     }

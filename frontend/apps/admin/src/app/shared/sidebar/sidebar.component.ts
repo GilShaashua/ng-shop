@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '@frontend/users';
 
 @Component({
     selector: 'admin-sidebar',
@@ -8,4 +9,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+    constructor(private authService: AuthService, private router: Router) {}
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/login']);
+    }
+}

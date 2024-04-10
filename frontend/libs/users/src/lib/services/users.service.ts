@@ -4,6 +4,7 @@ import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
 import * as countriesLib from 'i18n-iso-countries';
 import registerLocale from 'i18n-iso-countries/langs/en.json';
+import { enviroment } from 'enviroments/enviromet';
 
 @Injectable({
     providedIn: 'root',
@@ -13,33 +14,31 @@ export class UsersService {
         countriesLib.registerLocale(registerLocale);
     }
 
+    apiUrl = enviroment.apiUrl;
+
     getUsers(): Observable<User[]> {
-        return this.http.get<User[]>('http://localhost:3000/api/v1/users');
+        return this.http.get<User[]>(`${this.apiUrl}users`);
     }
 
     getUserById(userId: string): Observable<User> {
-        return this.http.get<User>(
-            `http://localhost:3000/api/v1/users/${userId}`
-        );
+        return this.http.get<User>(`${this.apiUrl}users/${userId}`);
     }
 
     addUser(user: User): Observable<User> {
-        console.log('user', user);
-
-        return this.http.post(
-            'http://localhost:3000/api/v1/users/register',
-            user
-        );
+        return this.http.post(`${this.apiUrl}users/register`, user);
     }
 
     editUser(user: User): Observable<User> {
-        return this.http.put(
-            `http://localhost:3000/api/v1/users/${user.id}`,
-            user
-        );
+        return this.http.put(`${this.apiUrl}users/${user.id}`, user);
     }
 
     deleteUser(userId: string): Observable<User> {
-        return this.http.delete(`http://localhost:3000/api/v1/users/${userId}`);
+        return this.http.delete(`${this.apiUrl}users/${userId}`);
+    }
+
+    getUsersCount(): Observable<{ usersCount: number }> {
+        return this.http.get<{ usersCount: number }>(
+            `${this.apiUrl}users/get/count`
+        );
     }
 }

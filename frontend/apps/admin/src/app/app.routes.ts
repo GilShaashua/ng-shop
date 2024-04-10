@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { ShellComponent } from './shared/shell/shell.component';
+import { loginGuard } from '@frontend/users';
 
 export const appRoutes: Route[] = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -16,6 +17,7 @@ export const appRoutes: Route[] = [
         loadChildren: () =>
             import('@frontend/users').then((route) => route.usersRoutes),
         title: 'Login',
+        canActivate: [loginGuard],
     },
     { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

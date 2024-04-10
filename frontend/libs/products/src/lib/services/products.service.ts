@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
+import { enviroment } from 'enviroments/enviromet';
 
 @Injectable({
     providedIn: 'root',
@@ -9,35 +10,34 @@ import { Product } from '../models/product.model';
 export class ProductsService {
     constructor(private http: HttpClient) {}
 
+    apiUrl = enviroment.apiUrl;
+
     getProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>(
-            'http://localhost:3000/api/v1/products'
-        );
+        return this.http.get<Product[]>(`${this.apiUrl}products`);
     }
 
     getProductById(productId: string): Observable<Product> {
-        return this.http.get<Product>(
-            `http://localhost:3000/api/v1/products/${productId}`
-        );
+        return this.http.get<Product>(`${this.apiUrl}products/${productId}`);
     }
 
     addProduct(productData: FormData): Observable<Product> {
-        return this.http.post<Product>(
-            'http://localhost:3000/api/v1/products',
-            productData
-        );
+        return this.http.post<Product>(`${this.apiUrl}products`, productData);
     }
 
     editProduct(productData: FormData): Observable<Product> {
         return this.http.put<Product>(
-            `http://localhost:3000/api/v1/products/${productData.get('id')}`,
+            `${this.apiUrl}products/${productData.get('id')}`,
             productData
         );
     }
 
     deleteProduct(productId: string): Observable<Product> {
-        return this.http.delete<Product>(
-            `http://localhost:3000/api/v1/products/${productId}`
+        return this.http.delete<Product>(`${this.apiUrl}products/${productId}`);
+    }
+
+    getProductsCount(): Observable<{ productsCount: number }> {
+        return this.http.get<{ productsCount: number }>(
+            `${this.apiUrl}products/get/count`
         );
     }
 }
