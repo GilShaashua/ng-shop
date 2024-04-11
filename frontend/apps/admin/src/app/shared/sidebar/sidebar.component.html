@@ -7,7 +7,11 @@
 
         <div class="links">
             <ul>
-                <li routerLink="/dashboard" routerLinkActive="active">
+                <li
+                    routerLink="/"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                >
                     <a><i class="pi pi-home"></i>Dashboard</a>
                 </li>
                 <li routerLink="/products" routerLinkActive="active">

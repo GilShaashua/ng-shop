@@ -3,8 +3,6 @@ import { ShellComponent } from './shared/shell/shell.component';
 import { loginGuard } from '@frontend/users';
 
 export const appRoutes: Route[] = [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-
     {
         path: '',
         component: ShellComponent,
@@ -19,5 +17,5 @@ export const appRoutes: Route[] = [
         title: 'Login',
         canActivate: [loginGuard],
     },
-    { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

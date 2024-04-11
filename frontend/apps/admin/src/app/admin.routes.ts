@@ -7,9 +7,9 @@ import { authGuard } from '@frontend/users';
 
 export const adminRoutes: Route[] = [
     {
-        path: 'dashboard',
+        path: '',
         component: DashboardComponent,
-        title: 'Dashboard',
+        title: 'Dashboard | Admin Panel',
         canActivate: [authGuard],
     },
     {
@@ -18,19 +18,19 @@ export const adminRoutes: Route[] = [
             import('./pages/products/product-list/product-list.component').then(
                 (component) => component.ProductListComponent
             ),
-        title: 'Products',
+        title: 'Products | Admin Panel',
         canActivate: [authGuard],
         children: [
             {
                 path: 'form',
                 component: ProductFormComponent,
-                title: 'Add Product',
+                title: 'Add Product | Admin Panel',
                 canActivate: [authGuard],
             },
             {
                 path: 'form/:productId',
                 component: ProductFormComponent,
-                title: 'Edit Product',
+                title: 'Edit Product | Admin Panel',
                 canActivate: [authGuard],
             },
         ],
@@ -41,19 +41,19 @@ export const adminRoutes: Route[] = [
             import(
                 './pages/categories/categories-list/categories.component'
             ).then((component) => component.CategoriesComponent),
-        title: 'Categories',
+        title: 'Categories | Admin Panel',
         canActivate: [authGuard],
         children: [
             {
                 path: 'form',
                 component: CategoriesFormComponent,
-                title: 'Add Category',
+                title: 'Add Category | Admin Panel',
                 canActivate: [authGuard],
             },
             {
                 path: 'form/:categoryId',
                 component: CategoriesFormComponent,
-                title: 'Edit Category',
+                title: 'Edit Category | Admin Panel',
                 canActivate: [authGuard],
             },
         ],
@@ -64,7 +64,7 @@ export const adminRoutes: Route[] = [
             import('./pages/orders/orders-list/orders-list.component').then(
                 (component) => component.OrdersListComponent
             ),
-        title: 'Orders',
+        title: 'Orders | Admin Panel',
         canActivate: [authGuard],
     },
     {
@@ -73,7 +73,7 @@ export const adminRoutes: Route[] = [
             import(
                 './pages/orders/orders-details/orders-details.component'
             ).then((component) => component.OrdersDetailsComponent),
-        title: 'Order Details',
+        title: 'Order Details | Admin Panel',
         canActivate: [authGuard],
     },
     {
@@ -82,19 +82,19 @@ export const adminRoutes: Route[] = [
             import('./pages/users/users-list/users-list.component').then(
                 (component) => component.UsersListComponent
             ),
-        title: 'Users',
+        title: 'Users | Admin Panel',
         canActivate: [authGuard],
         children: [
             {
                 path: 'form',
                 component: UsersFormComponent,
-                title: 'Add User',
+                title: 'Add User | Admin Panel',
                 canActivate: [authGuard],
             },
             {
                 path: 'form/:userId',
                 component: UsersFormComponent,
-                title: 'Edit User',
+                title: 'Edit User | Admin Panel',
                 canActivate: [authGuard],
             },
         ],
