@@ -1,0 +1,14 @@
+<section class="categories-banner" *ngIf="categories">
+    <h2>Categories</h2>
+
+    <div class="categories-list">
+        <div
+            class="category"
+            *ngFor="let category of categories"
+            [ngStyle]="{ backgroundColor: category.color }"
+        >
+            <i class="pi pi-{{ category.icon }}"></i>
+            <p>{{ category.name }}</p>
+        </div>
+    </div>
+</section>

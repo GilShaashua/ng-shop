@@ -2,13 +2,14 @@
 @import './base/colors';
 @import './base/fonts';
 @import './base/mixins';
-@import './base/configurations';
 
 //Libraries
 @import 'primeicons/primeicons.css';
 @import 'primeng/resources/themes/saga-blue/theme.css';
 @import 'primeng/resources/primeng.css';
 @import 'primeflex/primeflex.css';
+@import './base/configurations';
+@import 'animate.css/animate.css';
 
 //Pages
 @import './apps/ngshop/pages/home-page';
@@ -20,6 +21,10 @@
 
 //Libs
 @import './libs/products/search-products.scss';
+@import './libs/products/categories-banner.scss';
+@import './libs/products/product-item.scss';
+@import './libs/products/featured-products.scss';
+@import './libs/ui/hero.scss';
 
 .ng-shop-app-component {
     min-height: 100vh;
@@ -54,4 +59,8 @@
     & > *:not(.full) {
         grid-column: 2;
     }
+}
+
+router-outlet {
+    display: none;
 }

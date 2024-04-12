@@ -3,6 +3,7 @@
     align-items: center;
     background-color: $text-color;
     border-radius: 3px;
+    padding-inline-start: 5px;
 
     i {
         font-size: 20px;
@@ -12,7 +13,7 @@
 
     input {
         border: none;
-        height: 30px;
+        height: 40px;
         background-color: $text-color;
         padding-inline-end: 7px;
         width: 180px;

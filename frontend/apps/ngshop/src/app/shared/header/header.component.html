@@ -7,9 +7,15 @@
 
     <nav>
         <ul>
-            <li>Home</li>
-            <li>Products</li>
-            <li>Contact</li>
+            <li
+                routerLink="/"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+            >
+                Home
+            </li>
+            <li routerLink="/products" routerLinkActive="active">Products</li>
+            <li routerLink="/contact" routerLinkActive="active">Contact</li>
         </ul>
     </nav>
 

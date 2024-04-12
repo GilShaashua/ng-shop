@@ -1,0 +1,45 @@
+.categories-banner-host {
+    .categories-banner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5em;
+        height: 250px;
+
+        h2 {
+            font-size: 30px;
+        }
+
+        .categories-list {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+
+            .category {
+                height: 100px;
+                width: 150px;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1em;
+                cursor: pointer;
+                transition: background-color 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: rgb(153, 153, 153) !important;
+                }
+
+                i {
+                    font-size: 25px;
+                }
+
+                p {
+                    font-size: 18px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

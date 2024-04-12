@@ -20,7 +20,7 @@
       ]
     }
   },
-  "5812790784143304551": {
+  "2283622199729342068": {
     "test": {
       "command": "jest",
       "options": {
@@ -62,11 +62,11 @@
       ]
     }
   },
-  "10150703508213889997": {
+  "5293416091882105235": {
     "test": {
       "command": "jest",
       "options": {
-        "cwd": "libs/products"
+        "cwd": "libs/ui"
       },
       "cache": true,
       "inputs": [
@@ -79,7 +79,7 @@
         }
       ],
       "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\products"
+        "{workspaceRoot}\\coverage\\libs\\ui"
       ]
     }
   },
@@ -125,11 +125,11 @@
       ]
     }
   },
-  "927502641668438141": {
+  "4445102750665300246": {
     "test": {
       "command": "jest",
       "options": {
-        "cwd": "libs/ui"
+        "cwd": "libs/products"
       },
       "cache": true,
       "inputs": [
@@ -142,7 +142,7 @@
         }
       ],
       "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\ui"
+        "{workspaceRoot}\\coverage\\libs\\products"
       ]
     }
   }

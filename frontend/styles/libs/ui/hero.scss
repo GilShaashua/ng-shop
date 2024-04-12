@@ -1,0 +1,66 @@
+.host-hero {
+    background-color: $backgroundColorDark3;
+
+    .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5em;
+        height: 450px;
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+
+            .typography {
+                h2 {
+                    font-size: 60px;
+                }
+
+                h4 {
+                    font-size: 40px;
+                    font-weight: 400;
+                }
+            }
+
+            .btn-see-more {
+                border: none;
+                height: 40px;
+                width: fit-content;
+                padding-inline: 2em;
+                font-weight: 700;
+                cursor: pointer;
+                border-radius: 3px;
+                background-color: $primary-color;
+                color: $text-color;
+                display: flex;
+                align-items: center;
+                gap: 0.2em;
+
+                i {
+                    font-size: 20px;
+                }
+
+                &:hover {
+                    background-color: $primary-color-dark;
+                }
+            }
+        }
+
+        .right-column {
+            height: 100%;
+
+            .hero-img {
+                height: 100%;
+
+                img {
+                    object-fit: cover;
+                    aspect-ratio: 1/1;
+                    height: 100%;
+                    width: unset;
+                }
+            }
+        }
+    }
+}

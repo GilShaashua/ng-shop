@@ -1,0 +1,21 @@
+.featured-products-host {
+    background-color: $backgroundColorDark2;
+
+    .featured-products {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4em;
+
+        h2 {
+            font-size: 30px;
+        }
+
+        .featured-products-list {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+    }
+}
