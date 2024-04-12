@@ -19,4 +19,39 @@
 @import './apps/ngshop/shared/footer';
 
 //Libs
-@import './libs/ui/ui';
+@import './libs/products/search-products.scss';
+
+.ng-shop-app-component {
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: minmax(25px, 1fr) minmax(auto, 1200px) minmax(
+            25px,
+            1fr
+        );
+    grid-template-rows: auto 1fr auto;
+
+    & > * {
+        grid-column: 1/-1;
+    }
+
+    & > *:not(.full) {
+        grid-column: 2;
+    }
+}
+
+.component-layout {
+    display: grid;
+    grid-template-columns: minmax(25px, 1fr) minmax(auto, 1200px) minmax(
+            25px,
+            1fr
+        );
+
+    & > * {
+        grid-column: 1/-1;
+    }
+
+    & > *:not(.full) {
+        grid-column: 2;
+    }
+}

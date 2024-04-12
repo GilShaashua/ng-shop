@@ -876,18 +876,13 @@
       "type": "lib",
       "data": {
         "root": "libs/ui",
-        "name": "ui",
         "targets": {
-          "nx-release-publish": {
-            "dependsOn": [
-              "^nx-release-publish"
-            ],
-            "executor": "@nx/js:release-publish",
-            "options": {},
-            "configurations": {}
-          },
           "lint": {
             "cache": true,
+            "options": {
+              "cwd": "libs/ui",
+              "command": "eslint ."
+            },
             "inputs": [
               "default",
               "{workspaceRoot}/.eslintrc.json",
@@ -900,10 +895,6 @@
               }
             ],
             "executor": "nx:run-commands",
-            "options": {
-              "cwd": "libs/ui",
-              "command": "eslint ."
-            },
             "configurations": {}
           },
           "test": {
@@ -926,37 +917,12 @@
             ],
             "executor": "nx:run-commands",
             "configurations": {}
-          },
-          "build": {
-            "executor": "@nx/angular:ng-packagr-lite",
-            "cache": true,
-            "dependsOn": [
-              "^build"
-            ],
-            "inputs": [
-              "production",
-              "^production"
-            ],
-            "outputs": [
-              "{workspaceRoot}/dist/{projectRoot}"
-            ],
-            "options": {
-              "project": "libs/ui/ng-package.json"
-            },
-            "configurations": {
-              "production": {
-                "tsConfig": "libs/ui/tsconfig.lib.prod.json"
-              },
-              "development": {
-                "tsConfig": "libs/ui/tsconfig.lib.json"
-              }
-            },
-            "defaultConfiguration": "production"
           }
         },
+        "name": "ui",
         "$schema": "../../node_modules/nx/schemas/project-schema.json",
         "sourceRoot": "libs/ui/src",
-        "prefix": "ui",
+        "prefix": "frontend",
         "tags": [],
         "projectType": "library",
         "implicitDependencies": []
@@ -13233,6 +13199,11 @@
       },
       {
         "source": "ngshop",
+        "target": "products",
+        "type": "static"
+      },
+      {
+        "source": "ngshop",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }
@@ -13428,22 +13399,12 @@
     "ui": [
       {
         "source": "ui",
-        "target": "npm:tslib",
-        "type": "static"
-      },
-      {
-        "source": "ui",
-        "target": "npm:@angular/common",
-        "type": "static"
-      },
-      {
-        "source": "ui",
         "target": "npm:@angular/core",
         "type": "static"
       },
       {
         "source": "ui",
-        "target": "npm:@angular/router",
+        "target": "npm:@angular/common",
         "type": "static"
       },
       {

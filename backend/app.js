@@ -30,9 +30,9 @@ app.use(`${api}/orders`, ordersRouter);
 app.use(`${api}/categories`, categoriesRouter);
 app.use(`${api}/users`, usersRouter);
 
-connectMongoDB();
+runServer();
 
-async function connectMongoDB() {
+async function runServer() {
     try {
         const connection = await mongoose.connect(process.env.MONGODB_URI, {
             dbName: 'e-commerce',

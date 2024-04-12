@@ -42,34 +42,3 @@ input:focus {
 textarea:focus {
     outline: none;
 }
-
-//.body-layout {
-//    display: grid;
-//    grid-template-columns: minmax(25px, 1fr) minmax(auto, 1200px) minmax(
-//            25px,
-//            1fr
-//        );
-//    grid-template-rows: auto 1fr auto;
-//
-//    & > * {
-//        grid-column: 1/-1;
-//    }
-//
-//    & > *:not(.full) {
-//        grid-column: 2;
-//    }
-//
-//    min-height: 100vh;
-//}
-//
-//.component-layout {
-//    display: grid;
-//    grid-template-columns: minmax(25px, 1fr) minmax(auto, 1200px) minmax(
-//            25px,
-//            1fr
-//        );
-//
-//    & > * {
-//        grid-column: 2;
-//    }
-//}

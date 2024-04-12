@@ -1,0 +1,21 @@
+.search-input {
+    display: flex;
+    align-items: center;
+    background-color: $text-color;
+    border-radius: 3px;
+
+    i {
+        font-size: 20px;
+        color: $primary-color;
+        padding-inline: 7px;
+    }
+
+    input {
+        border: none;
+        height: 30px;
+        background-color: $text-color;
+        padding-inline-end: 7px;
+        width: 180px;
+        border-radius: 3px;
+    }
+}

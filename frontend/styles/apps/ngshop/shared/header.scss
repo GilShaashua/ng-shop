@@ -1,0 +1,30 @@
+.header-host {
+    background-color: $primary-color;
+
+    header {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo {
+            img {
+                width: 80px;
+            }
+        }
+
+        nav {
+            ul {
+                display: flex;
+                align-items: center;
+                gap: 0.8em;
+            }
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+    }
+}
