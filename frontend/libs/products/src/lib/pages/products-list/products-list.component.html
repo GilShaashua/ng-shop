@@ -1,0 +1,27 @@
+<section class="products-list" *ngIf="products && categories">
+    <div class="categories">
+        <h3>Categories</h3>
+
+        <ul>
+            <li *ngFor="let category of categories">
+                <input
+                    type="checkbox"
+                    [name]="category.name"
+                    [id]="category.name"
+                />
+                <label for="{{ category.name }}">{{ category.name }}</label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="products">
+        <h3>Products</h3>
+
+        <ul>
+            <products-product-item
+                *ngFor="let product of products"
+                [product]="product"
+            ></products-product-item>
+        </ul>
+    </div>
+</section>

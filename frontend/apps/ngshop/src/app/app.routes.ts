@@ -1,14 +1,18 @@
 import { Route } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ProductListComponent } from './pages/product-list/product-list.component';
 
 export const appRoutes: Route[] = [
-  {
-    path: '',
-    component: HomePageComponent,
-  },
-  {
-    path: 'products',
-    component: ProductListComponent,
-  },
+    {
+        path: '',
+        loadComponent: () =>
+            import('./pages/home-page/home-page.component').then(
+                (component) => component.HomePageComponent
+            ),
+        title: 'Home | ngShop',
+    },
+    {
+        path: 'products',
+        loadChildren: () =>
+            import('@frontend/products').then((route) => route.productsRoutes),
+    },
+    { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

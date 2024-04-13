@@ -5,10 +5,16 @@
     border-radius: 3px;
     padding-inline-start: 5px;
 
-    i {
-        font-size: 20px;
-        color: $primary-color;
-        padding-inline: 7px;
+    label {
+        display: flex;
+        align-items: center;
+
+        i {
+            font-size: 20px;
+            color: $primary-color;
+            padding-inline: 7px;
+            cursor: pointer;
+        }
     }
 
     input {

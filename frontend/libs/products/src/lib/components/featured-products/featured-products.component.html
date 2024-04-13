@@ -1,9 +1,9 @@
 <section class="featured-products" *ngIf="featuredProducts">
     <h2>Featured Products</h2>
-    <div class="featured-products-list">
+    <ul class="featured-products-list">
         <products-product-item
             *ngFor="let product of featuredProducts"
             [product]="product"
         ></products-product-item>
-    </div>
+    </ul>
 </section>

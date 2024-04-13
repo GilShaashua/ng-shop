@@ -1,10 +1,11 @@
 .footer-host {
     height: 80px;
-    background-color: $backgroundColorDark;
+    background-color: $footer-background-color;
 
     footer {
         display: flex;
         align-items: center;
         justify-content: center;
+        color: $footer-text-color;
     }
 }
