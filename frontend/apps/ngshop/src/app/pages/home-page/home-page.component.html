@@ -1,5 +1,9 @@
-<section class="home-page full">
+<section class="home-page full" *ngIf="categories && featuredProducts">
     <ngshop-hero></ngshop-hero>
-    <products-categories-banner></products-categories-banner>
-    <products-featured-products></products-featured-products>
+    <products-categories-banner
+        [categories]="categories"
+    ></products-categories-banner>
+    <products-featured-products
+        [featuredProducts]="featuredProducts"
+    ></products-featured-products>
 </section>
