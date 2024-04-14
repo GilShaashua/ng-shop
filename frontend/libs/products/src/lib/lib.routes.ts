@@ -9,4 +9,12 @@ export const productsRoutes: Route[] = [
             ),
         title: 'Products | ngShop',
     },
+    {
+        path: ':categoryId',
+        loadComponent: () =>
+            import('./pages/products-list/products-list.component').then(
+                (component) => component.ProductsListComponent
+            ),
+        title: 'Products | ngShop',
+    },
 ];

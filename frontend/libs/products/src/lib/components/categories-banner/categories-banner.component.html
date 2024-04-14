@@ -6,6 +6,7 @@
             class="category"
             *ngFor="let category of categories"
             [ngStyle]="{ backgroundColor: category.color }"
+            routerLink="products/{{ category.id }}"
         >
             <i class="pi pi-{{ category.icon }}"></i>
             <p>{{ category.name }}</p>
