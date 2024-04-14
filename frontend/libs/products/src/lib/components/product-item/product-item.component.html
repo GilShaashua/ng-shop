@@ -1,5 +1,9 @@
 <li class="product-item">
-    <img [src]="product.image" alt="product" />
+    <img
+        [src]="product.image"
+        alt="product"
+        routerLink="/products/details/{{ product.id }}"
+    />
     <div class="inner-container">
         <h4 class="name">{{ product.name }}</h4>
         <h5 class="price">{{ product.price | currency }}</h5>

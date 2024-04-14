@@ -17,4 +17,12 @@ export const productsRoutes: Route[] = [
             ),
         title: 'Products | ngShop',
     },
+    {
+        path: 'details/:productId',
+        loadComponent: () =>
+            import('./pages/product-details/product-details.component').then(
+                (component) => component.ProductDetailsComponent
+            ),
+        title: 'Product Details | ngShop',
+    },
 ];

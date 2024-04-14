@@ -1,0 +1,38 @@
+<section class="product-details" *ngIf="product">
+    <div class="main-details">
+        <div class="gallery">
+            <img [src]="product.image" alt="gallery" />
+        </div>
+
+        <div class="content">
+            <div class="product-name-btn-back">
+                <h3>{{ product.name }}</h3>
+                <button class="btn-back" title="Back" routerLink="/products">
+                    <i class="pi pi-angle-right"></i>
+                </button>
+            </div>
+
+            <p>{{ product.description }}</p>
+
+            <p>Rating {{ product.rating }}</p>
+
+            <h4>{{ product.price | currency }}</h4>
+
+            <div class="quantity">
+                <label for="quantity">Quantity</label>
+                <input
+                    [(ngModel)]="productItem.quantity"
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    (change)="log()"
+                />
+            </div>
+
+            <div class="buttons">
+                <button>Buy Now</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -13166,6 +13166,11 @@
       },
       {
         "source": "products",
+        "target": "npm:@angular/forms",
+        "type": "static"
+      },
+      {
+        "source": "products",
         "target": "npm:rxjs",
         "type": "static"
       },
@@ -13208,17 +13213,22 @@
       },
       {
         "source": "ngshop",
+        "target": "products",
+        "type": "dynamic"
+      },
+      {
+        "source": "ngshop",
+        "target": "products",
+        "type": "static"
+      },
+      {
+        "source": "ngshop",
         "target": "npm:primeng",
         "type": "static"
       },
       {
         "source": "ngshop",
         "target": "ui",
-        "type": "static"
-      },
-      {
-        "source": "ngshop",
-        "target": "products",
         "type": "static"
       },
       {
