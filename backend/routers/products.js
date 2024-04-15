@@ -167,7 +167,7 @@ router.put('/:id', uploadOptions.single('image'), async (req, res) => {
 
 router.put(
     '/gallery-images/:id',
-    uploadOptions.array('images', 10),
+    uploadOptions.array('images', 7),
     async (req, res) => {
         try {
             let imagesPaths = [];

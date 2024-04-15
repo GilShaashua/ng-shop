@@ -52,7 +52,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         description: ['', [Validators.required, Validators.minLength(20)]],
         richDescription: ['', [Validators.required, Validators.minLength(40)]],
         image: ['', [Validators.required]],
-        images: [''],
+        images: [[]],
         brand: ['', [Validators.required, Validators.minLength(5)]],
         price: [0, [Validators.required]],
         category: ['', [Validators.required, Validators.minLength(3)]],
@@ -69,6 +69,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     isSubmitted = false;
     paramsSubscription!: Subscription;
     imageSelectedUrl: string | ArrayBuffer | null = null;
+    gallerySelectedUrls: any = [];
     formImage = '';
 
     ngOnInit(): void {
@@ -103,16 +104,25 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         formKeys.forEach((key) => {
             if (key === 'category') {
                 productFormData.append(key, this.form.value[key].id);
+            } else if (key === 'images') {
+                productFormData.append(key, '');
             } else {
                 productFormData.append(key, this.form.value[key]);
             }
         });
 
+        const productFormDataGallery = new FormData();
+
+        for (let i = 0; i < this.form.value.images.length; i++) {
+            const file = this.form.value.images[i];
+            productFormDataGallery.append('images', file);
+        }
+
         // Check if its edit mode or add mode
         if (this.productId) {
-            this._editProduct(productFormData);
+            this._editProduct(productFormData, productFormDataGallery);
         } else {
-            this._addProduct(productFormData);
+            this._addProduct(productFormData, productFormDataGallery);
         }
     }
 
@@ -139,6 +149,36 @@ export class ProductFormComponent implements OnInit, OnDestroy {
                 };
 
                 fileReader.readAsDataURL(file);
+            }
+        }
+    }
+
+    onGalleryUpload(ev: Event) {
+        this.gallerySelectedUrls = [];
+        this.form.patchValue({ images: [] });
+
+        if (ev.target && this.isInputElement(ev.target)) {
+            const files = ev.target.files;
+            this.form.patchValue({ images: files });
+
+            if (files) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+
+                    if (file) {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = () => {
+                            if (fileReader.result) {
+                                this.gallerySelectedUrls.push(
+                                    fileReader.result
+                                );
+                            }
+                        };
+
+                        fileReader.readAsDataURL(file);
+                    }
+                }
             }
         }
     }
@@ -177,14 +217,28 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         });
     }
 
-    private _addProduct(productFormData: FormData) {
+    private _addProduct(
+        productFormData: FormData,
+        productFormDataGallery: FormData
+    ) {
         this.productsService.addProduct(productFormData).subscribe({
             next: async (addedProduct) => {
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Success',
-                    detail: `The product "${addedProduct.name}" is created successfully!`,
-                });
+                try {
+                    await firstValueFrom(
+                        this.productsService.editProductGallery(
+                            productFormDataGallery,
+                            addedProduct.id
+                        )
+                    );
+
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: `The product "${addedProduct.name}" is created successfully!`,
+                    });
+                } catch (err) {
+                    console.error('Cannot update gallery', err);
+                }
 
                 await firstValueFrom(timer(2000));
                 this.router.navigateByUrl('/products');
@@ -201,14 +255,28 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         });
     }
 
-    private _editProduct(productFormData: FormData) {
+    private _editProduct(
+        productFormData: FormData,
+        productFormDataGallery: FormData
+    ) {
         this.productsService.editProduct(productFormData).subscribe({
             next: async (editedProduct) => {
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Success',
-                    detail: `The product "${editedProduct.name}" is edited successfully!`,
-                });
+                try {
+                    await firstValueFrom(
+                        this.productsService.editProductGallery(
+                            productFormDataGallery,
+                            editedProduct.id
+                        )
+                    );
+
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Success',
+                        detail: `The product "${editedProduct.name}" is edited successfully!`,
+                    });
+                } catch (err) {
+                    console.error('Cannot update gallery', err);
+                }
 
                 await firstValueFrom(timer(2000));
                 this.router.navigateByUrl('/products');
@@ -227,6 +295,18 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
     isImageFormControlString() {
         return typeof this.controlsForm['image'].value === 'string';
+    }
+
+    isImagesFormControlArrayOfStrings() {
+        const imagesValue = this.controlsForm['images'].value;
+
+        // Check if imagesValue is an array using Array.isArray
+        if (!Array.isArray(imagesValue)) {
+            return false; // Not an array
+        }
+
+        // Validate each element in the array to be a string
+        return imagesValue.every((item) => typeof item === 'string');
     }
 
     get controlsForm() {

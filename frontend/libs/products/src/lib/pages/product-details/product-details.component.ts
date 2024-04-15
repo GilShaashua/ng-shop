@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +26,8 @@ export class ProductDetailsComponent implements OnInit {
         private productsService: ProductsService,
         private route: ActivatedRoute,
         private sanitizer: DomSanitizer,
-        private location: Location
+        private location: Location,
+        private router: Router
     ) {}
 
     product!: Product;
@@ -72,11 +73,17 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     private _getProductById(productId: string) {
-        this.productsService.getProductById(productId).subscribe((product) => {
-            this.product = product;
-            this.productItem.product = product;
+        this.productsService.getProductById(productId).subscribe({
+            next: (product) => {
+                this.product = product;
+                this.productItem.product = product;
 
-            this._sanitizer();
+                this._sanitizer();
+            },
+            error: (err) => {
+                console.error('Cannot get product', err);
+                this.router.navigateByUrl('/');
+            },
         });
     }
 

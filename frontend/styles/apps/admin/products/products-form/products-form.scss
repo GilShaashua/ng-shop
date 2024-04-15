@@ -376,11 +376,19 @@
 
             .images-container {
                 align-self: flex-start;
+                display: flex;
+                align-items: flex-start;
+                gap: 4em;
+                justify-content: space-between;
+                width: 100%;
 
                 .main-image {
+                    flex: 1;
                     display: flex;
                     flex-direction: column;
                     gap: 0.8em;
+                    width: 100%;
+                    height: 100%;
 
                     label {
                         &:hover {
@@ -394,6 +402,34 @@
 
                     img {
                         width: 8em;
+                    }
+                }
+
+                .gallery-container {
+                    flex: 2;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 100%;
+                    gap: 0.5em;
+
+                    #gallery {
+                        display: none;
+                    }
+
+                    label {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        gap: 1em;
+                        cursor: pointer;
+
+                        img {
+                            aspect-ratio: 1/1;
+                            object-fit: cover;
+                            width: 110px;
+                            cursor: pointer;
+                        }
                     }
                 }
             }

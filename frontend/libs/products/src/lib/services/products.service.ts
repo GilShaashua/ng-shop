@@ -38,6 +38,16 @@ export class ProductsService {
         );
     }
 
+    editProductGallery(
+        productData: FormData,
+        productId: string
+    ): Observable<Product> {
+        return this.http.put<Product>(
+            `${this.apiUrl}products/gallery-images/${productId}`,
+            productData
+        );
+    }
+
     deleteProduct(productId: string): Observable<Product> {
         return this.http.delete<Product>(`${this.apiUrl}products/${productId}`);
     }

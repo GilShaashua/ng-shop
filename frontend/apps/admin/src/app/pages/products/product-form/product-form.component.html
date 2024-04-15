@@ -207,6 +207,7 @@
             <div class="images-container">
                 <div class="main-image">
                     <label for="main-image">Main image</label>
+
                     <input
                         (change)="onImageUpload($event)"
                         type="file"
@@ -214,6 +215,7 @@
                         id="main-image"
                         accept="image/*"
                     />
+
                     <label
                         for="main-image"
                         *ngIf="
@@ -223,7 +225,9 @@
                         ><img
                             [src]="controlsForm['image'].value"
                             alt="main image"
-                    /></label>
+                        />
+                    </label>
+
                     <label for="main-image" *ngIf="imageSelectedUrl"
                         ><img [src]="imageSelectedUrl" alt="main image"
                     /></label>
@@ -240,6 +244,46 @@
                         class="p-error"
                         >Image is required!</small
                     >
+                </div>
+
+                <div class="gallery-container">
+                    <label for="gallery">Gallery</label>
+
+                    <input
+                        (change)="onGalleryUpload($event)"
+                        type="file"
+                        name="gallery"
+                        id="gallery"
+                        multiple
+                        accept="image/*"
+                    />
+
+                    <label
+                        for="gallery"
+                        *ngIf="
+                            controlsForm['images'].value.length &&
+                            isImagesFormControlArrayOfStrings()
+                        "
+                    >
+                        <img
+                            *ngFor="let image of controlsForm['images'].value"
+                            [src]="image"
+                            alt="gallery"
+                        />
+                    </label>
+
+                    <label for="gallery" *ngIf="gallerySelectedUrls.length"
+                        ><img
+                            *ngFor="let image of gallerySelectedUrls"
+                            [src]="image"
+                            alt="gallery"
+                    /></label>
+
+                    <label
+                        for="gallery"
+                        *ngIf="!controlsForm['images'].value.length"
+                        ><i class="pi pi-image" style="font-size: 40px"></i
+                    ></label>
                 </div>
             </div>
 
