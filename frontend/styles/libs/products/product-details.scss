@@ -1,9 +1,13 @@
 .product-details {
     padding-block: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+
     .main-details {
         display: flex;
         align-items: flex-start;
-        gap: 1em;
+        gap: 2em;
 
         .gallery {
             flex: 1;
@@ -27,6 +31,7 @@
                 align-items: center;
                 justify-content: space-between;
                 gap: 2em;
+                margin-block-end: 1em;
 
                 .btn-back {
                     border: none;
@@ -43,6 +48,28 @@
                     i {
                         font-size: 28px;
                         color: $text-color;
+                    }
+                }
+            }
+
+            .p-rating {
+                .p-rating-item {
+                    .p-element {
+                        .p-rating-icon {
+                            cursor: unset;
+
+                            path {
+                                color: $text-color;
+                                // stroke: $text-color;
+                            }
+                        }
+                    }
+                }
+                .p-rating-item-active {
+                    .p-element {
+                        .p-rating-icon {
+                            cursor: unset;
+                        }
                     }
                 }
             }

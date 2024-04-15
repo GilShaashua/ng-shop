@@ -13171,6 +13171,16 @@
       },
       {
         "source": "products",
+        "target": "npm:primeng",
+        "type": "static"
+      },
+      {
+        "source": "products",
+        "target": "npm:@angular/platform-browser",
+        "type": "static"
+      },
+      {
+        "source": "products",
         "target": "npm:rxjs",
         "type": "static"
       },

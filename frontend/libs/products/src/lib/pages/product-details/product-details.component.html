@@ -1,22 +1,29 @@
-<section class="product-details" *ngIf="product">
+<section
+    class="product-details"
+    *ngIf="product && !isSanitizerProccessing; else loader"
+>
     <div class="main-details">
         <div class="gallery">
-            <img [src]="product.image" alt="gallery" />
+            <ui-gallery></ui-gallery>
         </div>
 
         <div class="content">
             <div class="product-name-btn-back">
-                <h3>{{ product.name }}</h3>
-                <button class="btn-back" title="Back" routerLink="/products">
+                <h2>{{ product.name }}</h2>
+                <button class="btn-back" title="Back" (click)="goBack()">
                     <i class="pi pi-angle-right"></i>
                 </button>
             </div>
 
-            <p>{{ product.description }}</p>
+            <div class="description" [innerHTML]="product.description"></div>
 
-            <p>Rating {{ product.rating }}</p>
+            <p-rating
+                [ngModel]="product.rating"
+                [readonly]="true"
+                [cancel]="false"
+            ></p-rating>
 
-            <h4>{{ product.price | currency }}</h4>
+            <h4 class="price">{{ product.price | currency }}</h4>
 
             <div class="quantity">
                 <label for="quantity">Quantity</label>
@@ -30,9 +37,22 @@
             </div>
 
             <div class="buttons">
-                <button>Buy Now</button>
-                <button>Add to Cart</button>
+                <button><i class="pi pi-shopping-bag"></i> Buy Now</button>
+                <button><i class="pi pi-shopping-cart"></i> Add to Cart</button>
             </div>
         </div>
     </div>
+
+    <div class="other-content">
+        <div
+            class="rich-description"
+            [innerHTML]="product.richDescription"
+        ></div>
+    </div>
 </section>
+
+<ng-template #loader>
+    <div class="loader">
+        <i class="pi pi-spin pi-spinner"></i>
+    </div>
+</ng-template>
