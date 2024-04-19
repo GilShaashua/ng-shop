@@ -1,9 +1,32 @@
-<div class="gallery">
+<div class="gallery" *ngIf="images">
     <div class="main-image">
-        <img src="" alt="main product" />
+        <img [src]="selectedImage" alt="main product" />
     </div>
 
-    <div class="images">
-        <ul></ul>
+    <div class="images-container">
+        <button
+            *ngIf="isLeftArrowShown"
+            class="btn-left"
+            (click)="onClickArrowBtn('left', imagesContainer)"
+        >
+            <i class="pi pi-angle-left"></i>
+        </button>
+
+        <button
+            *ngIf="isRightArrowShown"
+            class="btn-right"
+            (click)="onClickArrowBtn('right', imagesContainer)"
+        >
+            <i class="pi pi-angle-right"></i>
+        </button>
+
+        <div class="images" #imagesContainer>
+            <img
+                *ngFor="let image of images; let idx = index"
+                (click)="onSelectImage(idx)"
+                [src]="image"
+                alt="image"
+            />
+        </div>
     </div>
 </div>
