@@ -59,22 +59,27 @@
 
         <div class="order-items" *ngFor="let orderItem of order.orderItems">
             <div class="order-item product-name">
-                {{ orderItem.product.name }}
+                @if (orderItem.product) { {{ orderItem.product.name }} } @else {
+                Product doesnt exist! }
             </div>
 
             <div class="order-item product-brand">
-                {{ orderItem.product.brand }}
+                @if(orderItem.product){ {{ orderItem.product.brand }} } @else {
+                Product doesnt exist! }
             </div>
 
             <div class="order-item product-category">
-                {{ orderItem.product.category.name }}
+                @if(orderItem.product){ {{ orderItem.product.category.name }} }
+                @else { Product doesnt exist! }
             </div>
 
             <div class="order-item product-price">
+                @if(orderItem.product){
                 {{
                     orderItem.product.price
                         | currency : 'USD' : 'symbol' : '1.0-0'
                 }}
+                }@else { Product doesnt exist! }
             </div>
 
             <div class="order-item product-quantity">
@@ -82,10 +87,12 @@
             </div>
 
             <div class="order-item subtotal">
+                @if(orderItem.product){
                 {{
                     orderItem.quantity * orderItem.product.price
                         | currency : 'USD' : 'symbol' : '1.0-0'
                 }}
+                }@else { Product doesnt exist! }
             </div>
         </div>
 
