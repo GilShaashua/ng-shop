@@ -19,6 +19,7 @@
                 aspect-ratio: 1/1;
                 object-fit: cover;
                 width: 100%;
+                border-radius: 5px;
             }
         }
         .images-container {
@@ -99,6 +100,7 @@
                     object-fit: cover;
                     cursor: pointer;
                     transition: all 0.1s ease-in-out;
+                    border-radius: 5px;
 
                     &:hover {
                         opacity: 0.8;
