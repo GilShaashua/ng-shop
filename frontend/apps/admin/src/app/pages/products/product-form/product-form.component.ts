@@ -71,6 +71,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     imageSelectedUrl: string | ArrayBuffer | null = null;
     gallerySelectedUrls: any = [];
     formImage = '';
+    isGalleryChanged = false;
 
     ngOnInit(): void {
         this._checkParams();
@@ -78,8 +79,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm() {
-        if (this.form.untouched) {
-            if (this.formImage === this.form.value.image) {
+        if (this.form.pristine) {
+            if (
+                this.formImage === this.form.value.image &&
+                this.form.value.images instanceof Array
+            ) {
                 if (this.productId) {
                     return this.messageService.add({
                         severity: 'error',
@@ -112,10 +116,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         });
 
         const productFormDataGallery = new FormData();
-
-        for (let i = 0; i < this.form.value.images.length; i++) {
-            const file = this.form.value.images[i];
-            productFormDataGallery.append('images', file);
+        if (this.form.value.images instanceof FileList) {
+            for (let i = 0; i < this.form.value.images.length; i++) {
+                const file = this.form.value.images[i];
+                productFormDataGallery.append('images', file);
+            }
         }
 
         // Check if its edit mode or add mode
@@ -154,10 +159,14 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     }
 
     onGalleryUpload(ev: Event) {
-        this.gallerySelectedUrls = [];
-        this.form.patchValue({ images: [] });
+        // this.gallerySelectedUrls = [];
+        // this.form.patchValue({ images: [] });
 
-        if (ev.target && this.isInputElement(ev.target)) {
+        if (
+            ev.target &&
+            this.isInputElement(ev.target) &&
+            ev.target.files?.length
+        ) {
             const files = ev.target.files;
             this.form.patchValue({ images: files });
 
@@ -262,12 +271,14 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         this.productsService.editProduct(productFormData).subscribe({
             next: async (editedProduct) => {
                 try {
-                    await firstValueFrom(
-                        this.productsService.editProductGallery(
-                            productFormDataGallery,
-                            editedProduct.id
-                        )
-                    );
+                    if (this.form.value.images instanceof FileList) {
+                        await firstValueFrom(
+                            this.productsService.editProductGallery(
+                                productFormDataGallery,
+                                editedProduct.id
+                            )
+                        );
+                    }
 
                     this.messageService.add({
                         severity: 'success',

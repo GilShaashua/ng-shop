@@ -114,8 +114,7 @@
         height: 100%;
 
         p {
-            column-count: 2;
-            column-width: 480px;
+            columns: 2;
             gap: 1.5em;
         }
     }

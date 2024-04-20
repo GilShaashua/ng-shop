@@ -22,6 +22,7 @@
 
         <div class="images" #imagesContainer>
             <img
+                [ngClass]="{ active: activeImage === image }"
                 *ngFor="let image of images; let idx = index"
                 (click)="onSelectImage(idx)"
                 [src]="image"

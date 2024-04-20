@@ -13181,6 +13181,11 @@
       },
       {
         "source": "products",
+        "target": "ui",
+        "type": "static"
+      },
+      {
+        "source": "products",
         "target": "npm:rxjs",
         "type": "static"
       },
@@ -13439,6 +13444,16 @@
       {
         "source": "ui",
         "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "ui",
+        "target": "npm:@angular/common",
+        "type": "static"
+      },
+      {
+        "source": "ui",
+        "target": "npm:@angular/router",
         "type": "static"
       },
       {

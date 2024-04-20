@@ -85,7 +85,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                gap: 0.5em;
+                gap: 1em;
                 height: calc(110px);
                 width: 100%;
                 overflow: hidden;
@@ -93,8 +93,8 @@
                 scroll-behavior: smooth;
 
                 img {
-                    width: 80px;
-                    height: 80px;
+                    width: 75px;
+                    height: 75px;
                     aspect-ratio: 1/1;
                     object-fit: cover;
                     cursor: pointer;
@@ -103,6 +103,10 @@
                     &:hover {
                         opacity: 0.8;
                         scale: 1.1;
+                    }
+
+                    &.active {
+                        scale: 1.2;
                     }
                 }
             }

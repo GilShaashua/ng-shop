@@ -84,7 +84,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
             accept: () => {
                 this.productsService.deleteProduct(productId).subscribe({
                     next: (deletedProduct) => {
-                        console.log('deletedProduct', deletedProduct);
                         this.products = this.products.filter(
                             (product) => product.id !== deletedProduct.id
                         );

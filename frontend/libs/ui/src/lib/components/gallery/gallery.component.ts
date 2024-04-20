@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+    AfterContentChecked,
+    Component,
+    ElementRef,
+    Input,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
 
 @Component({
     selector: 'ui-gallery',
@@ -9,23 +16,37 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrl: './gallery.component.scss',
     host: { class: 'host-gallery' },
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, AfterContentChecked {
     @Input() images?: string[];
+    @ViewChild('imagesContainer') elImages!: ElementRef;
 
     selectedImage = '';
     isLeftArrowShown = false;
     isRightArrowShown = true;
     imagesContainerScrollLeft = 0;
+    activeImage = '';
 
     ngOnInit(): void {
         if (this.images) {
             this.selectedImage = this.images[0];
+            this.activeImage = this.images?.[0];
+        }
+    }
+
+    ngAfterContentChecked(): void {
+        if (
+            this.elImages &&
+            this.elImages.nativeElement.scrollWidth ===
+                this.elImages.nativeElement.offsetWidth
+        ) {
+            this.isRightArrowShown = false;
         }
     }
 
     onSelectImage(idx: number) {
         if (this.images) {
             this.selectedImage = this.images[idx];
+            this.activeImage = this.images[idx];
         }
     }
 

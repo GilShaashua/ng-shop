@@ -173,6 +173,7 @@ router.put(
             let imagesPaths = [];
 
             const files = req.files;
+            console.log('files', files);
             const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
 
             if (files) {
