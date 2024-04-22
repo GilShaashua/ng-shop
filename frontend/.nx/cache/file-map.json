@@ -179,13 +179,14 @@
         },
         {
           "file": "apps/ngshop/src/app/pages/home-page/home-page.component.ts",
-          "hash": "15453459142914155405",
+          "hash": "11627245598565918817",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
             "npm:primeng",
             "ui",
-            "products"
+            "products",
+            "orders"
           ]
         },
         {
@@ -347,6 +348,21 @@
           ]
         },
         {
+          "file": "libs/orders/src/lib/services/cart.service.spec.ts",
+          "hash": "5904820136775790015",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "libs/orders/src/lib/services/cart.service.ts",
+          "hash": "3008237671964938689",
+          "deps": [
+            "npm:@angular/core",
+            "npm:rxjs"
+          ]
+        },
+        {
           "file": "libs/orders/src/lib/services/orders.service.spec.ts",
           "hash": "16496642666687317450",
           "deps": [
@@ -385,6 +401,48 @@
         {
           "file": "libs/orders/tsconfig.spec.json",
           "hash": "2927375835638640771"
+        }
+      ],
+      "ngshop-e2e": [
+        {
+          "file": "apps/ngshop-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
+        },
+        {
+          "file": "apps/ngshop-e2e/cypress.config.ts",
+          "hash": "5829213818121065758",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "apps/ngshop-e2e/project.json",
+          "hash": "2207206347510304337"
+        },
+        {
+          "file": "apps/ngshop-e2e/src/e2e/app.cy.ts",
+          "hash": "11898469736477106215"
+        },
+        {
+          "file": "apps/ngshop-e2e/src/fixtures/example.json",
+          "hash": "11785586596216172004"
+        },
+        {
+          "file": "apps/ngshop-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/ngshop-e2e/src/support/commands.ts",
+          "hash": "5397443931564808659"
+        },
+        {
+          "file": "apps/ngshop-e2e/src/support/e2e.ts",
+          "hash": "1054106023200826784"
+        },
+        {
+          "file": "apps/ngshop-e2e/tsconfig.json",
+          "hash": "4332380883180617610"
         }
       ],
       "utils": [
@@ -455,6 +513,48 @@
         {
           "file": "libs/utils/tsconfig.spec.json",
           "hash": "7582695473675793029"
+        }
+      ],
+      "admin-e2e": [
+        {
+          "file": "apps/admin-e2e/.eslintrc.json",
+          "hash": "14060216369337943343"
+        },
+        {
+          "file": "apps/admin-e2e/cypress.config.ts",
+          "hash": "12926192948156709158",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "apps/admin-e2e/project.json",
+          "hash": "10800201405267508187"
+        },
+        {
+          "file": "apps/admin-e2e/src/e2e/app.cy.ts",
+          "hash": "13195148276539214705"
+        },
+        {
+          "file": "apps/admin-e2e/src/fixtures/example.json",
+          "hash": "11785586596216172004"
+        },
+        {
+          "file": "apps/admin-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/admin-e2e/src/support/commands.ts",
+          "hash": "5397443931564808659"
+        },
+        {
+          "file": "apps/admin-e2e/src/support/e2e.ts",
+          "hash": "1054106023200826784"
+        },
+        {
+          "file": "apps/admin-e2e/tsconfig.json",
+          "hash": "4332380883180617610"
         }
       ],
       "products": [
@@ -605,7 +705,7 @@
         },
         {
           "file": "libs/products/src/lib/pages/product-details/product-details.component.html",
-          "hash": "12870473490045614030"
+          "hash": "18205741122870394453"
         },
         {
           "file": "libs/products/src/lib/pages/product-details/product-details.component.scss",
@@ -620,7 +720,7 @@
         },
         {
           "file": "libs/products/src/lib/pages/product-details/product-details.component.ts",
-          "hash": "17032615697436430946",
+          "hash": "13875354092810187775",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
@@ -654,7 +754,8 @@
             "npm:@angular/core",
             "npm:@angular/router",
             "npm:@angular/forms",
-            "npm:rxjs"
+            "npm:rxjs",
+            "orders"
           ]
         },
         {
@@ -682,7 +783,7 @@
         },
         {
           "file": "libs/products/src/lib/services/products.service.ts",
-          "hash": "16786205650417781215",
+          "hash": "17054047548876751200",
           "deps": [
             "npm:@angular/common",
             "npm:@angular/core",
@@ -877,46 +978,91 @@
           "hash": "2927375835638640771"
         }
       ],
-      "admin-e2e": [
+      "ui": [
         {
-          "file": "apps/admin-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
+          "file": "libs/ui/.eslintrc.json",
+          "hash": "16790474943349079739"
         },
         {
-          "file": "apps/admin-e2e/cypress.config.ts",
-          "hash": "12926192948156709158",
+          "file": "libs/ui/README.md",
+          "hash": "3098996868279451883"
+        },
+        {
+          "file": "libs/ui/jest.config.ts",
+          "hash": "3116261517430103567"
+        },
+        {
+          "file": "libs/ui/project.json",
+          "hash": "15064893654540833181"
+        },
+        {
+          "file": "libs/ui/src/index.ts",
+          "hash": "6862827629651514199"
+        },
+        {
+          "file": "libs/ui/src/lib/components/gallery/gallery.component.html",
+          "hash": "2262013893806285502"
+        },
+        {
+          "file": "libs/ui/src/lib/components/gallery/gallery.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "libs/ui/src/lib/components/gallery/gallery.component.spec.ts",
+          "hash": "12274622111711541758",
           "deps": [
-            "npm:@nx/cypress",
-            "npm:cypress"
+            "npm:@angular/core"
           ]
         },
         {
-          "file": "apps/admin-e2e/project.json",
-          "hash": "10800201405267508187"
+          "file": "libs/ui/src/lib/components/gallery/gallery.component.ts",
+          "hash": "3686783036366949708",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core"
+          ]
         },
         {
-          "file": "apps/admin-e2e/src/e2e/app.cy.ts",
-          "hash": "13195148276539214705"
+          "file": "libs/ui/src/lib/components/hero/hero.component.html",
+          "hash": "2700636344992848874"
         },
         {
-          "file": "apps/admin-e2e/src/fixtures/example.json",
-          "hash": "11785586596216172004"
+          "file": "libs/ui/src/lib/components/hero/hero.component.scss",
+          "hash": "3244421341483603138"
         },
         {
-          "file": "apps/admin-e2e/src/support/app.po.ts",
-          "hash": "11157016311132186162"
+          "file": "libs/ui/src/lib/components/hero/hero.component.spec.ts",
+          "hash": "12632169912590376398",
+          "deps": [
+            "npm:@angular/core"
+          ]
         },
         {
-          "file": "apps/admin-e2e/src/support/commands.ts",
-          "hash": "5397443931564808659"
+          "file": "libs/ui/src/lib/components/hero/hero.component.ts",
+          "hash": "1864256420883803080",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router"
+          ]
         },
         {
-          "file": "apps/admin-e2e/src/support/e2e.ts",
-          "hash": "1054106023200826784"
+          "file": "libs/ui/src/test-setup.ts",
+          "hash": "17260818988408329265",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
         },
         {
-          "file": "apps/admin-e2e/tsconfig.json",
-          "hash": "4332380883180617610"
+          "file": "libs/ui/tsconfig.json",
+          "hash": "3157823844900905278"
+        },
+        {
+          "file": "libs/ui/tsconfig.lib.json",
+          "hash": "12509280388318657009"
+        },
+        {
+          "file": "libs/ui/tsconfig.spec.json",
+          "hash": "7582695473675793029"
         }
       ],
       "admin": [
@@ -1072,7 +1218,7 @@
         },
         {
           "file": "apps/admin/src/app/pages/orders/orders-details/orders-details.component.html",
-          "hash": "10187814934803115790"
+          "hash": "4600208505936495240"
         },
         {
           "file": "apps/admin/src/app/pages/orders/orders-details/orders-details.component.scss",
@@ -1128,7 +1274,7 @@
         },
         {
           "file": "apps/admin/src/app/pages/products/product-form/product-form.component.html",
-          "hash": "8217547143334409120"
+          "hash": "17834061373765929240"
         },
         {
           "file": "apps/admin/src/app/pages/products/product-form/product-form.component.scss",
@@ -1143,7 +1289,7 @@
         },
         {
           "file": "apps/admin/src/app/pages/products/product-form/product-form.component.ts",
-          "hash": "8867857222758694326",
+          "hash": "17574179517234498366",
           "deps": [
             "npm:@angular/common",
             "npm:@angular/core",
@@ -1171,7 +1317,7 @@
         },
         {
           "file": "apps/admin/src/app/pages/products/product-list/product-list.component.ts",
-          "hash": "3784260861560118739",
+          "hash": "11553628097723192126",
           "deps": [
             "npm:@angular/common",
             "npm:@angular/core",
@@ -1336,135 +1482,6 @@
           "file": "apps/admin/tsconfig.spec.json",
           "hash": "2927375835638640771"
         }
-      ],
-      "ngshop-e2e": [
-        {
-          "file": "apps/ngshop-e2e/.eslintrc.json",
-          "hash": "14060216369337943343"
-        },
-        {
-          "file": "apps/ngshop-e2e/cypress.config.ts",
-          "hash": "5829213818121065758",
-          "deps": [
-            "npm:@nx/cypress",
-            "npm:cypress"
-          ]
-        },
-        {
-          "file": "apps/ngshop-e2e/project.json",
-          "hash": "2207206347510304337"
-        },
-        {
-          "file": "apps/ngshop-e2e/src/e2e/app.cy.ts",
-          "hash": "11898469736477106215"
-        },
-        {
-          "file": "apps/ngshop-e2e/src/fixtures/example.json",
-          "hash": "11785586596216172004"
-        },
-        {
-          "file": "apps/ngshop-e2e/src/support/app.po.ts",
-          "hash": "11157016311132186162"
-        },
-        {
-          "file": "apps/ngshop-e2e/src/support/commands.ts",
-          "hash": "5397443931564808659"
-        },
-        {
-          "file": "apps/ngshop-e2e/src/support/e2e.ts",
-          "hash": "1054106023200826784"
-        },
-        {
-          "file": "apps/ngshop-e2e/tsconfig.json",
-          "hash": "4332380883180617610"
-        }
-      ],
-      "ui": [
-        {
-          "file": "libs/ui/.eslintrc.json",
-          "hash": "16790474943349079739"
-        },
-        {
-          "file": "libs/ui/README.md",
-          "hash": "3098996868279451883"
-        },
-        {
-          "file": "libs/ui/jest.config.ts",
-          "hash": "3116261517430103567"
-        },
-        {
-          "file": "libs/ui/project.json",
-          "hash": "15064893654540833181"
-        },
-        {
-          "file": "libs/ui/src/index.ts",
-          "hash": "5200926676920919181"
-        },
-        {
-          "file": "libs/ui/src/lib/components/gallery/gallery.component.html",
-          "hash": "3849768757414105222"
-        },
-        {
-          "file": "libs/ui/src/lib/components/gallery/gallery.component.scss",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "libs/ui/src/lib/components/gallery/gallery.component.spec.ts",
-          "hash": "12274622111711541758",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/ui/src/lib/components/gallery/gallery.component.ts",
-          "hash": "8028009832601149637",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/ui/src/lib/components/hero/hero.component.html",
-          "hash": "11932771894311174518"
-        },
-        {
-          "file": "libs/ui/src/lib/components/hero/hero.component.scss",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "libs/ui/src/lib/components/hero/hero.component.spec.ts",
-          "hash": "12632169912590376398",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "libs/ui/src/lib/components/hero/hero.component.ts",
-          "hash": "469344515823138066",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
-        },
-        {
-          "file": "libs/ui/src/test-setup.ts",
-          "hash": "17260818988408329265",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "libs/ui/tsconfig.json",
-          "hash": "3157823844900905278"
-        },
-        {
-          "file": "libs/ui/tsconfig.lib.json",
-          "hash": "12509280388318657009"
-        },
-        {
-          "file": "libs/ui/tsconfig.spec.json",
-          "hash": "7582695473675793029"
-        }
       ]
     },
     "nonProjectFiles": [
@@ -1558,7 +1575,7 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "14708789055492027493"
+        "hash": "1735398282367667804"
       },
       {
         "file": "package.json",
@@ -1598,7 +1615,7 @@
       },
       {
         "file": "styles/apps/admin/products/products-form/products-form.scss",
-        "hash": "5248716241590295732"
+        "hash": "5584977498190052490"
       },
       {
         "file": "styles/apps/admin/shared/shell.scss",
@@ -1618,7 +1635,7 @@
       },
       {
         "file": "styles/apps/ngshop/shared/footer.scss",
-        "hash": "8493497962004727131"
+        "hash": "12729031266586135513"
       },
       {
         "file": "styles/apps/ngshop/shared/header.scss",
@@ -1650,11 +1667,11 @@
       },
       {
         "file": "styles/libs/products/product-details.scss",
-        "hash": "8792679618283295526"
+        "hash": "13490951049939202415"
       },
       {
         "file": "styles/libs/products/product-item.scss",
-        "hash": "4045585532704718182"
+        "hash": "7933903284170466863"
       },
       {
         "file": "styles/libs/products/products-list.scss",
@@ -1663,6 +1680,10 @@
       {
         "file": "styles/libs/products/search-products.scss",
         "hash": "17706787761679917185"
+      },
+      {
+        "file": "styles/libs/ui/gallery.scss",
+        "hash": "5921702076694408395"
       },
       {
         "file": "styles/libs/ui/hero.scss",
@@ -1678,7 +1699,7 @@
       },
       {
         "file": "styles/ngshop.scss",
-        "hash": "11598733073887296846"
+        "hash": "1727028956966679636"
       },
       {
         "file": "tsconfig.base.json",

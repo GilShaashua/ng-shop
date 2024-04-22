@@ -1,5 +1,5 @@
 {
-  "1029472015957275582": {
+  "10047401813431381422": {
     "test": {
       "command": "jest",
       "options": {
@@ -20,7 +20,7 @@
       ]
     }
   },
-  "9932065275699526400": {
+  "3371778297952722675": {
     "test": {
       "command": "jest",
       "options": {
@@ -41,11 +41,11 @@
       ]
     }
   },
-  "17324220078199027883": {
+  "4393856170346168554": {
     "test": {
       "command": "jest",
       "options": {
-        "cwd": "libs/orders"
+        "cwd": "libs/products"
       },
       "cache": true,
       "inputs": [
@@ -58,7 +58,28 @@
         }
       ],
       "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\orders"
+        "{workspaceRoot}\\coverage\\libs\\products"
+      ]
+    }
+  },
+  "14019657205305977852": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/ui"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\ui"
       ]
     }
   },
@@ -104,11 +125,11 @@
       ]
     }
   },
-  "17993726939593501702": {
+  "3247071874727137122": {
     "test": {
       "command": "jest",
       "options": {
-        "cwd": "libs/products"
+        "cwd": "libs/orders"
       },
       "cache": true,
       "inputs": [
@@ -121,28 +142,7 @@
         }
       ],
       "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\products"
-      ]
-    }
-  },
-  "6984779721969744876": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/ui"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\ui"
+        "{workspaceRoot}\\coverage\\libs\\orders"
       ]
     }
   }

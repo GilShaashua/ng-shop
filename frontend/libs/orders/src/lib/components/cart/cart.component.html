@@ -1,0 +1,14 @@
+<div class="cart" *ngIf="cart; else loader">
+    <ul>
+        <li *ngFor="let cartItem of cart">
+            <div class="product-name">{{ cartItem.product.name }}</div>
+            <div class="quantity">{{ cartItem.quantity }}</div>
+        </li>
+    </ul>
+</div>
+
+<ng-template #loader>
+    <div class="loader">
+        <i class="pi pi-spin pi-spinner"></i>
+    </div>
+</ng-template>

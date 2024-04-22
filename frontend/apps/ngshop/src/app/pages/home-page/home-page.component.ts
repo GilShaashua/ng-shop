@@ -10,6 +10,7 @@ import {
     Product,
     ProductsService,
 } from '@frontend/products';
+import { CartItem, CartService } from '@frontend/orders';
 
 @Component({
     selector: 'ngshop-home-page',
@@ -28,7 +29,8 @@ import {
 export class HomePageComponent implements OnInit {
     constructor(
         private categoriesService: CategoriesService,
-        private productsService: ProductsService
+        private productsService: ProductsService,
+        private cartService: CartService
     ) {}
 
     categories!: Category[];
@@ -36,7 +38,7 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit(): void {
         this._getCategories();
-        this._getFeaturedProducts(4);
+        this._getFeaturedProducts(6);
     }
 
     private _getCategories() {
@@ -59,5 +61,14 @@ export class HomePageComponent implements OnInit {
                 console.error('Cannot get featured products', err);
             },
         });
+    }
+
+    onAddProduct(productId: string) {
+        const cartItem: CartItem = {
+            product: productId as unknown as Product,
+            quantity: 1,
+        };
+
+        this.cartService.addCartItem(cartItem);
     }
 }

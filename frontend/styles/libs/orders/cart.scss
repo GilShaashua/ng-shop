@@ -1,0 +1,31 @@
+.cart-host {
+    position: absolute;
+    right: 0;
+    top: 70px;
+    z-index: 999;
+    background-color: $primary-color;
+    color: $text-color;
+    padding: 1.5em;
+    border-radius: 5px;
+    width: 300px;
+    min-height: 300px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+    .cart {
+        height: 100%;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            height: 100%;
+
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2em;
+            }
+        }
+    }
+}

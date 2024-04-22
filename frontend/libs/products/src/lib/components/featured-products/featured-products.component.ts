@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product.model';
@@ -13,4 +13,5 @@ import { Product } from '../../models/product.model';
 })
 export class FeaturedProductsComponent {
     @Input() featuredProducts!: Product[];
+    @Output() onAddProduct = new EventEmitter();
 }

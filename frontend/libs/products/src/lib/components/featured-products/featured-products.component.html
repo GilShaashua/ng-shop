@@ -4,6 +4,7 @@
         <products-product-item
             *ngFor="let product of featuredProducts"
             [product]="product"
+            (onAddProduct)="onAddProduct.emit($event)"
         ></products-product-item>
     </ul>
 </section>

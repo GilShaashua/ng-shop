@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -12,4 +12,5 @@ import { RouterModule } from '@angular/router';
 })
 export class ProductItemComponent {
     @Input() product!: Product;
+    @Output() onAddProduct = new EventEmitter();
 }

@@ -21,6 +21,10 @@
 
     <div class="icons">
         <i class="pi pi-user"></i>
-        <i class="pi pi-shopping-cart"></i>
+        <i class="pi pi-shopping-cart" (click)="isCartShown = !isCartShown"
+            ><span>{{ cartCount }}</span></i
+        >
+
+        <orders-cart #cart *ngIf="isCartShown"></orders-cart>
     </div>
 </header>

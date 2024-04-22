@@ -8,6 +8,7 @@ import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../models/category.model';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { CartItem, CartService } from '@frontend/orders';
 
 @Component({
     selector: 'products-products-list',
@@ -21,7 +22,8 @@ export class ProductsListComponent implements OnInit {
     constructor(
         private productsService: ProductsService,
         private categoriesService: CategoriesService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private cartService: CartService
     ) {}
 
     products!: Product[];
@@ -109,5 +111,14 @@ export class ProductsListComponent implements OnInit {
         }
 
         this._getProducts(this.filterBy['categories']);
+    }
+
+    onAddProduct(productId: string) {
+        const cartItem: CartItem = {
+            product: productId as unknown as Product,
+            quantity: 1,
+        };
+
+        this.cartService.addCartItem(cartItem);
     }
 }
