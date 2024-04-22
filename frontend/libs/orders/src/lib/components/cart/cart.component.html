@@ -1,4 +1,4 @@
-<div class="cart" *ngIf="cart; else loader">
+<div class="cart" *ngIf="cart">
     <ul>
         <li *ngFor="let cartItem of cart">
             <div class="product-name">{{ cartItem.product.name }}</div>
@@ -6,9 +6,3 @@
         </li>
     </ul>
 </div>
-
-<ng-template #loader>
-    <div class="loader">
-        <i class="pi pi-spin pi-spinner"></i>
-    </div>
-</ng-template>

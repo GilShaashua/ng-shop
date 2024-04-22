@@ -25,6 +25,6 @@
             ><span>{{ cartCount }}</span></i
         >
 
-        <orders-cart #cart *ngIf="isCartShown"></orders-cart>
+        <orders-cart *ngIf="cart && isCartShown" [cart]="cart"></orders-cart>
     </div>
 </header>
