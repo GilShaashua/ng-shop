@@ -11,6 +11,8 @@ import {
     ProductsService,
 } from '@frontend/products';
 import { CartItem, CartService } from '@frontend/orders';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'ngshop-home-page',
@@ -21,6 +23,7 @@ import { CartItem, CartService } from '@frontend/orders';
         HeroComponent,
         CategoriesBannerComponent,
         FeaturedProductsComponent,
+        ToastModule,
     ],
     templateUrl: './home-page.component.html',
     styleUrl: './home-page.component.scss',
@@ -30,7 +33,8 @@ export class HomePageComponent implements OnInit {
     constructor(
         private categoriesService: CategoriesService,
         private productsService: ProductsService,
-        private cartService: CartService
+        private cartService: CartService,
+        private messageService: MessageService
     ) {}
 
     categories!: Category[];
@@ -70,5 +74,10 @@ export class HomePageComponent implements OnInit {
         };
 
         this.cartService.addCartItem(cartItem);
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Product added to cart',
+        });
     }
 }

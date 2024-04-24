@@ -1,3 +1,7 @@
+p-toast {
+    position: absolute;
+}
+
 .products-list {
     display: grid;
     grid-template-columns: 250px 1fr;
@@ -56,9 +60,10 @@
 
         ul {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(auto, 180px));
-            column-gap: 1.5em;
-            row-gap: 4em;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-auto-rows: 240px;
+            column-gap: 1.2em;
+            row-gap: 5em;
 
             .product-item {
                 background-color: $backgroundColorDark3;

@@ -22,9 +22,9 @@ export class CartService {
         const cart = this._getCart();
 
         if (!cart) {
-            this._setCartItem([]);
+            this._saveCart([]);
         } else {
-            this._setCartItem(cart);
+            this._saveCart(cart);
         }
     }
 
@@ -39,16 +39,17 @@ export class CartService {
 
                 if (cartItemIdx === -1) {
                     cart.push(cartItem);
-                    this._setCartItem(cart);
+                    this._saveCart(cart);
                 } else {
-                    const cartItem = cart[cartItemIdx];
-                    cartItem.quantity++;
-                    cart.splice(cartItemIdx, 1, cartItem);
-                    this._setCartItem(cart);
+                    const cartItemFromStorage = cart[cartItemIdx];
+                    cartItemFromStorage.quantity =
+                        cartItemFromStorage.quantity + cartItem.quantity;
+                    cart.splice(cartItemIdx, 1, cartItemFromStorage);
+                    this._saveCart(cart);
                 }
             } else {
                 cart.push(cartItem);
-                this._setCartItem(cart);
+                this._saveCart(cart);
             }
         }
     }
@@ -61,7 +62,7 @@ export class CartService {
         return null;
     }
 
-    private _setCartItem(cart: CartItem[]) {
+    private _saveCart(cart: CartItem[]) {
         localStorage.setItem(CART_KEY, JSON.stringify(cart));
         this._cart$.next(cart);
     }

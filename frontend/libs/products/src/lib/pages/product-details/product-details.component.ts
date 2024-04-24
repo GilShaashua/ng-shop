@@ -3,10 +3,19 @@ import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { CommonModule, Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+    FormBuilder,
+    FormGroup,
+    FormsModule,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GalleryComponent } from '@frontend/ui';
+import { CartItem, CartService } from '@frontend/orders';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'products-product-details',
@@ -15,8 +24,10 @@ import { GalleryComponent } from '@frontend/ui';
         CommonModule,
         RouterModule,
         FormsModule,
+        ReactiveFormsModule,
         RatingModule,
         GalleryComponent,
+        ToastModule,
     ],
     templateUrl: './product-details.component.html',
     styleUrl: './product-details.component.scss',
@@ -27,15 +38,21 @@ export class ProductDetailsComponent implements OnInit {
         private route: ActivatedRoute,
         private sanitizer: DomSanitizer,
         private location: Location,
-        private router: Router
+        private router: Router,
+        private cartService: CartService,
+        private formBuilder: FormBuilder,
+        private messageService: MessageService
     ) {}
 
     product!: Product;
 
-    productItem: { quantity: number; product: Product | null } = {
-        quantity: 1,
-        product: null,
-    };
+    productItemRF: FormGroup = this.formBuilder.group({
+        quantity: [
+            1,
+            [Validators.required, Validators.max(100), Validators.min(1)],
+        ],
+        product: [null, [Validators.required]],
+    });
 
     isSanitizerProccessing = true;
 
@@ -45,6 +62,22 @@ export class ProductDetailsComponent implements OnInit {
 
     goBack() {
         this.location.back();
+    }
+
+    onAddCartItem() {
+        if (this.productItemRF.invalid) return;
+
+        const cartItem: CartItem = {
+            product: this.productItemRF.value.product?.id as unknown as Product,
+            quantity: this.productItemRF.value.quantity,
+        };
+
+        this.cartService.addCartItem(cartItem);
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Product added to cart',
+        });
     }
 
     private _sanitizer() {
@@ -76,7 +109,7 @@ export class ProductDetailsComponent implements OnInit {
         this.productsService.getProductById(productId).subscribe({
             next: (product) => {
                 this.product = product;
-                this.productItem.product = product;
+                this.controls['product'].patchValue(product);
 
                 this._sanitizer();
             },
@@ -87,7 +120,7 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
-    log() {
-        console.log('productItem', this.productItem);
+    get controls() {
+        return this.productItemRF.controls;
     }
 }

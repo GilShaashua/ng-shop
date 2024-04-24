@@ -9,11 +9,19 @@ import { Category } from '../../models/category.model';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { CartItem, CartService } from '@frontend/orders';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: 'products-products-list',
     standalone: true,
-    imports: [CommonModule, RouterModule, FormsModule, ProductItemComponent],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        ProductItemComponent,
+        ToastModule,
+    ],
     templateUrl: './products-list.component.html',
     styleUrl: './products-list.component.scss',
     host: { class: 'full component-layout' },
@@ -23,7 +31,8 @@ export class ProductsListComponent implements OnInit {
         private productsService: ProductsService,
         private categoriesService: CategoriesService,
         private route: ActivatedRoute,
-        private cartService: CartService
+        private cartService: CartService,
+        private messageService: MessageService
     ) {}
 
     products!: Product[];
@@ -120,5 +129,10 @@ export class ProductsListComponent implements OnInit {
         };
 
         this.cartService.addCartItem(cartItem);
+        this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Product added to cart',
+        });
     }
 }

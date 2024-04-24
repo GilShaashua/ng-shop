@@ -25,20 +25,39 @@
 
             <h4 class="price">{{ product.price | currency }}</h4>
 
-            <div class="quantity">
-                <label for="quantity">Quantity</label>
-                <input
-                    [(ngModel)]="productItem.quantity"
-                    type="number"
-                    name="quantity"
-                    id="quantity"
-                    (change)="log()"
-                />
-            </div>
+            <form class="quantity" [formGroup]="productItemRF">
+                <div class="inner-container">
+                    <label for="quantity">Quantity</label>
+                    <input
+                        formControlName="quantity"
+                        type="number"
+                        name="quantity"
+                        id="quantity"
+                        min="1"
+                        max="99"
+                    />
+                </div>
+
+                <small *ngIf="controls['quantity'].hasError('required')"
+                    >Quantity is required!</small
+                >
+
+                <small *ngIf="controls['quantity'].hasError('min')"
+                    >Minimum 1</small
+                >
+
+                <small *ngIf="controls['quantity'].hasError('max')"
+                    >Maximum 99</small
+                >
+            </form>
 
             <div class="buttons">
                 <button><i class="pi pi-shopping-bag"></i> Buy Now</button>
-                <button><i class="pi pi-shopping-cart"></i> Add to Cart</button>
+
+                <button (click)="onAddCartItem()">
+                    <i class="pi pi-shopping-cart"></i>
+                    Add to Cart
+                </button>
             </div>
         </div>
     </div>
@@ -56,3 +75,5 @@
         <i class="pi pi-spin pi-spinner"></i>
     </div>
 </ng-template>
+
+<p-toast></p-toast>

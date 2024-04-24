@@ -2,20 +2,22 @@
     background-color: $backgroundColorDark2;
 
     .featured-products {
-        height: 400px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 4em;
+        padding-block: 2.5em;
 
         h2 {
             font-size: 30px;
         }
 
         .featured-products-list {
-            display: flex;
-            align-items: center;
-            gap: 1em;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-auto-rows: 240px;
+            column-gap: 1em;
+            row-gap: 4em;
         }
     }
 }

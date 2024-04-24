@@ -1,3 +1,12 @@
+.p-toast-message {
+    padding: 0.7em;
+    margin-block-end: 1em;
+
+    span {
+        margin-inline-end: 1em;
+    }
+}
+
 .product-details {
     padding-block-start: 2em;
     padding-block-end: 4em;
@@ -69,20 +78,29 @@
 
             .quantity {
                 display: flex;
-                align-items: center;
+                flex-direction: column;
                 gap: 0.5em;
 
-                label {
-                    cursor: pointer;
+                .inner-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+                    label {
+                        cursor: pointer;
+                    }
+
+                    input {
+                        padding-inline: 0.5em;
+                        height: 30px;
+                        border-radius: 4px;
+                        border: none;
+                        width: 100%;
+                        max-width: 120px;
+                    }
                 }
 
-                input {
-                    padding-inline: 0.5em;
-                    height: 30px;
-                    border-radius: 4px;
-                    border: none;
-                    width: 100%;
-                    max-width: 120px;
+                small {
+                    color: red;
                 }
             }
 
