@@ -1,0 +1,17 @@
+<li *ngIf="cartItem">
+    <div class="column1">
+        <img [src]="cartItem.product.image" alt="product" />
+        <div class="details">
+            <div class="product-name">{{ cartItem.product.name }}</div>
+            <div class="product-price">
+                {{ cartItem.product.price | currency }}
+            </div>
+            <button class="btn-delete-product">
+                <i class="pi pi-trash"></i>
+            </button>
+        </div>
+    </div>
+    <div class="column2">
+        <div class="quantity">{{ cartItem.quantity }}</div>
+    </div>
+</li>

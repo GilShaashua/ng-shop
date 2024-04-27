@@ -1,31 +1,65 @@
-.cart-host {
-    position: absolute;
-    right: 0;
-    top: 70px;
-    z-index: 999;
-    background-color: $primary-color;
+.cart {
+    background-color: $backgroundColorDark3;
     color: $text-color;
-    padding: 1.5em;
-    border-radius: 5px;
-    width: 300px;
-    min-height: 300px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    translate: -100%;
+    box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
 
-    .cart {
-        height: 100%;
+    &.open {
+        translate: 0%;
+    }
 
-        ul {
+    .header {
+        position: sticky;
+        top: 0;
+        left: 10px;
+        width: 100%;
+        border-block-end: 1px solid $text-color;
+        padding-inline: 1em;
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+        justify-content: space-between;
+        height: 100px;
+        z-index: 99;
+        background-color: $primary-color;
+
+        .btn-close {
+            border: none;
+            color: $text-color;
+            background-color: unset;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
             display: flex;
-            flex-direction: column;
-            gap: 1em;
-            height: 100%;
+            border-radius: 50%;
+            padding: 0.5em;
+            margin-inline-end: -7px;
 
-            li {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 2em;
+            i {
+                font-size: 20px;
+            }
+
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.459);
             }
         }
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5em;
+        height: 100%;
+        padding-inline: 1em;
+        overflow: auto;
+        padding-block: 2em;
     }
 }

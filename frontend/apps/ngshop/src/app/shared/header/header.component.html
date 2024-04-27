@@ -21,10 +21,21 @@
 
     <div class="icons">
         <i class="pi pi-user"></i>
-        <i class="pi pi-shopping-cart" (click)="isCartShown = !isCartShown"
+        <i class="pi pi-shopping-cart" (click)="isCartShown = true"
             ><span>{{ cartCount }}</span></i
         >
 
-        <orders-cart *ngIf="cart && isCartShown" [cart]="cart"></orders-cart>
+        <div
+            class="cover"
+            [ngClass]="{ open: isCartShown }"
+            (click)="isCartShown = false"
+        ></div>
+
+        <orders-cart
+            *ngIf="cart"
+            [cart]="cart"
+            [isCartShown]="isCartShown"
+            (onCloseCart)="isCartShown = $event"
+        ></orders-cart>
     </div>
 </header>

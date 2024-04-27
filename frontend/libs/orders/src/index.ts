@@ -6,3 +6,4 @@ export * from './lib/models/cart-item.model';
 export * from './lib/services/orders.service';
 export * from './lib/services/cart.service';
 export * from './lib/components/cart/cart.component';
+export * from './lib/components/cart-item/cart-item.component';

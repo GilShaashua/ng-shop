@@ -1,8 +1,15 @@
-<div class="cart" *ngIf="cart">
+<div class="cart" *ngIf="cart" [ngClass]="{ open: isCartShown }">
+    <div class="header">
+        <h1>My Cart</h1>
+        <button (click)="onCloseCart.emit(false)" class="btn-close">
+            <i class="pi pi-times"></i>
+        </button>
+    </div>
+
     <ul>
-        <li *ngFor="let cartItem of cart">
-            <div class="product-name">{{ cartItem.product.name }}</div>
-            <div class="quantity">{{ cartItem.quantity }}</div>
-        </li>
+        <orders-cart-item
+            *ngFor="let cartItem of cart"
+            [cartItem]="cartItem"
+        ></orders-cart-item>
     </ul>
 </div>

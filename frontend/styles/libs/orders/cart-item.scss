@@ -1,0 +1,58 @@
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+    height: 85px;
+
+    .column1 {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        height: 100%;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+            border-radius: 5px;
+        }
+
+        .details {
+            height: 100%;
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+
+            .product-name {
+            }
+
+            .product-price {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .btn-delete-product {
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: unset;
+                align-self: end;
+                cursor: pointer;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                margin-inline-start: -10px;
+
+                &:hover {
+                    background-color: $backgroundColorDark;
+                }
+
+                i {
+                    color: $text-color;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

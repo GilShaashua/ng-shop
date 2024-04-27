@@ -13123,12 +13123,12 @@
       },
       {
         "source": "products",
-        "target": "npm:rxjs",
+        "target": "orders",
         "type": "static"
       },
       {
         "source": "products",
-        "target": "orders",
+        "target": "npm:rxjs",
         "type": "static"
       },
       {
@@ -13160,12 +13160,12 @@
       },
       {
         "source": "ngshop",
-        "target": "npm:@angular/forms",
+        "target": "users",
         "type": "static"
       },
       {
         "source": "ngshop",
-        "target": "users",
+        "target": "npm:primeng",
         "type": "static"
       },
       {
@@ -13180,17 +13180,17 @@
       },
       {
         "source": "ngshop",
-        "target": "npm:primeng",
-        "type": "static"
-      },
-      {
-        "source": "ngshop",
         "target": "ui",
         "type": "static"
       },
       {
         "source": "ngshop",
         "target": "orders",
+        "type": "static"
+      },
+      {
+        "source": "ngshop",
+        "target": "npm:rxjs",
         "type": "static"
       },
       {
