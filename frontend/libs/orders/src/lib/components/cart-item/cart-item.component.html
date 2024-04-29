@@ -1,17 +1,54 @@
-<li *ngIf="cartItem">
+<li class="cart-item" *ngIf="cartItemRF">
     <div class="column1">
-        <img [src]="cartItem.product.image" alt="product" />
+        <img [src]="controls['product'].value.image" alt="product" />
+
         <div class="details">
             <div class="product-name">{{ cartItem.product.name }}</div>
+
             <div class="product-price">
                 {{ cartItem.product.price | currency }}
             </div>
-            <button class="btn-delete-product">
+
+            <button
+                class="btn-delete-product"
+                (click)="onDeleteCartItem(controls['product'].value.id)"
+            >
                 <i class="pi pi-trash"></i>
             </button>
         </div>
     </div>
-    <div class="column2">
-        <div class="quantity">{{ cartItem.quantity }}</div>
-    </div>
+
+    <form class="column2" [formGroup]="cartItemRF">
+        <div class="inner-container">
+            <input
+                (input)="onChangeQuantity(controls['product'].value.id)"
+                formControlName="quantity"
+                type="number"
+                name="quantity"
+                id="quantity"
+                min="1"
+                max="99"
+            />
+
+            <p>
+                Subtotal:
+                <span>{{
+                    controls['product'].value.price * controls['quantity'].value
+                        | currency
+                }}</span>
+            </p>
+        </div>
+
+        <small *ngIf="controls['quantity'].hasError('required')">
+            Quantity is required!
+        </small>
+
+        <small *ngIf="controls['quantity'].hasError('min')">
+            Minimum is 1!
+        </small>
+
+        <small *ngIf="controls['quantity'].hasError('max')">
+            Maximum is 99!
+        </small>
+    </form>
 </li>

@@ -2,7 +2,7 @@
     background-color: $backgroundColorDark3;
     color: $text-color;
     height: 100vh;
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -22,8 +22,8 @@
         top: 0;
         left: 10px;
         width: 100%;
-        border-block-end: 1px solid $text-color;
-        padding-inline: 1em;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        padding-inline: 1.5em;
         display: flex;
         align-items: center;
         gap: 1.5em;
@@ -56,10 +56,91 @@
     ul {
         display: flex;
         flex-direction: column;
-        gap: 2.5em;
         height: 100%;
-        padding-inline: 1em;
         overflow: auto;
-        padding-block: 2em;
+    }
+
+    .footer {
+        padding-inline: 1.5em;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: $backgroundColorDark;
+        border-block-start: 1px solid white;
+
+        .inner-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            gap: 1em;
+
+            .items-price {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;
+
+                span {
+                    &:nth-child(1) {
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .packing-shipping {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;
+
+                span {
+                    &:nth-child(1) {
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .checkout {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1em;
+
+                .total-price {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5em;
+
+                    span {
+                        &:nth-child(1) {
+                            font-weight: 700;
+                        }
+
+                        &:nth-child(2) {
+                            font-size: 18px;
+                        }
+                    }
+                }
+
+                .btn-checkout {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5em;
+                    border: none;
+                    border-radius: 3px;
+                    height: 40px;
+                    padding-inline: 0.5em;
+                    cursor: pointer;
+                    background-color: $primary-color;
+                    color: $text-color;
+                    font-weight: 600;
+
+                    &:hover {
+                        background-color: $primary-color-dark;
+                    }
+                }
+            }
+        }
     }
 }

@@ -25,17 +25,12 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     cart!: CartItem[] | null;
-    subscriptionSubject$ = new Subject();
+    endSubs$ = new Subject();
     isCartShown = false;
+    totalPrice = 0;
     cartCount = 0;
 
     ngOnInit(): void {
-        this.cartService.cart$.subscribe({
-            next: (cart) => {
-                this.cartCount = cart?.length || 0;
-            },
-        });
-
         this._getCart();
     }
 
@@ -62,11 +57,13 @@ export class HeaderComponent implements OnInit {
 
                     return null;
                 }),
-                takeUntil(this.subscriptionSubject$)
+                takeUntil(this.endSubs$)
             )
             .subscribe({
                 next: (cart) => {
                     this.cart = cart;
+                    this.cartCount = cart?.length || 0;
+                    this._getCartTotal();
                 },
                 error: (err) => {
                     console.error('Cannot get cart', err);
@@ -74,8 +71,16 @@ export class HeaderComponent implements OnInit {
             });
     }
 
+    private _getCartTotal() {
+        if (this.cart) {
+            this.totalPrice = this.cart.reduce((acc, cartItem) => {
+                return acc + cartItem.product.price * cartItem.quantity;
+            }, 0);
+        }
+    }
+
     ngOnDestroy(): void {
-        this.subscriptionSubject$.next(null);
-        this.subscriptionSubject$.complete();
+        this.endSubs$.next(null);
+        this.endSubs$.complete();
     }
 }

@@ -54,6 +54,38 @@ export class CartService {
         }
     }
 
+    editCartItem(productId: string, quantity: number) {
+        const cart = this._getCart();
+
+        if (cart && cart.length) {
+            const idx = cart.findIndex(
+                (cartItem) =>
+                    (cartItem.product as unknown as string) === productId
+            );
+
+            if (idx !== -1) {
+                cart[idx].quantity = quantity;
+                this._saveCart(cart);
+            }
+        }
+    }
+
+    deleteCartItem(productId: string) {
+        const cart = this._getCart();
+
+        if (cart && cart.length) {
+            const idx = cart.findIndex(
+                (cartItem) =>
+                    (cartItem.product as unknown as string) === productId
+            );
+
+            if (idx !== -1) {
+                cart.splice(idx, 1);
+                this._saveCart(cart);
+            }
+        }
+    }
+
     get cartCount() {
         if (this._cart$.value) {
             return this._cart$.value.length;

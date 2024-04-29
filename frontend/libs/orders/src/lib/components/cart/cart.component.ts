@@ -13,5 +13,7 @@ import { CartItem } from '../../models/cart-item.model';
 export class CartComponent {
     @Input() cart!: CartItem[];
     @Input() isCartShown!: boolean;
+    @Input() totalPrice!: number;
     @Output() onCloseCart = new EventEmitter();
+    @Output() onCheckout = new EventEmitter();
 }

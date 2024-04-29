@@ -35,6 +35,7 @@
             *ngIf="cart"
             [cart]="cart"
             [isCartShown]="isCartShown"
+            [totalPrice]="totalPrice"
             (onCloseCart)="isCartShown = $event"
         ></orders-cart>
     </div>

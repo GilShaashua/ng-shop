@@ -1,6 +1,9 @@
 <div class="cart" *ngIf="cart" [ngClass]="{ open: isCartShown }">
     <div class="header">
-        <h1>My Cart</h1>
+        <div class="inner-container">
+            <h1>My Cart</h1>
+            <p>{{ cart.length }} {{ cart.length === 1 ? 'item' : 'items' }}</p>
+        </div>
         <button (click)="onCloseCart.emit(false)" class="btn-close">
             <i class="pi pi-times"></i>
         </button>
@@ -12,4 +15,30 @@
             [cartItem]="cartItem"
         ></orders-cart-item>
     </ul>
+
+    <div class="footer">
+        <div class="inner-container">
+            <div class="items-price">
+                <span>Items Price</span>
+                <span>{{ totalPrice | currency }}</span>
+            </div>
+
+            <div class="packing-shipping">
+                <span>Packing & Shipping</span>
+                <span class="free">Free</span>
+            </div>
+
+            <div class="checkout">
+                <div class="total-price">
+                    <span>Total Price</span>
+                    <span>{{ totalPrice | currency }}</span>
+                </div>
+
+                <button class="btn-checkout" (click)="onCheckout.emit()">
+                    <i class="pi pi-shopping-cart"></i>
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
