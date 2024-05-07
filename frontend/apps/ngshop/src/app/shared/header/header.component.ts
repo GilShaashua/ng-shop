@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsSearchComponent, ProductsService } from '@frontend/products';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CartComponent, CartItem, CartService } from '@frontend/orders';
 import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
 
@@ -21,7 +21,8 @@ import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
 export class HeaderComponent implements OnInit {
     constructor(
         private cartService: CartService,
-        private productsService: ProductsService
+        private productsService: ProductsService,
+        private router: Router
     ) {}
 
     cart!: CartItem[] | null;
@@ -32,6 +33,11 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this._getCart();
+    }
+
+    navigateCheckout() {
+        this.isCartShown = false;
+        this.router.navigateByUrl('/checkout');
     }
 
     private _getCart() {

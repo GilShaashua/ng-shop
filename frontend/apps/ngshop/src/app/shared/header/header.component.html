@@ -37,6 +37,7 @@
             [isCartShown]="isCartShown"
             [totalPrice]="totalPrice"
             (onCloseCart)="isCartShown = $event"
+            (onCheckout)="navigateCheckout()"
         ></orders-cart>
     </div>
 </header>

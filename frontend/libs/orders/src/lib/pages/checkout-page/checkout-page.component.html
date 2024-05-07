@@ -1,0 +1,76 @@
+<section class="checkout-page" *ngIf="countries">
+    <h2>Checkout</h2>
+
+    <form>
+        <div class="name">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+        </div>
+
+        <div class="email">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+        </div>
+
+        <div class="phone">
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone" />
+        </div>
+
+        <div class="street">
+            <label for="street">Street</label>
+            <input type="text" name="street" id="street" />
+        </div>
+
+        <div class="apartment">
+            <label for="apartment">Apartment</label>
+            <input type="text" name="apartment" id="apartment" />
+        </div>
+
+        <div class="zip">
+            <label for="zip">Zip</label>
+            <input type="text" name="zip" id="zip" />
+        </div>
+
+        <div class="city">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" />
+        </div>
+
+        <div class="country">
+            <label for="country">Country</label>
+            <input type="text" name="country" id="country" />
+        </div>
+
+        <div class="country">
+            <label for="country">Country</label>
+
+            <p-dropdown
+                formControlName="country"
+                [options]="countries"
+                optionLabel="name"
+                optionValue="id"
+                [filter]="true"
+                filterBy="name"
+                placeholder="Select a country"
+            ></p-dropdown>
+
+            <!-- <small
+                *ngIf="
+                    controlsForm['country'].hasError('required') &&
+                    isSubmitted
+                "
+                class="p-error"
+                >Country is requried!</small
+            >
+            <small
+                *ngIf="
+                    controlsForm['country'].hasError('minlength') &&
+                    isSubmitted
+                "
+                class="p-error"
+                >Minimum 3 characters!</small
+            > -->
+        </div>
+    </form>
+</section>

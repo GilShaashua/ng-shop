@@ -41,4 +41,18 @@ export class UsersService {
             `${this.apiUrl}users/get/count`
         );
     }
+
+    getCountries(): { id: string; name: string }[] {
+        const countriesRes = Object.entries(
+            countriesLib.getNames('en', { select: 'official' })
+        );
+        const countries = countriesRes.map((country) => {
+            return {
+                id: country[0],
+                name: country[1],
+            };
+        });
+
+        return countries;
+    }
 }

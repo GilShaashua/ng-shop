@@ -18,7 +18,6 @@ import { ToastModule } from 'primeng/toast';
 import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
-import * as countriesLib from 'i18n-iso-countries';
 
 @Component({
     selector: 'admin-users-form',
@@ -66,7 +65,7 @@ export class UsersFormComponent {
 
     ngOnInit(): void {
         this._checkParams();
-        this._getContries();
+        this._getCountries();
     }
 
     onSubmitForm() {
@@ -116,16 +115,8 @@ export class UsersFormComponent {
         });
     }
 
-    private _getContries() {
-        const countriesRes = Object.entries(
-            countriesLib.getNames('en', { select: 'official' })
-        );
-        const countries = countriesRes.map((country) => {
-            return {
-                id: country[0],
-                name: country[1],
-            };
-        });
+    private _getCountries() {
+        const countries = this.usersService.getCountries();
         this.countries = countries;
     }
 

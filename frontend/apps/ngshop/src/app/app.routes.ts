@@ -14,5 +14,10 @@ export const appRoutes: Route[] = [
         loadChildren: () =>
             import('@frontend/products').then((route) => route.productsRoutes),
     },
+    {
+        path: 'checkout',
+        loadChildren: () =>
+            import('@frontend/orders').then((route) => route.ordersRoutes),
+    },
     { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
