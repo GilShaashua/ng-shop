@@ -1,5 +1,5 @@
 {
-  "10047401813431381422": {
+  "13526708692499378434": {
     "test": {
       "command": "jest",
       "options": {
@@ -20,7 +20,7 @@
       ]
     }
   },
-  "11634128657505057782": {
+  "3633722384730054186": {
     "test": {
       "command": "jest",
       "options": {
@@ -38,48 +38,6 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\apps\\ngshop"
-      ]
-    }
-  },
-  "13932108835149627749": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/orders"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\orders"
-      ]
-    }
-  },
-  "6993481964381435963": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/products"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\products"
       ]
     }
   },
@@ -104,7 +62,7 @@
       ]
     }
   },
-  "10310699173643121308": {
+  "5581984306519344821": {
     "test": {
       "command": "jest",
       "options": {
@@ -143,6 +101,48 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\libs\\utils"
+      ]
+    }
+  },
+  "8732839978209328231": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/orders"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\orders"
+      ]
+    }
+  },
+  "15436207718453717700": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/products"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\products"
       ]
     }
   }

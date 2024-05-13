@@ -1,0 +1,129 @@
+.checkout-page {
+    height: 100%;
+    padding-block: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    .inner-container {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4em;
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-auto-rows: 100px;
+            column-gap: 2em;
+
+            .input {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;
+
+                label {
+                    cursor: pointer;
+                    width: 100%;
+                    font-weight: 600;
+                }
+
+                input {
+                    height: 30px;
+                    width: 100%;
+                    padding-inline: 0.5em;
+                    border: none;
+                    border-radius: 3px;
+                }
+            }
+
+            .country {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;
+
+                label {
+                    width: 100%;
+                    font-weight: 600;
+                }
+
+                .p-dropdown {
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    padding-inline-start: 0.5em;
+                    border: none;
+
+                    .p-dropdown-items-wrapper {
+                        ul {
+                            li {
+                                display: flex;
+                                align-items: center;
+                                padding-inline: 0.5em;
+                                height: 30px;
+                            }
+                        }
+                    }
+
+                    span {
+                        margin-block-end: 3px;
+                    }
+
+                    .p-dropdown-filter {
+                        height: 30px;
+                        padding-inline: 0.5em;
+                    }
+
+                    .p-dropdown-filter-icon {
+                        position: absolute;
+                        right: 7px;
+                        top: 7px;
+                    }
+                }
+            }
+        }
+
+        .order-summary {
+            width: 350px;
+            height: fit-content;
+            padding: 1.5em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7em;
+            background-color: $backgroundColorDark3;
+            border-radius: 3px;
+
+            h2 {
+                margin-block-end: 0.7em;
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                    &:nth-child(1) {
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .btn-place-order {
+                border: none;
+                height: 40px;
+                font-weight: 700;
+                border-radius: 3px;
+                background-color: $primary-color;
+                color: $text-color;
+                margin-block-start: 1em;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $primary-color-dark;
+                }
+            }
+        }
+    }
+}

@@ -13180,12 +13180,17 @@
       },
       {
         "source": "ngshop",
-        "target": "ui",
-        "type": "static"
+        "target": "orders",
+        "type": "dynamic"
       },
       {
         "source": "ngshop",
         "target": "orders",
+        "type": "static"
+      },
+      {
+        "source": "ngshop",
+        "target": "ui",
         "type": "static"
       },
       {
@@ -13233,6 +13238,11 @@
       {
         "source": "orders",
         "target": "users",
+        "type": "static"
+      },
+      {
+        "source": "orders",
+        "target": "npm:primeng",
         "type": "static"
       },
       {
@@ -13300,11 +13310,6 @@
       {
         "source": "admin",
         "target": "orders",
-        "type": "static"
-      },
-      {
-        "source": "admin",
-        "target": "npm:i18n-iso-countries",
         "type": "static"
       },
       {

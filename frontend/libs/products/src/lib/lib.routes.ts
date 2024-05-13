@@ -1,28 +1,21 @@
 import { Route } from '@angular/router';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 export const productsRoutes: Route[] = [
     {
         path: '',
-        loadComponent: () =>
-            import('./pages/products-list/products-list.component').then(
-                (component) => component.ProductsListComponent
-            ),
+        component: ProductsListComponent,
         title: 'Products | ngShop',
     },
     {
         path: ':categoryId',
-        loadComponent: () =>
-            import('./pages/products-list/products-list.component').then(
-                (component) => component.ProductsListComponent
-            ),
+        component: ProductsListComponent,
         title: 'Products | ngShop',
     },
     {
         path: 'details/:productId',
-        loadComponent: () =>
-            import('./pages/product-details/product-details.component').then(
-                (component) => component.ProductDetailsComponent
-            ),
+        component: ProductDetailsComponent,
         title: 'Product Details | ngShop',
     },
 ];
