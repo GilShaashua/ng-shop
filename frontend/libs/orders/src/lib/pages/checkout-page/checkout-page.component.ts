@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
-import { UsersService } from '@frontend/users';
+import { User, UsersService } from '@frontend/users';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/cart-item.model';
 import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
@@ -12,7 +12,10 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { ProductsService } from '@frontend/products';
+import { Product, ProductsService } from '@frontend/products';
+import { Order } from '../../models/order.model';
+import { OrderItem } from '../../models/order-item.model';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
     selector: 'orders-checkout-page',
@@ -26,8 +29,10 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         private usersService: UsersService,
         private cartService: CartService,
         private productsService: ProductsService,
+        private ordersService: OrdersService,
         private formBuilder: FormBuilder,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
 
     countries!: { id: string; name: string }[];
@@ -35,6 +40,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     subscriptionSubject = new Subject();
     totalPrice = 0;
     isSubmitted = false;
+    userId!: string;
 
     form: FormGroup = this.formBuilder.group({
         name: ['', [Validators.required]],
@@ -46,7 +52,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         city: ['', [Validators.required]],
         country: ['', [Validators.required]],
     });
-    userId!: string;
 
     ngOnInit(): void {
         this._getCountries();
@@ -57,7 +62,41 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     onPlaceOrder() {
         this.isSubmitted = true;
         if (this.form.invalid) return;
-        console.log('Place Order !');
+
+        const orderItems: OrderItem[] = this.cart.map((cartItem) => {
+            return {
+                id: '',
+                product: cartItem.product.id as unknown as Product,
+                quantity: cartItem.quantity,
+            };
+        });
+
+        const order: Order = {
+            id: '',
+            orderItems,
+            shippingAddress1: this.controlsForm['street'].value,
+            shippingAddress2: this.controlsForm['apartment'].value,
+            city: this.controlsForm['city'].value,
+            zip: this.controlsForm['zip'].value,
+            country: this.controlsForm['country'].value,
+            phone: this.controlsForm['phone'].value,
+            status: '0',
+            user: (this.userId ||
+                '66424b69b7ec423fca98a2a1') as unknown as User,
+            dateOrdered: Date.now() + '',
+        };
+
+        this.ordersService.addOrder(order).subscribe({
+            next: (addedOrder) => {
+                this.cartService.clearCart();
+                this.router.navigateByUrl(
+                    `checkout/thank-you/${addedOrder.id}`
+                );
+            },
+            error: (err) => {
+                console.error('Cannot add order', err);
+            },
+        });
     }
 
     private _getCountries() {
@@ -93,7 +132,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
             .subscribe({
                 next: (cart) => {
                     this.cart = cart || [];
-                    console.log(cart);
+                    // console.log(cart);
                     this._getTotalPrice();
                 },
                 error: (err) => {

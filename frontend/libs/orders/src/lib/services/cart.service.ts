@@ -86,6 +86,10 @@ export class CartService {
         }
     }
 
+    clearCart() {
+        this._saveCart([]);
+    }
+
     get cartCount() {
         if (this._cart$.value) {
             return this._cart$.value.length;

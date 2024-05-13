@@ -11,7 +11,7 @@ export interface Order {
     country: string;
     phone: string;
     status: string;
-    totalPrice: string;
+    totalPrice?: string;
     user: User;
     dateOrdered: string;
 }

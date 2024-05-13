@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
             .populate('user');
 
         if (!order) {
-            return res.status(500).send('There order was not found!');
+            return res.status(500).send('The order was not found!');
         }
 
         res.status(200).json(order);

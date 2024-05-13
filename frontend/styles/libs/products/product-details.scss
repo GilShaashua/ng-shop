@@ -17,11 +17,8 @@
 
     .main-details {
         display: grid;
-        grid-template-columns: minmax(auto, 480px) minmax(auto, 1fr);
+        grid-template-columns: minmax(350px, 1fr) minmax(350px, 1fr);
         gap: 2em;
-
-        .gallery {
-        }
 
         .content {
             height: 100%;

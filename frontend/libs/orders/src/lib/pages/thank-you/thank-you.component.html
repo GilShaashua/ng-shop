@@ -1,0 +1,9 @@
+<section class="thank-you-container" *ngIf="order; else loader">
+    <pre>{{ order | json }}</pre>
+</section>
+
+<ng-template #loader>
+    <div class="loader">
+        <i class="pi pi-spin pi-spinner"></i>
+    </div>
+</ng-template>
