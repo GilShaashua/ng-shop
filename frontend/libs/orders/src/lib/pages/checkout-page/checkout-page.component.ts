@@ -62,6 +62,10 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     onPlaceOrder() {
         this.isSubmitted = true;
         if (this.form.invalid) return;
+        if (!this.cart.length) {
+            this.router.navigateByUrl('/');
+            return;
+        }
 
         const orderItems: OrderItem[] = this.cart.map((cartItem) => {
             return {
@@ -89,9 +93,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
         this.ordersService.addOrder(order).subscribe({
             next: (addedOrder) => {
                 this.cartService.clearCart();
-                this.router.navigateByUrl(
-                    `checkout/thank-you/${addedOrder.id}`
-                );
+                this.router.navigateByUrl(`thank-you/${addedOrder.id}`);
             },
             error: (err) => {
                 console.error('Cannot add order', err);
@@ -132,7 +134,12 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
             .subscribe({
                 next: (cart) => {
                     this.cart = cart || [];
-                    // console.log(cart);
+
+                    if (!this.cart.length) {
+                        this.router.navigateByUrl('/');
+                        return;
+                    }
+
                     this._getTotalPrice();
                 },
                 error: (err) => {

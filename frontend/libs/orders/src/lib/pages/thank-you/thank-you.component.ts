@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { OrdersService } from '../../services/orders.service';
 import { firstValueFrom } from 'rxjs';
 import { Order } from '../../models/order.model';
@@ -8,7 +8,7 @@ import { Order } from '../../models/order.model';
 @Component({
     selector: 'orders-thank-you',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     templateUrl: './thank-you.component.html',
     styleUrl: './thank-you.component.scss',
 })

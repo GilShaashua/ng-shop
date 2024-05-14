@@ -1,5 +1,37 @@
 <section class="thank-you-container" *ngIf="order; else loader">
-    <pre>{{ order | json }}</pre>
+    <div class="header">
+        <div class="heading">
+            <h1>Thank you for shopping with us</h1>
+
+            <p>
+                We have recieved you order and it will be delivered in the next
+                3 days.
+            </p>
+        </div>
+
+        <button class="btn-back" routerLink="/">Back to shop</button>
+    </div>
+
+    <ul>
+        <li class="order-item" *ngFor="let item of order.orderItems">
+            <div class="inner-container">
+                <h2>{{ item.product.name }}</h2>
+                <img [src]="item.product.image" alt="product" />
+            </div>
+
+            <div class="inner-container2">
+                <p><span>Quantity</span> {{ item.quantity }}</p>
+                <p>
+                    <span>Subtotal</span>
+                    {{ item.product.price * item.quantity | currency }}
+                </p>
+            </div>
+        </li>
+    </ul>
+
+    <div class="total-price">
+        <span>Total Price</span> {{ order.totalPrice | currency }}
+    </div>
 </section>
 
 <ng-template #loader>

@@ -4,12 +4,12 @@ import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 
 export const ordersRoutes: Route[] = [
     {
-        path: '',
+        path: 'checkout',
         component: CheckoutPageComponent,
         title: 'Checkout | ngShop',
     },
     {
-        path: ':userId',
+        path: 'checkout/:userId',
         component: CheckoutPageComponent,
         title: 'Checkout | ngShop',
     },

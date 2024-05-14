@@ -13,10 +13,6 @@ router.get('/', async (req, res) => {
             .populate('user')
             .sort({ dateOrdered: -1 });
 
-        if (!orders.length) {
-            return res.send('There are no orders yet!');
-        }
-
         res.json(orders);
     } catch (err) {
         res.status(500).json({ error: err, success: false });
@@ -75,13 +71,15 @@ router.get('/get/total-sales', async (req, res) => {
             },
         ]);
 
-        console.log('totalSales', totalSales);
-
         if (!totalSales) {
             return res.status(400).send('The order sales cannot be generated!');
         }
 
-        res.send({ totalSales: totalSales[0].totalSales });
+        if (totalSales.length) {
+            res.send({ totalSales: totalSales[0].totalSales });
+        } else {
+            res.send({ totalSales: 0 });
+        }
     } catch (err) {
         res.status(500).json({ success: false, message: err });
     }
@@ -90,10 +88,6 @@ router.get('/get/total-sales', async (req, res) => {
 router.get('/get/count', async (req, res) => {
     try {
         const ordersCount = await Order.countDocuments();
-
-        if (!ordersCount) {
-            return res.status(500).send('There are no orders yet!');
-        }
 
         res.send({ ordersCount });
     } catch (err) {

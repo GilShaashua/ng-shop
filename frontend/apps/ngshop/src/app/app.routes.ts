@@ -9,15 +9,18 @@ export const appRoutes: Route[] = [
             ),
         title: 'Home | ngShop',
     },
+
+    {
+        path: '',
+        loadChildren: () =>
+            import('@frontend/orders').then((route) => route.ordersRoutes),
+    },
+
     {
         path: 'products',
         loadChildren: () =>
             import('@frontend/products').then((route) => route.productsRoutes),
     },
-    {
-        path: 'checkout',
-        loadChildren: () =>
-            import('@frontend/orders').then((route) => route.ordersRoutes),
-    },
+
     { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

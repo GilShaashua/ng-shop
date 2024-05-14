@@ -4,6 +4,7 @@ import { ProductsSearchComponent, ProductsService } from '@frontend/products';
 import { Router, RouterModule } from '@angular/router';
 import { CartComponent, CartItem, CartService } from '@frontend/orders';
 import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'ngshop-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
     constructor(
         private cartService: CartService,
         private productsService: ProductsService,
-        private router: Router
+        private router: Router,
+        private messageService: MessageService
     ) {}
 
     cart!: CartItem[] | null;
@@ -35,9 +37,18 @@ export class HeaderComponent implements OnInit {
         this._getCart();
     }
 
-    navigateCheckout() {
+    navigateCheckoutPage() {
         this.isCartShown = false;
-        this.router.navigateByUrl('/checkout');
+
+        if (this.cart?.length) {
+            this.router.navigateByUrl('/checkout');
+        } else {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Your cart is empty',
+                detail: 'Please select atleast 1 product to checkout!',
+            });
+        }
     }
 
     private _getCart() {

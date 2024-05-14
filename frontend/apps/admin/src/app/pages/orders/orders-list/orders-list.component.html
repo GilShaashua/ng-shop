@@ -61,6 +61,10 @@
             </tr>
         </ng-template>
     </p-table>
+
+    <div class="no-orders" *ngIf="!orders.length">
+        <p>There are no orders yet!</p>
+    </div>
 </section>
 
 <ng-template #loader>
