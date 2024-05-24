@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import * as countriesLib from 'i18n-iso-countries';
 import registerLocale from 'i18n-iso-countries/langs/en.json';
 import { enviroment } from 'enviroments/enviromet';
+import { UsersFacade } from '../+state/users.facade';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UsersService {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private usersFacade: UsersFacade) {
         countriesLib.registerLocale(registerLocale);
     }
 
@@ -54,5 +55,17 @@ export class UsersService {
         });
 
         return countries;
+    }
+
+    initAppSession() {
+        this.usersFacade.buildUserSession();
+    }
+
+    observeCurrentUser() {
+        return this.usersFacade.currentUser$;
+    }
+
+    isCurrentUserAuthenticated() {
+        return this.usersFacade.isAuthenticated$;
     }
 }

@@ -1,3 +1,7 @@
+export * from './lib/+state/users.facade';
+export * from './lib/+state/users.selectors';
+export * from './lib/+state/users.reducer';
+export * from './lib/+state/users.actions';
 export * from './lib/lib.routes';
 export * from './lib/services/users.service';
 export * from './lib/services/auth.service';

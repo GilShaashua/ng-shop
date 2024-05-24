@@ -156,8 +156,11 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
                         const user = await firstValueFrom(
                             this.usersService.getUserById(params['userId'])
                         );
-                        this.userId = user.id!;
-                        this.form.patchValue(user);
+
+                        if (user) {
+                            this.userId = user.id!;
+                            this.form.patchValue(user);
+                        }
                     } catch (err) {
                         console.error('Cannot get user', err);
                     }

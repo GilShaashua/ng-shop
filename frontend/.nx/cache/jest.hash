@@ -1,5 +1,5 @@
 {
-  "13526708692499378434": {
+  "14330987226652851582": {
     "test": {
       "command": "jest",
       "options": {
@@ -20,7 +20,7 @@
       ]
     }
   },
-  "3633722384730054186": {
+  "8313654171903698061": {
     "test": {
       "command": "jest",
       "options": {
@@ -38,6 +38,48 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\apps\\ngshop"
+      ]
+    }
+  },
+  "3686068067720150465": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/orders"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\orders"
+      ]
+    }
+  },
+  "15436207718453717700": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/products"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\products"
       ]
     }
   },
@@ -101,48 +143,6 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\libs\\utils"
-      ]
-    }
-  },
-  "8732839978209328231": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/orders"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\orders"
-      ]
-    }
-  },
-  "15436207718453717700": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/products"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\products"
       ]
     }
   }

@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CartComponent, CartItem, CartService } from '@frontend/orders';
 import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { User, UsersService } from '@frontend/users';
 
 @Component({
     selector: 'ngshop-header',
@@ -24,7 +25,8 @@ export class HeaderComponent implements OnInit {
         private cartService: CartService,
         private productsService: ProductsService,
         private router: Router,
-        private messageService: MessageService
+        private messageService: MessageService,
+        private usersService: UsersService
     ) {}
 
     cart!: CartItem[] | null;
@@ -32,16 +34,40 @@ export class HeaderComponent implements OnInit {
     isCartShown = false;
     totalPrice = 0;
     cartCount = 0;
+    loggedInUser: User | null = null;
 
     ngOnInit(): void {
         this._getCart();
+        this.getLoggedInUser();
+    }
+
+    getLoggedInUser() {
+        this.usersService
+            .observeCurrentUser()
+            .pipe(takeUntil(this.endSubs$))
+            .subscribe({
+                next: (user) => {
+                    if (user) {
+                        console.log('user', user);
+
+                        this.loggedInUser = user;
+                    }
+                },
+                error: (err) => {
+                    console.error('Cannot get logged in user', err);
+                },
+            });
     }
 
     navigateCheckoutPage() {
         this.isCartShown = false;
 
         if (this.cart?.length) {
-            this.router.navigateByUrl('/checkout');
+            if (this.loggedInUser) {
+                this.router.navigateByUrl(`/checkout/${this.loggedInUser.id}`);
+            } else {
+                this.router.navigateByUrl('/checkout');
+            }
         } else {
             this.messageService.add({
                 severity: 'error',

@@ -47,28 +47,36 @@ export class AuthService {
     }
 
     getToken(): string | null {
-        const jwtToken = localStorage.getItem('jwtToken');
+        return localStorage.getItem('jwtToken');
+    }
 
-        if (!jwtToken) {
-            return null; // Return null if no token is found
-        }
+    getUserIdFromToken(): string | null {
+        const jwtToken = this.getToken();
+        if (jwtToken) {
+            const decodedToken = JSON.parse(atob(jwtToken.split('.')[1]));
 
-        try {
-            const decodedToken = atob(jwtToken.split('.')[1]);
-            const token = JSON.parse(decodedToken);
-
-            if (token.isAdmin && !this._isTokenExpried(token.exp)) {
-                return jwtToken;
+            if (decodedToken) {
+                return decodedToken.userId;
             } else {
                 return null;
             }
-        } catch (error) {
-            console.error('Error decoding JWT token');
-            return null; // Return null on decoding error
+        }
+
+        return null;
+    }
+
+    isValidToken(): boolean {
+        const jwtToken = this.getToken();
+
+        if (jwtToken) {
+            const decodedToken = JSON.parse(atob(jwtToken.split('.')[1]));
+            return !this.isTokenExpried(decodedToken);
+        } else {
+            return false;
         }
     }
 
-    private _isTokenExpried(expiration: number) {
+    isTokenExpried(expiration: number) {
         return Math.floor(new Date().getTime() / 1000) >= expiration;
     }
 
