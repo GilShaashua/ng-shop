@@ -40,7 +40,11 @@ export class AuthService {
         this.usersFacade.userSessionLogout();
     }
 
-    saveToken(token: string) {
+    loginNgShop(user: User) {
+        this.usersFacade.userSessionLogin(user);
+    }
+
+    saveTokenAdminPanel(token: string) {
         if (JSON.parse(atob(token.split('.')[1])).isAdmin) {
             localStorage.setItem('jwtToken', token);
             this._loggedInUser$.next(token);
@@ -49,6 +53,14 @@ export class AuthService {
         }
 
         return false;
+    }
+
+    saveTokenNgShop(token: string) {
+        const decodedToken = atob(token.split('.')[1]);
+        const jwtToken = JSON.parse(decodedToken);
+
+        if (!this.isTokenExpried(jwtToken.exp))
+            localStorage.setItem('jwtToken', token);
     }
 
     getToken(): string | null {

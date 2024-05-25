@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, firstValueFrom, takeUntil, timer } from 'rxjs';
 import { UtilsService } from '@frontend/utils';
+import { UsersService } from '../../services/users.service';
 
 @Component({
     selector: 'users-login',
@@ -34,7 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         private authService: AuthService,
         private messageService: MessageService,
         private router: Router,
-        private utilsService: UtilsService
+        private utilsService: UtilsService,
+        private usersService: UsersService
     ) {}
 
     form: FormGroup = this.formBuilder.group({
@@ -49,18 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     endSubs$ = new Subject();
 
     ngOnInit(): void {
-        this.utilsService.isUsedByNgShop$
-            .pipe(takeUntil(this.endSubs$))
-            .subscribe({
-                next: (isUsedByNgShop) => {
-                    if (isUsedByNgShop) {
-                        this.isUsedByNgShop = isUsedByNgShop;
-                    }
-                },
-                error: (err) => {
-                    console.error('Cannot get UsedByNgShop', err);
-                },
-            });
+        this._checkFromNgShop();
     }
 
     onSubmitLogin() {
@@ -68,9 +59,19 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         if (this.form.invalid) return;
 
+        if (!this.isUsedByNgShop) {
+            this._loginAdminPanel();
+        } else {
+            this._loginNgShop();
+        }
+    }
+
+    private _loginAdminPanel() {
         this.authService.login(this.form.value).subscribe({
             next: async (user) => {
-                const isAdmin = this.authService.saveToken(user.token!);
+                const isAdmin = this.authService.saveTokenAdminPanel(
+                    user.token!
+                );
 
                 if (isAdmin) {
                     this.messageService.add({
@@ -101,6 +102,58 @@ export class LoginComponent implements OnInit, OnDestroy {
                 });
             },
         });
+    }
+
+    private _loginNgShop() {
+        this.authService.login(this.form.value).subscribe({
+            next: async (user) => {
+                if (user && user.token) {
+                    this.authService.saveTokenNgShop(user.token);
+                    const userId = this.authService.getUserIdFromToken();
+
+                    if (userId) {
+                        const user$ = this.usersService.getUserById(userId);
+                        const user = await firstValueFrom(user$);
+                        this.authService.loginNgShop(user);
+
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Success',
+                            detail: `You are logged in successfully!`,
+                        });
+
+                        await firstValueFrom(timer(2000));
+
+                        this.router.navigateByUrl('/');
+                    }
+                }
+            },
+            error: (err: HttpErrorResponse) => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail:
+                        err.status !== 400
+                            ? 'Server error, please try again later!'
+                            : 'Email or password incorrect',
+                });
+            },
+        });
+    }
+
+    private _checkFromNgShop() {
+        this.utilsService.isUsedByNgShop$
+            .pipe(takeUntil(this.endSubs$))
+            .subscribe({
+                next: (isUsedByNgShop) => {
+                    if (isUsedByNgShop) {
+                        this.isUsedByNgShop = isUsedByNgShop;
+                    }
+                },
+                error: (err) => {
+                    console.error('Cannot get UsedByNgShop', err);
+                },
+            });
     }
 
     get formControls() {

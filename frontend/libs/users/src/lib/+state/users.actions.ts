@@ -13,3 +13,8 @@ export const buildUserSessionFailed = createAction(
 );
 
 export const userSessionLogout = createAction('[Users] User Session Logout');
+
+export const userSessionLogin = createAction(
+    '[Users] User Session Login',
+    props<{ user: User }>()
+);

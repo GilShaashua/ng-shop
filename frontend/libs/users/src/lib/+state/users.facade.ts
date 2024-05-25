@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as UsersActions from './users.actions';
 import { USERS_FEATURE_KEY } from './users.reducer';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class UsersFacade {
@@ -15,5 +16,13 @@ export class UsersFacade {
 
     userSessionLogout() {
         this.store.dispatch(UsersActions.userSessionLogout());
+    }
+
+    userSessionLogin(user: User) {
+        this.store.dispatch(
+            UsersActions.userSessionLogin({
+                user,
+            })
+        );
     }
 }

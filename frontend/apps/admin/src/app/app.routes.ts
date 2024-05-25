@@ -14,7 +14,7 @@ export const appRoutes: Route[] = [
         path: 'login',
         loadChildren: () =>
             import('@frontend/users').then((route) => route.usersRoutes),
-        title: 'Login',
+        title: 'Login | Admin',
         canActivate: [loginGuard],
     },
     { path: '**', redirectTo: '', pathMatch: 'full' },

@@ -27,6 +27,7 @@ export const appRoutes: Route[] = [
         path: 'login',
         loadChildren: () =>
             import('@frontend/users').then((route) => route.usersRoutes),
+        title: 'Login | ngShop',
         canActivate: [loginGuard],
     },
 

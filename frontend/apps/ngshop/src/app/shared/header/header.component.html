@@ -24,8 +24,14 @@
 
         <i class="pi pi-user" (click)="isMenuShown = true">
             <ul *ngIf="isMenuShown" class="menu">
-                <li *ngIf="!loggedInUser" routerLink="/login">Login</li>
-                <li *ngIf="loggedInUser" (click)="logout()">Logout</li>
+                <li
+                    (click)="$event.stopPropagation(); isMenuShown = false"
+                    *ngIf="!loggedInUser"
+                    routerLink="/login"
+                >
+                    Login
+                </li>
+                <li *ngIf="loggedInUser" (click)="logout($event)">Logout</li>
             </ul>
         </i>
 

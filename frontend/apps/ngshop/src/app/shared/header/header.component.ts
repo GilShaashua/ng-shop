@@ -50,7 +50,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             .subscribe({
                 next: (storeState) => {
                     if (storeState) {
-                        console.log('storeState', storeState);
                         this.loggedInUser = storeState.user;
                     }
                 },
@@ -123,7 +122,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
     }
 
-    logout() {
+    logout(ev: Event) {
+        ev.stopPropagation();
+        this.isMenuShown = false;
+
         this.authService.logoutNgShop();
     }
 
