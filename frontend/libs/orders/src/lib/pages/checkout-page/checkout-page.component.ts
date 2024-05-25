@@ -41,6 +41,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     totalPrice = 0;
     isSubmitted = false;
     userId!: string;
+    isProccessing = false;
 
     form: FormGroup = this.formBuilder.group({
         name: ['', [Validators.required]],
@@ -66,6 +67,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('/');
             return;
         }
+
+        this.isProccessing = true;
 
         const orderItems: OrderItem[] = this.cart.map((cartItem) => {
             return {

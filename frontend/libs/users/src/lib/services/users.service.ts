@@ -64,8 +64,4 @@ export class UsersService {
     observeCurrentUser() {
         return this.usersFacade.currentUser$;
     }
-
-    isCurrentUserAuthenticated() {
-        return this.usersFacade.isAuthenticated$;
-    }
 }

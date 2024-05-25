@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { catchError, of, concatMap, map } from 'rxjs';
+import { catchError, of, concatMap, map, tap } from 'rxjs';
 import * as UsersActions from './users.actions';
 // import * as UsersFeature from './users.reducer';
 import { AuthService } from '../services/auth.service';
@@ -37,5 +37,16 @@ export class UsersEffects {
                 }
             })
         )
+    );
+
+    userSessionLogout$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(UsersActions.userSessionLogout),
+                tap(() => {
+                    localStorage.removeItem('jwtToken');
+                })
+            ),
+        { dispatch: false }
     );
 }

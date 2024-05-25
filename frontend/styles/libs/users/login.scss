@@ -4,6 +4,10 @@
     display: grid;
     place-content: center;
 
+    &.removeHeight {
+        height: 100%;
+    }
+
     .login-container {
         display: flex;
         align-items: flex-start;

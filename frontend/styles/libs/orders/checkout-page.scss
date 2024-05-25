@@ -119,6 +119,14 @@
                 color: $text-color;
                 margin-block-start: 1em;
                 cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5em;
+
+                i {
+                    font-weight: 800;
+                }
 
                 &:hover {
                     background-color: $primary-color-dark;

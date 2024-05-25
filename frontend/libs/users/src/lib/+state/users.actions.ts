@@ -11,3 +11,5 @@ export const buildUserSessionSuccess = createAction(
 export const buildUserSessionFailed = createAction(
     '[Users] Build User Session Failed'
 );
+
+export const userSessionLogout = createAction('[Users] User Session Logout');

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -12,7 +12,8 @@ import { AuthService } from '../../services/auth.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
-import { firstValueFrom, timer } from 'rxjs';
+import { Subject, firstValueFrom, takeUntil, timer } from 'rxjs';
+import { UtilsService } from '@frontend/utils';
 
 @Component({
     selector: 'users-login',
@@ -27,12 +28,13 @@ import { firstValueFrom, timer } from 'rxjs';
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
         private messageService: MessageService,
-        private router: Router
+        private router: Router,
+        private utilsService: UtilsService
     ) {}
 
     form: FormGroup = this.formBuilder.group({
@@ -42,8 +44,24 @@ export class LoginComponent implements OnInit {
 
     isSubmitted = false;
     isPasswordShown = false;
+    isUsedByNgShop = false;
 
-    ngOnInit(): void {}
+    endSubs$ = new Subject();
+
+    ngOnInit(): void {
+        this.utilsService.isUsedByNgShop$
+            .pipe(takeUntil(this.endSubs$))
+            .subscribe({
+                next: (isUsedByNgShop) => {
+                    if (isUsedByNgShop) {
+                        this.isUsedByNgShop = isUsedByNgShop;
+                    }
+                },
+                error: (err) => {
+                    console.error('Cannot get UsedByNgShop', err);
+                },
+            });
+    }
 
     onSubmitLogin() {
         this.isSubmitted = true;
@@ -87,5 +105,10 @@ export class LoginComponent implements OnInit {
 
     get formControls() {
         return this.form.controls;
+    }
+
+    ngOnDestroy(): void {
+        this.endSubs$.next(null);
+        this.endSubs$.complete();
     }
 }

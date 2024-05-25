@@ -9,6 +9,7 @@ import { CartItem } from '../../models/cart-item.model';
     imports: [CommonModule, CartItemComponent],
     templateUrl: './cart.component.html',
     styleUrl: './cart.component.scss',
+    host: { class: 'cart-host' },
 })
 export class CartComponent {
     @Input() cart!: CartItem[];

@@ -13227,6 +13227,16 @@
       },
       {
         "source": "ngshop",
+        "target": "users",
+        "type": "dynamic"
+      },
+      {
+        "source": "ngshop",
+        "target": "utils",
+        "type": "static"
+      },
+      {
+        "source": "ngshop",
         "target": "npm:@angular/platform-browser",
         "type": "static"
       },
@@ -13454,6 +13464,11 @@
       {
         "source": "users",
         "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "utils",
         "type": "static"
       },
       {

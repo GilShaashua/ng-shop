@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { loginGuard } from '@frontend/users';
 
 export const appRoutes: Route[] = [
     {
@@ -20,6 +21,13 @@ export const appRoutes: Route[] = [
         path: 'products',
         loadChildren: () =>
             import('@frontend/products').then((route) => route.productsRoutes),
+    },
+
+    {
+        path: 'login',
+        loadChildren: () =>
+            import('@frontend/users').then((route) => route.usersRoutes),
+        canActivate: [loginGuard],
     },
 
     { path: '**', redirectTo: '', pathMatch: 'full' },

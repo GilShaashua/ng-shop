@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsSearchComponent, ProductsService } from '@frontend/products';
 import { Router, RouterModule } from '@angular/router';
 import { CartComponent, CartItem, CartService } from '@frontend/orders';
 import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
 import { MessageService } from 'primeng/api';
-import { User, UsersService } from '@frontend/users';
+import { AuthService, User, UsersService } from '@frontend/users';
 
 @Component({
     selector: 'ngshop-header',
@@ -20,18 +20,20 @@ import { User, UsersService } from '@frontend/users';
     styleUrl: './header.component.scss',
     host: { class: 'full component-layout header-host' },
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
     constructor(
         private cartService: CartService,
         private productsService: ProductsService,
         private router: Router,
         private messageService: MessageService,
-        private usersService: UsersService
+        private usersService: UsersService,
+        private authService: AuthService
     ) {}
 
     cart!: CartItem[] | null;
     endSubs$ = new Subject();
     isCartShown = false;
+    isMenuShown = false;
     totalPrice = 0;
     cartCount = 0;
     loggedInUser: User | null = null;
@@ -46,11 +48,10 @@ export class HeaderComponent implements OnInit {
             .observeCurrentUser()
             .pipe(takeUntil(this.endSubs$))
             .subscribe({
-                next: (user) => {
-                    if (user) {
-                        console.log('user', user);
-
-                        this.loggedInUser = user;
+                next: (storeState) => {
+                    if (storeState) {
+                        console.log('storeState', storeState);
+                        this.loggedInUser = storeState.user;
                     }
                 },
                 error: (err) => {
@@ -120,6 +121,10 @@ export class HeaderComponent implements OnInit {
                 return acc + cartItem.product.price * cartItem.quantity;
             }, 0);
         }
+    }
+
+    logout() {
+        this.authService.logoutNgShop();
     }
 
     ngOnDestroy(): void {

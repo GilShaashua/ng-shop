@@ -186,7 +186,8 @@
             </div>
 
             <button class="btn-place-order" (click)="onPlaceOrder()">
-                Place Order
+                <span> Place Order</span>
+                <i *ngIf="isProccessing" class="pi pi-spin pi-spinner"></i>
             </button>
         </div>
     </div>

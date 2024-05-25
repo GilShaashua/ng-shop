@@ -20,15 +20,23 @@
     </nav>
 
     <div class="icons">
-        <i class="pi pi-user"></i>
+        <p *ngIf="loggedInUser">{{ loggedInUser.name }}</p>
+
+        <i class="pi pi-user" (click)="isMenuShown = true">
+            <ul *ngIf="isMenuShown" class="menu">
+                <li *ngIf="!loggedInUser" routerLink="/login">Login</li>
+                <li *ngIf="loggedInUser" (click)="logout()">Logout</li>
+            </ul>
+        </i>
+
         <i class="pi pi-shopping-cart" (click)="isCartShown = true"
             ><span>{{ cartCount }}</span></i
         >
 
         <div
             class="cover"
-            [ngClass]="{ open: isCartShown }"
-            (click)="isCartShown = false"
+            [ngClass]="{ open: isCartShown || isMenuShown }"
+            (click)="isCartShown = false; isMenuShown = false"
         ></div>
 
         <orders-cart

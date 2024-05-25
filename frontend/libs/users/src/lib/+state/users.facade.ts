@@ -1,19 +1,19 @@
 import { Injectable, inject } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as UsersActions from './users.actions';
-import * as UsersSelectors from './users.selectors';
+import { USERS_FEATURE_KEY } from './users.reducer';
 
 @Injectable()
 export class UsersFacade {
     private readonly store = inject(Store);
 
-    currentUser$ = this.store.pipe(select(UsersSelectors.getUser));
-
-    isAuthenticated$ = this.store.pipe(
-        select(UsersSelectors.getUserIsAuthenticated)
-    );
+    currentUser$ = this.store.select(USERS_FEATURE_KEY);
 
     buildUserSession() {
         this.store.dispatch(UsersActions.buildUserSession());
+    }
+
+    userSessionLogout() {
+        this.store.dispatch(UsersActions.userSessionLogout());
     }
 }

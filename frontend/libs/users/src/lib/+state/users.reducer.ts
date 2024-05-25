@@ -30,6 +30,11 @@ const usersReducer = createReducer(
         ...state,
         user: null,
         isAuthenticated: false,
+    })),
+    on(UsersActions.userSessionLogout, (state) => ({
+        ...state,
+        user: null,
+        isAuthenticated: false,
     }))
 );
 

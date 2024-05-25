@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UsersFacade } from '../+state/users.facade';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private usersFacade: UsersFacade) {}
 
     private _loggedInUser$: BehaviorSubject<string | null> =
         new BehaviorSubject(this.getToken());
@@ -33,6 +34,10 @@ export class AuthService {
     logout() {
         localStorage.removeItem('jwtToken');
         this._loggedInUser$.next(null);
+    }
+
+    logoutNgShop() {
+        this.usersFacade.userSessionLogout();
     }
 
     saveToken(token: string) {
