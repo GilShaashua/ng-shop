@@ -13438,11 +13438,6 @@
       },
       {
         "source": "users",
-        "target": "npm:@angular/router",
-        "type": "static"
-      },
-      {
-        "source": "users",
         "target": "npm:@ngrx/store",
         "type": "static"
       },
@@ -13453,17 +13448,32 @@
       },
       {
         "source": "users",
+        "target": "npm:jasmine-marbles",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:@nx/angular",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:@angular/router",
+        "type": "static"
+      },
+      {
+        "source": "users",
         "target": "npm:@angular/forms",
         "type": "static"
       },
       {
         "source": "users",
         "target": "npm:primeng",
-        "type": "static"
-      },
-      {
-        "source": "users",
-        "target": "npm:rxjs",
         "type": "static"
       },
       {
@@ -13496,6 +13506,11 @@
       {
         "source": "utils",
         "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "utils",
+        "target": "npm:rxjs",
         "type": "static"
       },
       {

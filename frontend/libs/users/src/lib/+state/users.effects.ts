@@ -39,6 +39,17 @@ export class UsersEffects {
         )
     );
 
+    buildUserSessionFailed$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(UsersActions.buildUserSessionFailed),
+                tap(() => {
+                    localStorage.removeItem('jwtToken');
+                })
+            ),
+        { dispatch: false }
+    );
+
     userSessionLogout$ = createEffect(
         () =>
             this.actions$.pipe(

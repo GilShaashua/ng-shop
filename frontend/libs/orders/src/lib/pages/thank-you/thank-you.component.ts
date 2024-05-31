@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { OrdersService } from '../../services/orders.service';
-import { firstValueFrom } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { Order } from '../../models/order.model';
 
 @Component({
@@ -12,20 +12,21 @@ import { Order } from '../../models/order.model';
     templateUrl: './thank-you.component.html',
     styleUrl: './thank-you.component.scss',
 })
-export class ThankYouComponent implements OnInit {
+export class ThankYouComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private ordersService: OrdersService
     ) {}
 
     order!: Order;
+    paramsSubs!: Subscription;
 
     ngOnInit(): void {
         this._checkParams();
     }
 
     private _checkParams() {
-        this.route.params.subscribe(async (params) => {
+        this.paramsSubs = this.route.params.subscribe(async (params) => {
             if (params['orderId']) {
                 const order$ = this.ordersService.getOrderById(
                     params['orderId']
@@ -34,5 +35,9 @@ export class ThankYouComponent implements OnInit {
                 this.order = order;
             }
         });
+    }
+
+    ngOnDestroy(): void {
+        this.paramsSubs?.unsubscribe();
     }
 }

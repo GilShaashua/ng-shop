@@ -8,6 +8,7 @@ export function authGuard() {
     const jwtToken = authService.getToken();
 
     if (!jwtToken) {
+        inject(Router).navigateByUrl('login');
         return false; // Return null if no token is found
     }
 
