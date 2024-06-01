@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { CartItem } from '../../models/cart-item.model';
+import { CartItem } from '@frontend/utils';
 import {
     FormBuilder,
     FormGroup,
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '@frontend/shared';
 
 @Component({
     selector: 'orders-cart-item',

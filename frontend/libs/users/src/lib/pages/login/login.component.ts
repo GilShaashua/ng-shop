@@ -8,13 +8,12 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, firstValueFrom, takeUntil, timer } from 'rxjs';
 import { UtilsService } from '@frontend/utils';
-import { UsersService } from '../../services/users.service';
+import { AuthService, UsersService } from '@frontend/shared';
 
 @Component({
     selector: 'users-login',

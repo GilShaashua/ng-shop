@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '@frontend/shared';
 import { Router } from '@angular/router';
 
 export function loginGuard() {

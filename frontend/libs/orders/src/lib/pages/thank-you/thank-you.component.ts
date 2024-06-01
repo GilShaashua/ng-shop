@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { OrdersService } from '../../services/orders.service';
+import { OrdersService } from '@frontend/shared';
 import { Subscription, firstValueFrom } from 'rxjs';
-import { Order } from '../../models/order.model';
+import { Order } from '@frontend/utils';
 
 @Component({
     selector: 'orders-thank-you',

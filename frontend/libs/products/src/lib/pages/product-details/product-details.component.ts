@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Product } from '../../models/product.model';
+import { CartItem, Product } from '@frontend/utils';
 import { CommonModule, Location } from '@angular/common';
 import {
     FormBuilder,
@@ -12,10 +11,10 @@ import {
 } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
 import { DomSanitizer } from '@angular/platform-browser';
-import { GalleryComponent } from '@frontend/ui';
-import { CartItem, CartService } from '@frontend/orders';
+import { CartService, ProductsService } from '@frontend/shared';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { GalleryComponent } from '@frontend/ui';
 
 @Component({
     selector: 'products-product-details',

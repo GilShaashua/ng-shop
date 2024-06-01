@@ -13,10 +13,13 @@
         "lib": ["es2020", "dom"],
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "paths": {
             "@frontend/orders": ["libs/orders/src/index.ts"],
             "@frontend/products": ["libs/products/src/index.ts"],
+            "@frontend/shared": ["libs/shared/src/index.ts"],
             "@frontend/ui": ["libs/ui/src/index.ts"],
             "@frontend/users": ["libs/users/src/index.ts"],
             "@frontend/utils": ["libs/utils/src/index.ts"]

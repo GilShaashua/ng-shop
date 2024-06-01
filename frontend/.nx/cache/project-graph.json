@@ -396,8 +396,8 @@
                 "budgets": [
                   {
                     "type": "initial",
-                    "maximumWarning": "500kb",
-                    "maximumError": "1mb"
+                    "maximumWarning": "1.5mb",
+                    "maximumError": "2mb"
                   },
                   {
                     "type": "anyComponentStyle",
@@ -544,6 +544,97 @@
         "implicitDependencies": []
       }
     },
+    "shared": {
+      "name": "shared",
+      "type": "lib",
+      "data": {
+        "root": "libs/shared",
+        "name": "shared",
+        "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
+          "lint": {
+            "cache": true,
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json",
+              "{workspaceRoot}/libs/shared/.eslintrc.json",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+              "cwd": "libs/shared",
+              "command": "eslint ."
+            },
+            "configurations": {}
+          },
+          "test": {
+            "options": {
+              "cwd": "libs/shared",
+              "command": "jest"
+            },
+            "cache": true,
+            "inputs": [
+              "default",
+              "^production",
+              {
+                "externalDependencies": [
+                  "jest"
+                ]
+              }
+            ],
+            "outputs": [
+              "{workspaceRoot}\\coverage\\libs\\shared"
+            ],
+            "executor": "nx:run-commands",
+            "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/angular:ng-packagr-lite",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{workspaceRoot}/dist/{projectRoot}"
+            ],
+            "options": {
+              "project": "libs/shared/ng-package.json"
+            },
+            "configurations": {
+              "production": {
+                "tsConfig": "libs/shared/tsconfig.lib.prod.json"
+              },
+              "development": {
+                "tsConfig": "libs/shared/tsconfig.lib.json"
+              }
+            },
+            "defaultConfiguration": "production"
+          }
+        },
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/shared/src",
+        "prefix": "shared",
+        "tags": [],
+        "projectType": "library",
+        "implicitDependencies": []
+      }
+    },
     "admin": {
       "name": "admin",
       "type": "app",
@@ -632,8 +723,8 @@
                 "budgets": [
                   {
                     "type": "initial",
-                    "maximumWarning": "500kb",
-                    "maximumError": "1mb"
+                    "maximumWarning": "1.5mb",
+                    "maximumError": "2mb"
                   },
                   {
                     "type": "anyComponentStyle",
@@ -876,13 +967,18 @@
       "type": "lib",
       "data": {
         "root": "libs/ui",
+        "name": "ui",
         "targets": {
+          "nx-release-publish": {
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "executor": "@nx/js:release-publish",
+            "options": {},
+            "configurations": {}
+          },
           "lint": {
             "cache": true,
-            "options": {
-              "cwd": "libs/ui",
-              "command": "eslint ."
-            },
             "inputs": [
               "default",
               "{workspaceRoot}/.eslintrc.json",
@@ -895,6 +991,10 @@
               }
             ],
             "executor": "nx:run-commands",
+            "options": {
+              "cwd": "libs/ui",
+              "command": "eslint ."
+            },
             "configurations": {}
           },
           "test": {
@@ -917,12 +1017,37 @@
             ],
             "executor": "nx:run-commands",
             "configurations": {}
+          },
+          "build": {
+            "executor": "@nx/angular:ng-packagr-lite",
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ],
+            "outputs": [
+              "{workspaceRoot}/dist/{projectRoot}"
+            ],
+            "options": {
+              "project": "libs/ui/ng-package.json"
+            },
+            "configurations": {
+              "production": {
+                "tsConfig": "libs/ui/tsconfig.lib.prod.json"
+              },
+              "development": {
+                "tsConfig": "libs/ui/tsconfig.lib.json"
+              }
+            },
+            "defaultConfiguration": "production"
           }
         },
-        "name": "ui",
         "$schema": "../../node_modules/nx/schemas/project-schema.json",
         "sourceRoot": "libs/ui/src",
-        "prefix": "frontend",
+        "prefix": "ui",
         "tags": [],
         "projectType": "library",
         "implicitDependencies": []
@@ -2667,24 +2792,6 @@
         "hash": "sha512-sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA=="
       }
     },
-    "npm:argparse@2.0.1": {
-      "type": "npm",
-      "name": "npm:argparse@2.0.1",
-      "data": {
-        "version": "2.0.1",
-        "packageName": "argparse",
-        "hash": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
-      }
-    },
-    "npm:argparse": {
-      "type": "npm",
-      "name": "npm:argparse",
-      "data": {
-        "version": "1.0.10",
-        "packageName": "argparse",
-        "hash": "sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg=="
-      }
-    },
     "npm:brace-expansion@1.1.11": {
       "type": "npm",
       "name": "npm:brace-expansion@1.1.11",
@@ -2719,24 +2826,6 @@
         "version": "11.12.0",
         "packageName": "globals",
         "hash": "sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA=="
-      }
-    },
-    "npm:js-yaml@4.1.0": {
-      "type": "npm",
-      "name": "npm:js-yaml@4.1.0",
-      "data": {
-        "version": "4.1.0",
-        "packageName": "js-yaml",
-        "hash": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="
-      }
-    },
-    "npm:js-yaml": {
-      "type": "npm",
-      "name": "npm:js-yaml",
-      "data": {
-        "version": "3.14.1",
-        "packageName": "js-yaml",
-        "hash": "sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g=="
       }
     },
     "npm:json-schema-traverse@0.4.1": {
@@ -3007,6 +3096,42 @@
         "version": "1.1.0",
         "packageName": "@istanbuljs/load-nyc-config",
         "hash": "sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ=="
+      }
+    },
+    "npm:argparse@1.0.10": {
+      "type": "npm",
+      "name": "npm:argparse@1.0.10",
+      "data": {
+        "version": "1.0.10",
+        "packageName": "argparse",
+        "hash": "sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg=="
+      }
+    },
+    "npm:argparse": {
+      "type": "npm",
+      "name": "npm:argparse",
+      "data": {
+        "version": "2.0.1",
+        "packageName": "argparse",
+        "hash": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="
+      }
+    },
+    "npm:js-yaml@3.14.1": {
+      "type": "npm",
+      "name": "npm:js-yaml@3.14.1",
+      "data": {
+        "version": "3.14.1",
+        "packageName": "js-yaml",
+        "hash": "sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g=="
+      }
+    },
+    "npm:js-yaml": {
+      "type": "npm",
+      "name": "npm:js-yaml",
+      "data": {
+        "version": "4.1.0",
+        "packageName": "js-yaml",
+        "hash": "sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA=="
       }
     },
     "npm:@istanbuljs/schema": {
@@ -6139,6 +6264,15 @@
         "version": "2.8.0",
         "packageName": "babel-plugin-macros",
         "hash": "sha512-SEP5kJpfGYqYKpBrj5XU3ahw5p5GOHJ0U5ssOSQ/WBVdwkD2Dzlce95exQTs3jOVWPPKLBN2rlEWkCK7dSmLvg=="
+      }
+    },
+    "npm:babel-plugin-macros@3.1.0": {
+      "type": "npm",
+      "name": "npm:babel-plugin-macros@3.1.0",
+      "data": {
+        "version": "3.1.0",
+        "packageName": "babel-plugin-macros",
+        "hash": "sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg=="
       }
     },
     "npm:babel-plugin-polyfill-corejs2": {
@@ -13170,6 +13304,11 @@
       },
       {
         "source": "products",
+        "target": "utils",
+        "type": "static"
+      },
+      {
+        "source": "products",
         "target": "npm:@angular/router",
         "type": "static"
       },
@@ -13190,12 +13329,12 @@
       },
       {
         "source": "products",
-        "target": "ui",
+        "target": "shared",
         "type": "static"
       },
       {
         "source": "products",
-        "target": "orders",
+        "target": "ui",
         "type": "static"
       },
       {
@@ -13222,13 +13361,8 @@
       },
       {
         "source": "ngshop",
-        "target": "users",
+        "target": "shared",
         "type": "static"
-      },
-      {
-        "source": "ngshop",
-        "target": "users",
-        "type": "dynamic"
       },
       {
         "source": "ngshop",
@@ -13259,6 +13393,16 @@
         "source": "ngshop",
         "target": "npm:@ngrx/effects",
         "type": "static"
+      },
+      {
+        "source": "ngshop",
+        "target": "users",
+        "type": "static"
+      },
+      {
+        "source": "ngshop",
+        "target": "users",
+        "type": "dynamic"
       },
       {
         "source": "ngshop",
@@ -13314,22 +13458,22 @@
       },
       {
         "source": "orders",
+        "target": "utils",
+        "type": "static"
+      },
+      {
+        "source": "orders",
         "target": "npm:@angular/forms",
         "type": "static"
       },
       {
         "source": "orders",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "orders",
         "target": "npm:@angular/router",
-        "type": "static"
-      },
-      {
-        "source": "orders",
-        "target": "products",
-        "type": "static"
-      },
-      {
-        "source": "orders",
-        "target": "users",
         "type": "static"
       },
       {
@@ -13344,6 +13488,58 @@
       },
       {
         "source": "orders",
+        "target": "npm:jest-preset-angular",
+        "type": "static"
+      }
+    ],
+    "shared": [
+      {
+        "source": "shared",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "npm:@angular/common",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "npm:@ngrx/store",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "utils",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "npm:@ngrx/effects",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "npm:@angular/router",
+        "type": "static"
+      },
+      {
+        "source": "shared",
+        "target": "npm:i18n-iso-countries",
+        "type": "static"
+      },
+      {
+        "source": "shared",
         "target": "npm:jest-preset-angular",
         "type": "static"
       }
@@ -13386,6 +13582,11 @@
       },
       {
         "source": "admin",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "admin",
         "target": "npm:@ngrx/store",
         "type": "static"
       },
@@ -13396,17 +13597,7 @@
       },
       {
         "source": "admin",
-        "target": "products",
-        "type": "static"
-      },
-      {
-        "source": "admin",
         "target": "npm:rxjs",
-        "type": "static"
-      },
-      {
-        "source": "admin",
-        "target": "orders",
         "type": "static"
       },
       {
@@ -13438,32 +13629,22 @@
       },
       {
         "source": "users",
+        "target": "shared",
+        "type": "static"
+      },
+      {
+        "source": "users",
+        "target": "npm:@angular/router",
+        "type": "static"
+      },
+      {
+        "source": "users",
         "target": "npm:@ngrx/store",
         "type": "static"
       },
       {
         "source": "users",
         "target": "npm:@ngrx/effects",
-        "type": "static"
-      },
-      {
-        "source": "users",
-        "target": "npm:jasmine-marbles",
-        "type": "static"
-      },
-      {
-        "source": "users",
-        "target": "npm:rxjs",
-        "type": "static"
-      },
-      {
-        "source": "users",
-        "target": "npm:@nx/angular",
-        "type": "static"
-      },
-      {
-        "source": "users",
-        "target": "npm:@angular/router",
         "type": "static"
       },
       {
@@ -13478,12 +13659,12 @@
       },
       {
         "source": "users",
-        "target": "utils",
+        "target": "npm:rxjs",
         "type": "static"
       },
       {
         "source": "users",
-        "target": "npm:i18n-iso-countries",
+        "target": "utils",
         "type": "static"
       },
       {
@@ -13527,12 +13708,17 @@
     "ui": [
       {
         "source": "ui",
-        "target": "npm:@angular/core",
+        "target": "npm:tslib",
         "type": "static"
       },
       {
         "source": "ui",
         "target": "npm:@angular/common",
+        "type": "static"
+      },
+      {
+        "source": "ui",
+        "target": "npm:@angular/core",
         "type": "static"
       },
       {
@@ -16998,7 +17184,7 @@
       },
       {
         "source": "npm:@eslint/eslintrc",
-        "target": "npm:js-yaml@4.1.0",
+        "target": "npm:js-yaml",
         "type": "static"
       },
       {
@@ -17050,13 +17236,6 @@
       {
         "source": "npm:globals@13.24.0",
         "target": "npm:type-fest@0.20.2",
-        "type": "static"
-      }
-    ],
-    "npm:js-yaml@4.1.0": [
-      {
-        "source": "npm:js-yaml@4.1.0",
-        "target": "npm:argparse@2.0.1",
         "type": "static"
       }
     ],
@@ -17160,12 +17339,31 @@
       },
       {
         "source": "npm:@istanbuljs/load-nyc-config",
-        "target": "npm:js-yaml",
+        "target": "npm:js-yaml@3.14.1",
         "type": "static"
       },
       {
         "source": "npm:@istanbuljs/load-nyc-config",
         "target": "npm:resolve-from",
+        "type": "static"
+      }
+    ],
+    "npm:argparse@1.0.10": [
+      {
+        "source": "npm:argparse@1.0.10",
+        "target": "npm:sprintf-js",
+        "type": "static"
+      }
+    ],
+    "npm:js-yaml@3.14.1": [
+      {
+        "source": "npm:js-yaml@3.14.1",
+        "target": "npm:argparse@1.0.10",
+        "type": "static"
+      },
+      {
+        "source": "npm:js-yaml@3.14.1",
+        "target": "npm:esprima",
         "type": "static"
       }
     ],
@@ -18525,6 +18723,11 @@
       }
     ],
     "npm:@nx/eslint": [
+      {
+        "source": "npm:@nx/eslint",
+        "target": "npm:js-yaml",
+        "type": "static"
+      },
       {
         "source": "npm:@nx/eslint",
         "target": "npm:@nx/devkit",
@@ -20676,7 +20879,7 @@
     "npm:@yarnpkg/parsers": [
       {
         "source": "npm:@yarnpkg/parsers",
-        "target": "npm:js-yaml",
+        "target": "npm:js-yaml@3.14.1",
         "type": "static"
       },
       {
@@ -20688,7 +20891,7 @@
     "npm:@zkochan/js-yaml": [
       {
         "source": "npm:@zkochan/js-yaml",
-        "target": "npm:argparse@2.0.1",
+        "target": "npm:argparse",
         "type": "static"
       }
     ],
@@ -20825,13 +21028,6 @@
       {
         "source": "npm:anymatch",
         "target": "npm:picomatch@2.3.1",
-        "type": "static"
-      }
-    ],
-    "npm:argparse": [
-      {
-        "source": "npm:argparse",
-        "target": "npm:sprintf-js",
         "type": "static"
       }
     ],
@@ -23249,7 +23445,7 @@
       },
       {
         "source": "npm:eslint",
-        "target": "npm:js-yaml@4.1.0",
+        "target": "npm:js-yaml",
         "type": "static"
       },
       {
@@ -25088,6 +25284,30 @@
         "type": "static"
       }
     ],
+    "npm:babel-plugin-macros@3.1.0": [
+      {
+        "source": "npm:babel-plugin-macros@3.1.0",
+        "target": "npm:@babel/runtime",
+        "type": "static"
+      },
+      {
+        "source": "npm:babel-plugin-macros@3.1.0",
+        "target": "npm:cosmiconfig@7.1.0",
+        "type": "static"
+      },
+      {
+        "source": "npm:babel-plugin-macros@3.1.0",
+        "target": "npm:resolve",
+        "type": "static"
+      }
+    ],
+    "npm:dedent@1.5.3": [
+      {
+        "source": "npm:dedent@1.5.3",
+        "target": "npm:babel-plugin-macros@3.1.0",
+        "type": "static"
+      }
+    ],
     "npm:jest-cli": [
       {
         "source": "npm:jest-cli",
@@ -26155,11 +26375,6 @@
       {
         "source": "npm:js-yaml",
         "target": "npm:argparse",
-        "type": "static"
-      },
-      {
-        "source": "npm:js-yaml",
-        "target": "npm:esprima",
         "type": "static"
       }
     ],
@@ -27273,7 +27488,7 @@
       },
       {
         "source": "npm:nx",
-        "target": "npm:js-yaml@4.1.0",
+        "target": "npm:js-yaml",
         "type": "static"
       },
       {
@@ -27949,7 +28164,7 @@
       },
       {
         "source": "npm:cosmiconfig@8.3.6",
-        "target": "npm:js-yaml@4.1.0",
+        "target": "npm:js-yaml",
         "type": "static"
       },
       {

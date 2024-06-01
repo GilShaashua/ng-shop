@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService } from '@frontend/users';
+import { AuthService } from '@frontend/shared';
 
 @Component({
     selector: 'admin-sidebar',

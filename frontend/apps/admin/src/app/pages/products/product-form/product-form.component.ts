@@ -8,17 +8,15 @@ import {
     Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import {
-    CategoriesService,
-    Category,
-    ProductsService,
-} from '@frontend/products';
+
 import { MessageService } from 'primeng/api';
 import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { ToastModule } from 'primeng/toast';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
+import { CategoriesService, ProductsService } from '@frontend/shared';
+import { Category } from '@frontend/utils';
 
 @Component({
     selector: 'admin-product-form',

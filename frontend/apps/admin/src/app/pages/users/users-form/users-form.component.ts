@@ -12,12 +12,12 @@ import {
     RouterLink,
     RouterModule,
 } from '@angular/router';
-import { UsersService } from '@frontend/users';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DropdownModule } from 'primeng/dropdown';
+import { UsersService } from '@frontend/shared';
 
 @Component({
     selector: 'admin-users-form',

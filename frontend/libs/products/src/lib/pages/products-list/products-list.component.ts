@@ -1,16 +1,17 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
-import { ProductsService } from '../../services/products.service';
-import { Product } from '../../models/product.model';
-import { CategoriesService } from '../../services/categories.service';
-import { Category } from '../../models/category.model';
+import { CartItem, Category, Product } from '@frontend/utils';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import { CartItem, CartService } from '@frontend/orders';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import {
+    CartService,
+    CategoriesService,
+    ProductsService,
+} from '@frontend/shared';
 
 @Component({
     selector: 'products-products-list',

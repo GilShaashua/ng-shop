@@ -5,8 +5,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserModule } from '@angular/platform-browser';
-import { UsersFacade, jwtInterceptor } from '@frontend/users';
+import { jwtInterceptor } from '@frontend/shared';
 import { provideStore } from '@ngrx/store';
+import { UsersFacade } from '@frontend/shared';
 
 export const appConfig: ApplicationConfig = {
     providers: [

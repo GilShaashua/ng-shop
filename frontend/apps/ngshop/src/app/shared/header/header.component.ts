@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductsSearchComponent, ProductsService } from '@frontend/products';
+import { ProductsSearchComponent } from '@frontend/products';
 import { Router, RouterModule } from '@angular/router';
-import { CartComponent, CartItem, CartService } from '@frontend/orders';
+import { CartComponent } from '@frontend/orders';
 import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
 import { MessageService } from 'primeng/api';
-import { AuthService, User, UsersService } from '@frontend/users';
+import { AuthService, CartService } from '@frontend/shared';
+import { CartItem, User } from '@frontend/utils';
+import { ProductsService, UsersService } from '@frontend/shared';
 
 @Component({
     selector: 'ngshop-header',

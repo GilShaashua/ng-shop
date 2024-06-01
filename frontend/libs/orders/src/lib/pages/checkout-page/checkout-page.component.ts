@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
-import { User, UsersService } from '@frontend/users';
-import { CartService } from '../../services/cart.service';
-import { CartItem } from '../../models/cart-item.model';
+import { UsersService } from '@frontend/shared';
+import { CartService } from '@frontend/shared';
 import { Subject, firstValueFrom, switchMap, takeUntil } from 'rxjs';
 import {
     FormBuilder,
@@ -12,10 +11,9 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { Product, ProductsService } from '@frontend/products';
-import { Order } from '../../models/order.model';
-import { OrderItem } from '../../models/order-item.model';
-import { OrdersService } from '../../services/orders.service';
+import { ProductsService } from '@frontend/shared';
+import { OrdersService } from '@frontend/shared';
+import { CartItem, Order, Product, OrderItem, User } from '@frontend/utils';
 
 @Component({
     selector: 'orders-checkout-page',

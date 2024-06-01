@@ -10,7 +10,7 @@ function authJwt() {
             { url: /\/api\/v1\/categories(.*)/, methods: ['GET', 'OPTIONS'] },
             {
                 url: /\/api\/v1\/orders(.*)/,
-                methods: ['POST', 'GET', 'OPTIONS'],
+                methods: ['POST', 'OPTIONS'],
             },
             {
                 url: /\/public\/uploads(.*)/,

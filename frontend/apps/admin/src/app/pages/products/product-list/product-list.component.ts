@@ -6,13 +6,14 @@ import {
     RouterLink,
     RouterOutlet,
 } from '@angular/router';
-import { Category, Column, Product, ProductsService } from '@frontend/products';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { filter, map, Subscription } from 'rxjs';
+import { Category, Column, Product } from '@frontend/utils';
+import { ProductsService } from '@frontend/shared';
 
 @Component({
     selector: 'admin-product-list',

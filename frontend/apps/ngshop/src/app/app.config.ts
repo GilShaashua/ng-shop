@@ -3,12 +3,12 @@ import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { UsersFacade, jwtInterceptor, reducer } from '@frontend/users';
+import { UsersEffects, UsersFacade, reducer } from '@frontend/shared';
 import { MessageService } from 'primeng/api';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { UsersEffects } from 'libs/users/src/lib/+state/users.effects';
+import { jwtInterceptor } from '@frontend/shared';
 
 export const appConfig: ApplicationConfig = {
     providers: [

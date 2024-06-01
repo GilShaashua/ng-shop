@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Order, OrdersService } from '@frontend/orders';
 import { FieldsetModule } from 'primeng/fieldset';
 import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { OrdersService } from '@frontend/shared';
+import { Order } from '@frontend/utils';
 
 @Component({
     selector: 'admin-orders-details',

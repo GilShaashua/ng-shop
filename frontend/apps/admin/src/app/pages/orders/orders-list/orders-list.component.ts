@@ -5,12 +5,11 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Column } from '@frontend/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs';
-import { Order, OrdersService } from '@frontend/orders';
-import { User } from '@frontend/users';
 import { TagModule } from 'primeng/tag';
+import { OrdersService } from '@frontend/shared';
+import { Column, Order, User } from '@frontend/utils';
 
 @Component({
     selector: 'admin-orders-list',

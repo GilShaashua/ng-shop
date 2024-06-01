@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Category } from '../../models/category.model';
+import { Category } from '@frontend/utils';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 

@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { OrdersService } from '@frontend/orders';
-import { ProductsService } from '@frontend/products';
-import { UsersService } from '@frontend/users';
+import { OrdersService, ProductsService, UsersService } from '@frontend/shared';
 import { combineLatest } from 'rxjs';
 
 interface Statistic {

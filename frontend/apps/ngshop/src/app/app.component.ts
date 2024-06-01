@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { UsersService } from '@frontend/users';
+import { UsersService } from '@frontend/shared';
 import { UtilsService } from '@frontend/utils';
 
 @Component({

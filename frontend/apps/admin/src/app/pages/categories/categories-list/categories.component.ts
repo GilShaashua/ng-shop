@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
-import { CategoriesService, Category, Column } from '@frontend/products';
 import {
     NavigationEnd,
     Router,
@@ -13,6 +12,8 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CategoriesService } from '@frontend/shared';
+import { Category, Column } from '@frontend/utils';
 
 @Component({
     selector: 'admin-categories',

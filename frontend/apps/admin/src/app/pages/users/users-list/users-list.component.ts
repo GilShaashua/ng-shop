@@ -10,12 +10,11 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { User, UsersService } from '@frontend/users';
-import { Column } from '@frontend/products';
 import { filter, Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TagModule } from 'primeng/tag';
-import { CountryPipe } from '@frontend/utils';
+import { Column, CountryPipe, User } from '@frontend/utils';
+import { UsersService } from '@frontend/shared';
 
 @Component({
     selector: 'admin-users-list',

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccordionModule } from 'primeng/accordion';
-import { HeroComponent } from '@frontend/ui';
 import {
     CategoriesBannerComponent,
-    CategoriesService,
-    Category,
     FeaturedProductsComponent,
-    Product,
-    ProductsService,
 } from '@frontend/products';
-import { CartItem, CartService } from '@frontend/orders';
+import {
+    CartService,
+    CategoriesService,
+    ProductsService,
+} from '@frontend/shared';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { CartItem, Category, Product } from '@frontend/utils';
+import { HeroComponent } from '@frontend/ui';
 
 @Component({
     selector: 'ngshop-home-page',

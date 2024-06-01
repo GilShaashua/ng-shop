@@ -1,17 +1,26 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
-    "types": []
-  },
-  "exclude": [
-    "src/**/*.spec.ts",
-    "src/test-setup.ts",
-    "jest.config.ts",
-    "src/**/*.test.ts"
-  ],
-  "include": ["src/**/*.ts"]
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../dist/out-tsc",
+        "declaration": true,
+        "declarationMap": true,
+        "inlineSources": true,
+        "types": []
+    },
+    "exclude": [
+        "src/**/*.spec.ts",
+        "src/test-setup.ts",
+        "jest.config.ts",
+        "src/**/*.test.ts"
+    ],
+    "include": [
+        "src/**/*.ts",
+        "../utils/src/lib/models/cart-item.model.ts",
+        "../utils/src/lib/models/order-item.model.ts",
+        "../utils/src/lib/models/order.model.ts",
+        "../shared/src/lib/services/cart.service.spec.ts",
+        "../shared/src/lib/services/cart.service.ts",
+        "../shared/src/lib/services/orders.service.spec.ts",
+        "../shared/src/lib/services/orders.service.ts"
+    ]
 }

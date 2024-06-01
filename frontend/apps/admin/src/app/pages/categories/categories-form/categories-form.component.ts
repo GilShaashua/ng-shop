@@ -8,7 +8,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { CategoriesService } from '@frontend/products';
+import { CategoriesService } from '@frontend/shared';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Subscription, firstValueFrom, timer } from 'rxjs';

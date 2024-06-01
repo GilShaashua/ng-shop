@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { CommonModule } from '@angular/common';
-import { Product } from '../../models/product.model';
+import { Product } from '@frontend/utils';
 
 @Component({
     selector: 'products-featured-products',

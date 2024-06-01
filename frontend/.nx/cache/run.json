@@ -1,21 +1,87 @@
 {
   "run": {
-    "command": "nx serve admin",
-    "startTime": "2024-05-24T21:08:44.859Z",
-    "endTime": "2024-05-31T00:29:40.950Z",
+    "command": "nx build ngshop --base-href /ng-shop/ --output-path docs",
+    "startTime": "2024-06-01T16:55:46.106Z",
+    "endTime": "2024-06-01T16:55:55.963Z",
     "inner": false
   },
   "tasks": [
     {
-      "taskId": "admin:serve:development",
-      "target": "serve",
-      "projectName": "admin",
-      "hash": "12164080587505775639",
-      "startTime": "2024-05-24T21:08:44.878Z",
-      "endTime": "2024-05-31T00:29:40.944Z",
+      "taskId": "utils:build:production",
+      "target": "build",
+      "projectName": "utils",
+      "hash": "15434220604597718527",
+      "startTime": "2024-06-01T16:55:46.119Z",
+      "endTime": "2024-06-01T16:55:46.397Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "ui:build:production",
+      "target": "build",
+      "projectName": "ui",
+      "hash": "10143740392657043581",
+      "startTime": "2024-06-01T16:55:46.120Z",
+      "endTime": "2024-06-01T16:55:46.403Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "shared:build:production",
+      "target": "build",
+      "projectName": "shared",
+      "hash": "4027543244731303718",
+      "startTime": "2024-06-01T16:55:46.410Z",
+      "endTime": "2024-06-01T16:55:46.417Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "users:build:production",
+      "target": "build",
+      "projectName": "users",
+      "hash": "10001826538066857908",
+      "startTime": "2024-06-01T16:55:46.425Z",
+      "endTime": "2024-06-01T16:55:46.430Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "orders:build:production",
+      "target": "build",
+      "projectName": "orders",
+      "hash": "8405773914130878832",
+      "startTime": "2024-06-01T16:55:46.425Z",
+      "endTime": "2024-06-01T16:55:46.433Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "products:build:production",
+      "target": "build",
+      "projectName": "products",
+      "hash": "4927802255264478537",
+      "startTime": "2024-06-01T16:55:46.425Z",
+      "endTime": "2024-06-01T16:55:46.438Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "ngshop:build:production",
+      "target": "build",
+      "projectName": "ngshop",
+      "hash": "8400133325269533307",
+      "startTime": "2024-06-01T16:55:46.456Z",
+      "endTime": "2024-06-01T16:55:55.962Z",
       "params": "",
       "cacheStatus": "cache-miss",
-      "status": 1
+      "status": 0
     }
   ]
 }
