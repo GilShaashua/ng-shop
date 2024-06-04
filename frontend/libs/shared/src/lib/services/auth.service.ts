@@ -9,9 +9,7 @@ import { environment } from '@frontend/utils';
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private http: HttpClient, private usersFacade: UsersFacade) {
-        this.isProdMode();
-    }
+    constructor(private http: HttpClient, private usersFacade: UsersFacade) {}
 
     private _loggedInUser$: BehaviorSubject<string | null> =
         new BehaviorSubject(this.getToken());
@@ -20,10 +18,7 @@ export class AuthService {
 
     apiUrl = environment.API_URL;
 
-    isProdMode() {
-        console.log('environment', environment);
-        console.log('isDevMode', isDevMode());
-
+    checkProdMode() {
         if (environment.production) {
             enableProdMode();
         }

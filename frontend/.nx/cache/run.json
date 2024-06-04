@@ -1,8 +1,8 @@
 {
   "run": {
     "command": "nx build admin --base-href /ngshop-admin/",
-    "startTime": "2024-06-04T14:28:48.787Z",
-    "endTime": "2024-06-04T14:28:49.177Z",
+    "startTime": "2024-06-04T14:43:11.155Z",
+    "endTime": "2024-06-04T14:43:30.220Z",
     "inner": false
   },
   "tasks": [
@@ -11,8 +11,8 @@
       "target": "build",
       "projectName": "utils",
       "hash": "10719090110370551940",
-      "startTime": "2024-06-04T14:28:48.798Z",
-      "endTime": "2024-06-04T14:28:48.972Z",
+      "startTime": "2024-06-04T14:43:11.165Z",
+      "endTime": "2024-06-04T14:43:11.345Z",
       "params": "",
       "cacheStatus": "local-cache-hit",
       "status": 0
@@ -21,33 +21,33 @@
       "taskId": "shared:build:production",
       "target": "build",
       "projectName": "shared",
-      "hash": "17619467002323702168",
-      "startTime": "2024-06-04T14:28:48.975Z",
-      "endTime": "2024-06-04T14:28:49.040Z",
+      "hash": "2968046190620007137",
+      "startTime": "2024-06-04T14:43:11.348Z",
+      "endTime": "2024-06-04T14:43:14.358Z",
       "params": "",
-      "cacheStatus": "local-cache-hit",
+      "cacheStatus": "cache-miss",
       "status": 0
     },
     {
       "taskId": "users:build:production",
       "target": "build",
       "projectName": "users",
-      "hash": "7866166755415344948",
-      "startTime": "2024-06-04T14:28:49.042Z",
-      "endTime": "2024-06-04T14:28:49.080Z",
+      "hash": "1359182579327644435",
+      "startTime": "2024-06-04T14:43:14.360Z",
+      "endTime": "2024-06-04T14:43:17.893Z",
       "params": "",
-      "cacheStatus": "local-cache-hit",
+      "cacheStatus": "cache-miss",
       "status": 0
     },
     {
       "taskId": "admin:build:production",
       "target": "build",
       "projectName": "admin",
-      "hash": "3068549688126349373",
-      "startTime": "2024-06-04T14:28:49.084Z",
-      "endTime": "2024-06-04T14:28:49.172Z",
+      "hash": "4867436224182270976",
+      "startTime": "2024-06-04T14:43:17.897Z",
+      "endTime": "2024-06-04T14:43:30.220Z",
       "params": "",
-      "cacheStatus": "local-cache-hit",
+      "cacheStatus": "cache-miss",
       "status": 0
     }
   ]
