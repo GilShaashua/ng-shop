@@ -1,8 +1,8 @@
 {
   "run": {
     "command": "nx build admin --base-href /ngshop-admin/",
-    "startTime": "2024-06-04T14:13:21.191Z",
-    "endTime": "2024-06-04T14:13:32.781Z",
+    "startTime": "2024-06-04T14:28:48.787Z",
+    "endTime": "2024-06-04T14:28:49.177Z",
     "inner": false
   },
   "tasks": [
@@ -11,8 +11,8 @@
       "target": "build",
       "projectName": "utils",
       "hash": "10719090110370551940",
-      "startTime": "2024-06-04T14:13:21.201Z",
-      "endTime": "2024-06-04T14:13:21.323Z",
+      "startTime": "2024-06-04T14:28:48.798Z",
+      "endTime": "2024-06-04T14:28:48.972Z",
       "params": "",
       "cacheStatus": "local-cache-hit",
       "status": 0
@@ -22,8 +22,8 @@
       "target": "build",
       "projectName": "shared",
       "hash": "17619467002323702168",
-      "startTime": "2024-06-04T14:13:21.328Z",
-      "endTime": "2024-06-04T14:13:21.408Z",
+      "startTime": "2024-06-04T14:28:48.975Z",
+      "endTime": "2024-06-04T14:28:49.040Z",
       "params": "",
       "cacheStatus": "local-cache-hit",
       "status": 0
@@ -33,8 +33,8 @@
       "target": "build",
       "projectName": "users",
       "hash": "7866166755415344948",
-      "startTime": "2024-06-04T14:13:21.411Z",
-      "endTime": "2024-06-04T14:13:21.445Z",
+      "startTime": "2024-06-04T14:28:49.042Z",
+      "endTime": "2024-06-04T14:28:49.080Z",
       "params": "",
       "cacheStatus": "local-cache-hit",
       "status": 0
@@ -43,11 +43,11 @@
       "taskId": "admin:build:production",
       "target": "build",
       "projectName": "admin",
-      "hash": "12042623794115609087",
-      "startTime": "2024-06-04T14:13:21.448Z",
-      "endTime": "2024-06-04T14:13:32.781Z",
+      "hash": "3068549688126349373",
+      "startTime": "2024-06-04T14:28:49.084Z",
+      "endTime": "2024-06-04T14:28:49.172Z",
       "params": "",
-      "cacheStatus": "cache-miss",
+      "cacheStatus": "local-cache-hit",
       "status": 0
     }
   ]

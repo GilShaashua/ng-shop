@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, enableProdMode, isDevMode } from '@angular/core';
 import { User } from '@frontend/utils';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UsersFacade } from '../+state/users.facade';
@@ -9,7 +9,9 @@ import { environment } from '@frontend/utils';
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private http: HttpClient, private usersFacade: UsersFacade) {}
+    constructor(private http: HttpClient, private usersFacade: UsersFacade) {
+        this.isProdMode();
+    }
 
     private _loggedInUser$: BehaviorSubject<string | null> =
         new BehaviorSubject(this.getToken());
@@ -17,6 +19,15 @@ export class AuthService {
     public loggedInUser$ = this._loggedInUser$.asObservable();
 
     apiUrl = environment.API_URL;
+
+    isProdMode() {
+        console.log('environment', environment);
+        console.log('isDevMode', isDevMode());
+
+        if (environment.production) {
+            enableProdMode();
+        }
+    }
 
     login({
         email,
