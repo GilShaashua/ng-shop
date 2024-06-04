@@ -7,4 +7,4 @@ export * from './lib/models/order.model';
 export * from './lib/models/order-item.model';
 export * from './lib/models/product.model';
 export * from './lib/models/user.model';
-export * from './lib/enviroments/enviromet';
+export * from './lib/environments/environment';

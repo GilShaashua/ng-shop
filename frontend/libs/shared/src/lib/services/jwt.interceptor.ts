@@ -1,11 +1,11 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
-import { enviroment } from '@frontend/utils';
+import { environment } from '@frontend/utils';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     const token = inject(AuthService).getToken();
-    const isApiUrl = req.url.startsWith(enviroment.apiUrl);
+    const isApiUrl = req.url.startsWith(environment.API_URL);
 
     if (token && isApiUrl) {
         req = req.clone({

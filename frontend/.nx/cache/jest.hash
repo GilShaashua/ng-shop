@@ -1,5 +1,5 @@
 {
-  "6112371173819516880": {
+  "8546116571094307025": {
     "test": {
       "command": "jest",
       "options": {
@@ -17,27 +17,6 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\apps\\admin"
-      ]
-    }
-  },
-  "8097032596554114162": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "apps/ngshop"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\apps\\ngshop"
       ]
     }
   },
@@ -83,7 +62,7 @@
       ]
     }
   },
-  "11474387659972892710": {
+  "15859062571320587770": {
     "test": {
       "command": "jest",
       "options": {
@@ -146,7 +125,28 @@
       ]
     }
   },
-  "1065564750604823176": {
+  "11698803834030601508": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/ngshop"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\ngshop"
+      ]
+    }
+  },
+  "10929631327733555214": {
     "test": {
       "command": "jest",
       "options": {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Order } from '@frontend/utils';
-import { enviroment } from '@frontend/utils';
+import { environment } from '@frontend/utils';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +10,7 @@ import { enviroment } from '@frontend/utils';
 export class OrdersService {
     constructor(private http: HttpClient) {}
 
-    apiUrl = enviroment.apiUrl;
+    apiUrl = environment.API_URL;
 
     getOrders(): Observable<Order[]> {
         return this.http.get<Order[]>(`${this.apiUrl}orders`);

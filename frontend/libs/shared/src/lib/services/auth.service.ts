@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '@frontend/utils';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UsersFacade } from '../+state/users.facade';
+import { environment } from '@frontend/utils';
 
 @Injectable({
     providedIn: 'root',
@@ -15,6 +16,8 @@ export class AuthService {
 
     public loggedInUser$ = this._loggedInUser$.asObservable();
 
+    apiUrl = environment.API_URL;
+
     login({
         email,
         password,
@@ -22,13 +25,10 @@ export class AuthService {
         email: string;
         password: string;
     }): Observable<User> {
-        return this.http.post<User>(
-            'http://localhost:3000/api/v1/users/login',
-            {
-                email,
-                password,
-            }
-        );
+        return this.http.post<User>(`${this.apiUrl}users/login`, {
+            email,
+            password,
+        });
     }
 
     logout() {

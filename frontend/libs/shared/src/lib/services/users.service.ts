@@ -4,8 +4,8 @@ import { User } from '@frontend/utils';
 import { Observable } from 'rxjs';
 import * as countriesLib from 'i18n-iso-countries';
 import registerLocale from 'i18n-iso-countries/langs/en.json';
-import { enviroment } from '@frontend/utils';
 import { UsersFacade } from '../+state/users.facade';
+import { environment } from '@frontend/utils';
 
 @Injectable({
     providedIn: 'root',
@@ -15,7 +15,7 @@ export class UsersService {
         countriesLib.registerLocale(registerLocale);
     }
 
-    apiUrl = enviroment.apiUrl;
+    apiUrl = environment.API_URL;
 
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>(`${this.apiUrl}users`);
