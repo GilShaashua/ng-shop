@@ -48,13 +48,7 @@
                 "development": {
                     "optimization": false,
                     "extractLicenses": false,
-                    "sourceMap": true,
-                    "fileReplacements": [
-                        {
-                            "replace": "libs/utils/src/lib/environments/environment.ts",
-                            "with": "libs/utils/src/lib/environments/environment.prod.ts"
-                        }
-                    ]
+                    "sourceMap": true
                 }
             },
             "defaultConfiguration": "production"
