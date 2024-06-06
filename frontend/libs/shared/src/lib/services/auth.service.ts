@@ -19,6 +19,9 @@ export class AuthService {
     apiUrl = environment.API_URL;
 
     checkProdMode() {
+        console.log('environment', environment);
+        console.log('isDevMode', isDevMode());
+
         if (environment.production) {
             enableProdMode();
         }

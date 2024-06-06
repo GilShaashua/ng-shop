@@ -2,7 +2,7 @@ Daemon process terminated and closed the connection
 
 Messages from the log:
 - @frontend/users: 
-  - .nx/cache/7866166755415344948/outputs/dist/libs/users
+  - .nx/cache/4475221866884954238/outputs/dist/libs/users
   - dist/libs/users
 
 To fix this, set a unique name for each project in a project.json inside the project's root. If the project does not currently have a project.json, you can create one that contains only a name.
@@ -16,10 +16,10 @@ To fix this, set a unique name for each project in a project.json inside the pro
     at async handleResult (c:\Users\Gil-PC\Desktop\e-commerce\frontend\node_modules\nx\src\daemon\server\server.js:110:16)
     at async handleMessage (c:\Users\Gil-PC\Desktop\e-commerce\frontend\node_modules\nx\src\daemon\server\server.js:81:9)
     at async c:\Users\Gil-PC\Desktop\e-commerce\frontend\node_modules\nx\src\daemon\server\server.js:45:9
-[NX Daemon Server] - 2024-06-04T13:33:05.009Z - Time taken for 'hash changed files from watcher' 1.8024000525474548ms
-[NX Daemon Server] - 2024-06-04T13:33:05.009Z - Established a connection. Number of open connections: 3
-[NX Daemon Server] - 2024-06-04T13:33:05.009Z - Established a connection. Number of open connections: 4
-[NX Daemon Server] - 2024-06-04T13:33:05.009Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-06T07:05:49.258Z - Time taken for 'hash changed files from watcher' 1.7304000854492188ms
+[NX Daemon Server] - 2024-06-06T07:05:49.258Z - Established a connection. Number of open connections: 3
+[NX Daemon Server] - 2024-06-06T07:05:49.258Z - Established a connection. Number of open connections: 4
+[NX Daemon Server] - 2024-06-06T07:05:49.259Z - Done responding to the client null
 
 
 

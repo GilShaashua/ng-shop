@@ -13604,6 +13604,11 @@
       },
       {
         "source": "admin",
+        "target": "npm:@ngrx/effects",
+        "type": "static"
+      },
+      {
+        "source": "admin",
         "target": "npm:@angular/forms",
         "type": "static"
       },

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { AuthService, UsersService } from '@frontend/shared';
+import { UsersService } from '@frontend/shared';
 import { UtilsService } from '@frontend/utils';
 
 @Component({
@@ -15,12 +15,10 @@ import { UtilsService } from '@frontend/utils';
 export class AppComponent implements OnInit {
     constructor(
         private usersService: UsersService,
-        private utilsService: UtilsService,
-        private authService: AuthService
+        private utilsService: UtilsService
     ) {}
 
     ngOnInit(): void {
-        this.authService.checkProdMode();
         this.usersService.initAppSession();
         this.utilsService.setIsUsedByNgShop();
     }

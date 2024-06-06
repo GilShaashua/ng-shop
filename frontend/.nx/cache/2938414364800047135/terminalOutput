@@ -1,19 +1,19 @@
 [34mBuilding Angular Package[39m
 [37m[39m
 [37m------------------------------------------------------------------------------[39m
-[37mBuilding entry point '@frontend/utils'[39m
+[37mBuilding entry point '@frontend/orders'[39m
 [37m------------------------------------------------------------------------------[39m
 - Compiling with Angular sources in Ivy full compilation mode.
 [32m✔[39m Compiling with Angular sources in Ivy full compilation mode.
 Copying assets
 Writing package manifest
-Built @frontend/utils
+Built @frontend/orders
 [32m[39m
 [32m------------------------------------------------------------------------------[39m
 [32mBuilt Angular Package[39m
-[32m - from: C:\Users\Gil-PC\Desktop\e-commerce\frontend\libs\utils[39m
-[32m - to:   C:\Users\Gil-PC\Desktop\e-commerce\frontend\dist\libs\utils[39m
+[32m - from: C:\Users\Gil-PC\Desktop\e-commerce\frontend\libs\orders[39m
+[32m - to:   C:\Users\Gil-PC\Desktop\e-commerce\frontend\dist\libs\orders[39m
 [32m------------------------------------------------------------------------------[39m
 [37m[37m[39m[37m[39m
-[37m[37mBuild at: [1m2024-06-06T07:05:38.380Z[22m - Time: [1m1029[22mms[39m[37m[39m
+[37m[37mBuild at: [1m2024-06-06T07:25:53.788Z[22m - Time: [1m2912[22mms[39m[37m[39m
 [37m[37m[39m[37m[39m
