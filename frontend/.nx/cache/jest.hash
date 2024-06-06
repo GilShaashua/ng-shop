@@ -125,27 +125,6 @@
       ]
     }
   },
-  "6302545870674164919": {
-    "test": {
-      "command": "jest",
-      "options": {
-        "cwd": "libs/users"
-      },
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "externalDependencies": [
-            "jest"
-          ]
-        }
-      ],
-      "outputs": [
-        "{workspaceRoot}\\coverage\\libs\\users"
-      ]
-    }
-  },
   "5883403322345863190": {
     "test": {
       "command": "jest",
@@ -164,6 +143,27 @@
       ],
       "outputs": [
         "{workspaceRoot}\\coverage\\libs\\utils"
+      ]
+    }
+  },
+  "16530112585450442346": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "libs/users"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\libs\\users"
       ]
     }
   }
