@@ -114,260 +114,260 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "styles/base/colors.scss",
-        "hash": "13224462678922191154"
-      },
-      {
-        "file": "styles/libs/products/product-details.scss",
-        "hash": "4773228093951752658"
-      },
-      {
-        "file": ".idea/vcs.xml",
-        "hash": "383330317990075354"
-      },
-      {
-        "file": ".idea/.gitignore",
-        "hash": "16259663310133185705"
-      },
-      {
-        "file": "styles/libs/ui/gallery.scss",
-        "hash": "5921702076694408395"
-      },
-      {
-        "file": "migrations.json",
-        "hash": "4339023027328878743"
-      },
-      {
-        "file": "styles/libs/products/featured-products.scss",
-        "hash": "16342454361677244977"
-      },
-      {
-        "file": "styles/libs/products/search-products.scss",
-        "hash": "17706787761679917185"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "12333515226966617182"
-      },
-      {
-        "file": "styles/apps/ngshop/pages/home-page.scss",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "4934098906304722861"
-      },
-      {
-        "file": "styles/apps/admin/pages/categories.scss",
-        "hash": "4318906348947608453"
-      },
-      {
-        "file": "styles/libs/orders/thank-you.scss",
-        "hash": "12291311127218841555"
-      },
-      {
-        "file": "styles/apps/ngshop/shared/footer.scss",
-        "hash": "12729031266586135513"
-      },
-      {
-        "file": "styles/libs/products/categories-banner.scss",
-        "hash": "16598742363595253871"
-      },
-      {
-        "file": ".idea/frontend.iml",
-        "hash": "12337183309051604029"
-      },
-      {
-        "file": "styles/apps/admin/pages/users-list.scss",
-        "hash": "6042037625077273031"
-      },
-      {
         "file": "styles/libs/ui/hero.scss",
         "hash": "5275683615559337619"
-      },
-      {
-        "file": "styles/libs/orders/checkout-page.scss",
-        "hash": "2115974792335222028"
-      },
-      {
-        "file": ".vscode/tasks.json",
-        "hash": "13541726032716222026"
-      },
-      {
-        "file": ".nx/cache/cypress.hash",
-        "hash": "12978497520725178697"
-      },
-      {
-        "file": "nx.json",
-        "hash": "15245343678912750121"
-      },
-      {
-        "file": ".idea/codeStyles/codeStyleConfig.xml",
-        "hash": "10911911431176787330"
-      },
-      {
-        "file": "styles/apps/admin/pages/orders-list.scss",
-        "hash": "15615773119461247938"
-      },
-      {
-        "file": "styles/apps/admin/orders/order-details.scss",
-        "hash": "2501492273283900634"
-      },
-      {
-        "file": "styles/base/mixins.scss",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "styles/libs/products/product-item.scss",
-        "hash": "12495472030741837398"
-      },
-      {
-        "file": "styles/apps/admin/categories/categories-form/categories-form.scss",
-        "hash": "16299520228169272931"
-      },
-      {
-        "file": ".idea/inspectionProfiles/Project_Default.xml",
-        "hash": "3004622086247414210"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "6322564075856619590"
-      },
-      {
-        "file": ".idea/nx-angular-config.xml",
-        "hash": "5624963104230402388"
-      },
-      {
-        "file": ".idea/prettier.xml",
-        "hash": "1823336302364527533"
-      },
-      {
-        "file": "styles/apps/ngshop/shared/header.scss",
-        "hash": "532836986721638828"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "3395189204293871444"
-      },
-      {
-        "file": ".eslintignore",
-        "hash": "7663861978715868291"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "8570878206745684730"
-      },
-      {
-        "file": "styles/libs/orders/cart-item.scss",
-        "hash": "1348222598758034989"
-      },
-      {
-        "file": ".nx/cache/jest.hash",
-        "hash": "1307192066877767584"
-      },
-      {
-        "file": ".idea/codeStyles/Project.xml",
-        "hash": "1817518256136804083"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "8210284349211721511"
-      },
-      {
-        "file": "styles/apps/admin/products/products-form/products-form.scss",
-        "hash": "3207654976463738365"
-      },
-      {
-        "file": ".idea/modules.xml",
-        "hash": "6886144876454833459"
-      },
-      {
-        "file": "styles/apps/admin/pages/products-list.scss",
-        "hash": "6066926470669315545"
-      },
-      {
-        "file": "styles/apps/admin/shared/shell.scss",
-        "hash": "17950455822210899607"
-      },
-      {
-        "file": "README.md",
-        "hash": "12950503169937521287"
-      },
-      {
-        "file": "styles/libs/users/login.scss",
-        "hash": "2890094949443140610"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "18315524891129148814"
       },
       {
         "file": "styles/base/fonts.scss",
         "hash": "9091619691257031164"
       },
       {
-        "file": ".idea/watcherTasks.xml",
-        "hash": "14800392584488157890"
-      },
-      {
-        "file": "styles/libs/users/users.scss",
-        "hash": "2994135757829677056"
-      },
-      {
-        "file": "styles/apps/admin/users/users-form/users-form.scss",
-        "hash": "12225064381545360763"
-      },
-      {
-        "file": ".nx/cache/d/daemon.log",
-        "hash": "4702727577146851536"
-      },
-      {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
-      },
-      {
-        "file": "styles/base/configurations.scss",
-        "hash": "11707127418330503912"
-      },
-      {
-        "file": "styles/apps/admin/pages/dashboard.scss",
-        "hash": "12317156860802940330"
-      },
-      {
-        "file": "styles/libs/orders/cart.scss",
-        "hash": "10670811327322880286"
-      },
-      {
-        "file": "styles/ngshop.scss",
-        "hash": "17992648215739023545"
-      },
-      {
-        "file": ".nx/cache/project-graph.json",
-        "hash": "2518706948939193555"
-      },
-      {
-        "file": "styles/admin.scss",
-        "hash": "801545166370367262"
-      },
-      {
-        "file": "styles/apps/ngshop/pages/product-list-page.scss",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
-      },
-      {
-        "file": "package.json",
-        "hash": "1800552883411564062"
+        "file": "styles/base/colors.scss",
+        "hash": "13224462678922191154"
       },
       {
         "file": "styles/libs/products/products-list.scss",
         "hash": "1475230343200708299"
       },
       {
+        "file": ".idea/prettier.xml",
+        "hash": "1823336302364527533"
+      },
+      {
+        "file": ".idea/vcs.xml",
+        "hash": "383330317990075354"
+      },
+      {
+        "file": "styles/apps/admin/orders/order-details.scss",
+        "hash": "2501492273283900634"
+      },
+      {
+        "file": "styles/ngshop.scss",
+        "hash": "17992648215739023545"
+      },
+      {
+        "file": "styles/admin.scss",
+        "hash": "801545166370367262"
+      },
+      {
+        "file": "styles/apps/admin/pages/products-list.scss",
+        "hash": "6066926470669315545"
+      },
+      {
+        "file": "styles/libs/ui/gallery.scss",
+        "hash": "5921702076694408395"
+      },
+      {
+        "file": "styles/libs/products/featured-products.scss",
+        "hash": "16342454361677244977"
+      },
+      {
+        "file": "styles/base/mixins.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".nx/cache/cypress.hash",
+        "hash": "12978497520725178697"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "8210284349211721511"
+      },
+      {
+        "file": "styles/apps/ngshop/pages/home-page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": ".nx/cache/d/daemon.log",
+        "hash": "3400220206768890131"
+      },
+      {
+        "file": "styles/libs/products/search-products.scss",
+        "hash": "17706787761679917185"
+      },
+      {
+        "file": "styles/libs/orders/checkout-page.scss",
+        "hash": "2115974792335222028"
+      },
+      {
+        "file": ".idea/.gitignore",
+        "hash": "16259663310133185705"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "3395189204293871444"
+      },
+      {
+        "file": "styles/libs/orders/cart-item.scss",
+        "hash": "1348222598758034989"
+      },
+      {
+        "file": "styles/libs/products/categories-banner.scss",
+        "hash": "16598742363595253871"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "8570878206745684730"
+      },
+      {
+        "file": ".idea/inspectionProfiles/Project_Default.xml",
+        "hash": "3004622086247414210"
+      },
+      {
+        "file": ".idea/codeStyles/codeStyleConfig.xml",
+        "hash": "10911911431176787330"
+      },
+      {
+        "file": ".nx/cache/project-graph.json",
+        "hash": "2518706948939193555"
+      },
+      {
+        "file": "README.md",
+        "hash": "12950503169937521287"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": "styles/libs/users/users.scss",
+        "hash": "2994135757829677056"
+      },
+      {
+        "file": "styles/apps/ngshop/shared/footer.scss",
+        "hash": "12729031266586135513"
+      },
+      {
+        "file": ".idea/codeStyles/Project.xml",
+        "hash": "1817518256136804083"
+      },
+      {
+        "file": "styles/libs/products/product-item.scss",
+        "hash": "12495472030741837398"
+      },
+      {
+        "file": "migrations.json",
+        "hash": "4339023027328878743"
+      },
+      {
+        "file": "styles/apps/ngshop/shared/header.scss",
+        "hash": "532836986721638828"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "12333515226966617182"
+      },
+      {
+        "file": "styles/apps/admin/pages/dashboard.scss",
+        "hash": "12317156860802940330"
+      },
+      {
+        "file": ".idea/nx-angular-config.xml",
+        "hash": "5624963104230402388"
+      },
+      {
+        "file": "nx.json",
+        "hash": "15245343678912750121"
+      },
+      {
+        "file": ".idea/frontend.iml",
+        "hash": "12337183309051604029"
+      },
+      {
+        "file": ".idea/modules.xml",
+        "hash": "6886144876454833459"
+      },
+      {
         "file": ".nx/cache/file-map.json",
-        "hash": "6124161819717968489"
+        "hash": "1593301053250357413"
+      },
+      {
+        "file": "styles/apps/admin/categories/categories-form/categories-form.scss",
+        "hash": "16299520228169272931"
+      },
+      {
+        "file": "styles/apps/admin/products/products-form/products-form.scss",
+        "hash": "3207654976463738365"
+      },
+      {
+        "file": ".vscode/tasks.json",
+        "hash": "13541726032716222026"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "styles/apps/admin/pages/categories.scss",
+        "hash": "4318906348947608453"
+      },
+      {
+        "file": "styles/apps/ngshop/pages/product-list-page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "styles/base/configurations.scss",
+        "hash": "11707127418330503912"
+      },
+      {
+        "file": "styles/libs/products/product-details.scss",
+        "hash": "4773228093951752658"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "4934098906304722861"
+      },
+      {
+        "file": "styles/libs/orders/cart.scss",
+        "hash": "10670811327322880286"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "6322564075856619590"
+      },
+      {
+        "file": "styles/libs/users/login.scss",
+        "hash": "2890094949443140610"
+      },
+      {
+        "file": "styles/apps/admin/pages/orders-list.scss",
+        "hash": "15615773119461247938"
+      },
+      {
+        "file": "package.json",
+        "hash": "1800552883411564062"
+      },
+      {
+        "file": "styles/apps/admin/users/users-form/users-form.scss",
+        "hash": "12225064381545360763"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "18315524891129148814"
+      },
+      {
+        "file": "styles/apps/admin/pages/users-list.scss",
+        "hash": "6042037625077273031"
+      },
+      {
+        "file": ".nx/cache/jest.hash",
+        "hash": "1307192066877767584"
+      },
+      {
+        "file": "styles/libs/orders/thank-you.scss",
+        "hash": "12291311127218841555"
+      },
+      {
+        "file": ".idea/watcherTasks.xml",
+        "hash": "14800392584488157890"
+      },
+      {
+        "file": ".eslintignore",
+        "hash": "7663861978715868291"
+      },
+      {
+        "file": "styles/apps/admin/shared/shell.scss",
+        "hash": "17950455822210899607"
       }
     ],
     "projectFileMap": {
@@ -2022,4 +2022,3 @@
     }
   }
 }
- 
