@@ -41,5 +41,4 @@ Thumbs.db
 .nx/cache
 .angular
 .env
-/backend/public/uploads
-/backend/public
+backend/public/uploads

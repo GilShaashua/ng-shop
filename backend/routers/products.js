@@ -95,12 +95,15 @@ router.post('/', uploadOptions.single('image'), async (req, res) => {
     try {
         const createdProduct = await product.save();
 
+        console.log('createdProduct', createdProduct);
+
         if (!createdProduct) {
             return res.status(500).send('The product cannot be created!');
         }
 
         res.status(201).json(createdProduct);
     } catch (err) {
+        console.log('err', err);
         res.status(500).json({
             success: false,
             error: err,
