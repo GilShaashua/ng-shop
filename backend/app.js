@@ -46,7 +46,7 @@ async function runServer() {
         });
         console.log('Database connection is ready!');
         app.listen(PORT, () => {
-            if (process.env.NODE_ENV === 'development') {
+            if (!process.env.NODE_ENV) {
                 console.log(`Server is running at http://localhost:${PORT}`);
             } else {
                 console.log(

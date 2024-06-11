@@ -3,30 +3,46 @@ const Product = require('../models/product');
 const Category = require('../models/category');
 const router = express.Router();
 const multer = require('multer');
+const multerS3 = require('multer-s3');
+const { S3Client } = require('@aws-sdk/client-s3');
 
-const FILE_TYPE_MAP = {
-    'image/png': 'png',
-    'image/jpeg': 'jpeg',
-    'image/jpg': 'jpg',
-};
-
-const storage = multer.diskStorage({
-    destination(req, file, cb) {
-        const isValid = FILE_TYPE_MAP[file.mimetype];
-        let uploadError = new Error('Invalid image type!');
-
-        if (isValid) uploadError = null;
-
-        cb(uploadError, 'public/uploads');
-    },
-    filename(req, file, cb) {
-        const fileName = file.originalname.split(' ').join('-');
-        const extension = FILE_TYPE_MAP[file.mimetype];
-        cb(null, `${fileName}-${Date.now()}.${extension}`);
+const s3 = new S3Client({
+    region: process.env.AWS_REGION,
+    endpoint: `https://s3.${process.env.AWS_REGION}.amazonaws.com`, // Correct endpoint based on the region
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     },
 });
 
-const uploadOptions = multer({ storage });
+const upload = multer({
+    storage: multerS3({
+        s3,
+        bucket: process.env.AWS_BUCKET_NAME,
+        metadata: function (req, file, cb) {
+            cb(null, { fieldName: file.fieldname });
+        },
+        key: function (req, file, cb) {
+            cb(
+                null,
+                `${Date.now().toString()}-${file.originalname.split(' ').join('-')}`
+            );
+        },
+    }),
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png/;
+        const mimeType = fileTypes.test(file.mimetype);
+        const extname = fileTypes.test(
+            file.originalname.split('.').pop().toLowerCase()
+        );
+
+        if (mimeType && extname) {
+            return cb(null, true);
+        }
+        cb('Error: File type not supported!');
+    },
+    limits: { fileSize: 1024 * 1024 * 5 }, // 5MB limit
+});
 
 router.get('/', async (req, res) => {
     try {
@@ -59,7 +75,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', uploadOptions.single('image'), async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         const category = await Category.findById(req.body.category);
 
@@ -75,14 +91,14 @@ router.post('/', uploadOptions.single('image'), async (req, res) => {
 
     if (!req.file) return res.status(400).send('No image in the request!');
 
-    const fileName = req.file.filename;
-    const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
+    const imageUrl = req.file.location;
+    console.log('imageUrl', imageUrl);
 
     const product = new Product({
         name: req.body.name,
         description: req.body.description,
         richDescription: req.body.richDescription,
-        image: `${basePath}${fileName}`,
+        image: `${imageUrl}`,
         brand: req.body.brand,
         price: req.body.price,
         category: req.body.category,
@@ -95,15 +111,12 @@ router.post('/', uploadOptions.single('image'), async (req, res) => {
     try {
         const createdProduct = await product.save();
 
-        console.log('createdProduct', createdProduct);
-
         if (!createdProduct) {
             return res.status(500).send('The product cannot be created!');
         }
 
         res.status(201).json(createdProduct);
     } catch (err) {
-        console.log('err', err);
         res.status(500).json({
             success: false,
             error: err,
@@ -111,7 +124,7 @@ router.post('/', uploadOptions.single('image'), async (req, res) => {
     }
 });
 
-router.put('/:id', uploadOptions.single('image'), async (req, res) => {
+router.put('/:id', upload.single('image'), async (req, res) => {
     let imagePath = null;
 
     try {
@@ -127,9 +140,7 @@ router.put('/:id', uploadOptions.single('image'), async (req, res) => {
         const file = req.file;
 
         if (file) {
-            const fileName = file.filename;
-            const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
-            imagePath = `${basePath}${fileName}`;
+            imagePath = file.location;
         } else {
             imagePath = product.image;
         }
@@ -170,23 +181,18 @@ router.put('/:id', uploadOptions.single('image'), async (req, res) => {
 
 router.put(
     '/gallery-images/:id',
-    uploadOptions.array('images', 7),
+    upload.array('images', 7),
     async (req, res) => {
         try {
-            let imagesPaths = [];
-
             const files = req.files;
-            console.log('files', files);
-            const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
 
-            if (files) {
-                files.forEach((file) => {
-                    imagesPaths.push(`${basePath}${file.filename}`);
-                });
-            } else {
-                return res.status(500).send('No images in the request!');
+            if (!files || files.length === 0) {
+                return res.status(400).send('No images in the request!');
             }
 
+            const imagesPaths = files.map((file) => file.location);
+
+            // Update a product with images urls
             const updatedProduct = await Product.findByIdAndUpdate(
                 req.params.id,
                 {
