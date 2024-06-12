@@ -38,6 +38,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+frontend/.nx/cache
 .nx/cache
 .angular
 .env
