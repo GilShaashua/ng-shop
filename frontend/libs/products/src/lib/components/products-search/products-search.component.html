@@ -1,6 +1,8 @@
 <div class="search-input">
     <label for="search"><i class="pi pi-search"></i></label>
     <input
+        [(ngModel)]="filterBy.name"
+        (input)="onInputProducts()"
         type="text"
         name="search"
         id="search"
