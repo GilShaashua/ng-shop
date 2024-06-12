@@ -11,9 +11,11 @@
         <div class="btns-container">
             <button class="btn-create" (click)="onSubmitForm()">
                 <i
+                    *ngIf="!isProccessing"
                     class="pi {{ productId ? 'pi-cloud-upload' : 'pi-plus' }}"
-                ></i
-                ><span>{{ productId ? 'Edit' : 'Add' }}</span>
+                ></i>
+                <i *ngIf="isProccessing" class="pi pi-spin pi-spinner"></i>
+                <span>{{ productId ? 'Edit' : 'Add' }}</span>
             </button>
             <button class="btn-cancel" routerLink="/products">
                 <i class="pi pi-arrow-circle-left"></i><span>Cancel</span>

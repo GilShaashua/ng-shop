@@ -166,5 +166,194 @@
         "{workspaceRoot}\\coverage\\libs\\utils"
       ]
     }
+  },
+  "743988456278826576": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "16636084630149812672": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "15822207951630699083": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "18238333948998030218": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "10153895536863745240": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "16471897897285770061": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "14140533852466791884": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "8532668902066042144": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
+  },
+  "3301958405221001563": {
+    "test": {
+      "command": "jest",
+      "options": {
+        "cwd": "apps/admin"
+      },
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": [
+            "jest"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}\\coverage\\apps\\admin"
+      ]
+    }
   }
 }

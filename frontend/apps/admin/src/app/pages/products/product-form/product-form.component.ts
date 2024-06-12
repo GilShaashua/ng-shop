@@ -70,6 +70,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     gallerySelectedUrls: any = [];
     formImage = '';
     isGalleryChanged = false;
+    isProccessing = false;
 
     ngOnInit(): void {
         this._checkParams();
@@ -99,6 +100,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         }
         this.isSubmitted = true;
         if (this.form.invalid) return;
+        this.isProccessing = true;
 
         // Create a form data for passing file to the backend (req.file)
         const productFormData = new FormData();
@@ -238,6 +240,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
                         )
                     );
 
+                    this.isProccessing = false;
+
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
@@ -277,6 +281,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
                             )
                         );
                     }
+
+                    this.isProccessing = false;
 
                     this.messageService.add({
                         severity: 'success',
