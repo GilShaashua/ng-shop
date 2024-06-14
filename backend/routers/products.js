@@ -41,7 +41,7 @@ const upload = multer({
         }
         cb('Error: File type not supported!');
     },
-    limits: { fileSize: 1024 * 1024 * 5 }, // 5MB limit
+    limits: { fileSize: 1024 * 1024 * 2 }, // 2MB limit
 });
 
 router.get('/', async (req, res) => {
@@ -49,10 +49,17 @@ router.get('/', async (req, res) => {
         let filterBy = {};
 
         if (req.query.categories) {
-            filterBy = { category: req.query.categories.split(',') };
+            filterBy.category = { $in: req.query.categories.split(',') };
+        }
+
+        if (req.query.products) {
+            filterBy.name = {
+                $regex: new RegExp(req.query.products.split(','), 'i'),
+            };
         }
 
         const products = await Product.find(filterBy).populate('category');
+
         res.json(products);
     } catch (err) {
         res.status(500).json({ error: err, success: false });

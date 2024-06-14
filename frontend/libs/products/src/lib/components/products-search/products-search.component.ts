@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
+import { ProductsService } from '@frontend/shared';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,19 +13,31 @@ import { Subscription } from 'rxjs';
     styleUrl: './products-search.component.scss',
 })
 export class ProductsSearchComponent implements OnInit, OnDestroy {
-    constructor(private router: Router) {}
+    constructor(
+        private router: Router,
+        private productsService: ProductsService
+    ) {}
 
     routePath = '';
     routerUrlSubscription!: Subscription;
-    filterBy = {
-        name: '',
-    };
+    filterBySubscription!: Subscription;
+    filterBy!: { categories: string[]; name: string };
 
     ngOnInit(): void {
         this.routerUrlSubscription = this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 this.routePath = this.router.url;
             }
+        });
+
+        this._getFilterBy();
+    }
+
+    private _getFilterBy() {
+        this.filterBySubscription = this.productsService.filterBy$.subscribe({
+            next: (filterBy) => {
+                this.filterBy = filterBy;
+            },
         });
     }
 
@@ -33,10 +46,13 @@ export class ProductsSearchComponent implements OnInit, OnDestroy {
             this.router.navigate(['/products']);
         }
 
-        console.log('filterBy', this.filterBy);
+        this.productsService.setFilterBy(this.filterBy);
+
+        this.productsService.getProducts();
     }
 
     ngOnDestroy(): void {
         this.routerUrlSubscription?.unsubscribe();
+        this.filterBySubscription?.unsubscribe();
     }
 }

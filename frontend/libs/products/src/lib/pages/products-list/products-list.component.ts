@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { CartItem, Category, Product } from '@frontend/utils';
 import { FormsModule } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import {
@@ -27,7 +27,7 @@ import {
     styleUrl: './products-list.component.scss',
     host: { class: 'full component-layout' },
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnDestroy {
     constructor(
         private productsService: ProductsService,
         private categoriesService: CategoriesService,
@@ -39,12 +39,22 @@ export class ProductsListComponent implements OnInit {
     products!: Product[];
     categories!: Category[];
     selectedCategories: { [klass: string]: boolean | string } = {};
-    filterBy: { [klass: string]: string[] } = { categories: [] };
+    filterBy!: { categories: string[]; name: string };
     isParamsInited = false;
     categoryId = '';
+    filterBySubscription!: Subscription;
 
     ngOnInit(): void {
+        this._getFilterBy();
         this._getCategories();
+    }
+
+    private _getFilterBy() {
+        this.filterBySubscription = this.productsService.filterBy$.subscribe({
+            next: (filterBy) => {
+                this.filterBy = filterBy;
+            },
+        });
     }
 
     private _checkParams() {
@@ -81,17 +91,11 @@ export class ProductsListComponent implements OnInit {
         });
     }
 
-    private _getProducts(filterBy?: string[]) {
-        this.productsService.getProducts(filterBy).subscribe({
+    private _getProducts() {
+        this.productsService.getProducts();
+        this.productsService.products$.subscribe({
             next: (products) => {
-                if (this.categoryId && this.isParamsInited) {
-                    this.products = products;
-                } else if (!this.categoryId && this.isParamsInited) {
-                    this.products = products;
-                }
-            },
-            error: (err) => {
-                console.error('Cannot get products', err);
+                this.products = products;
             },
         });
     }
@@ -109,18 +113,20 @@ export class ProductsListComponent implements OnInit {
         }
 
         // Restart filterBy['categories'] array
-        this.filterBy['categories'] = [];
+        this.filterBy.categories = [];
+        this.productsService.setFilterBy(this.filterBy);
 
         // Add selected categories ids to filterBy['categories] array
         for (const key in this.selectedCategories) {
             if (this.selectedCategories[key]) {
-                this.filterBy['categories'].push(
+                this.filterBy.categories.push(
                     this.selectedCategories[key] as string
                 );
+                this.productsService.setFilterBy(this.filterBy);
             }
         }
 
-        this._getProducts(this.filterBy['categories']);
+        this._getProducts();
     }
 
     onAddProduct(productId: string) {
@@ -135,5 +141,9 @@ export class ProductsListComponent implements OnInit {
             summary: 'Success',
             detail: 'Product added to cart',
         });
+    }
+
+    ngOnDestroy(): void {
+        this.filterBySubscription?.unsubscribe();
     }
 }

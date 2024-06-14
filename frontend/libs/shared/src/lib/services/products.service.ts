@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 import { Product } from '@frontend/utils';
 import { environment } from '@frontend/utils';
 
@@ -10,17 +10,50 @@ import { environment } from '@frontend/utils';
 export class ProductsService {
     constructor(private http: HttpClient) {}
 
+    private _filterBy$ = new BehaviorSubject<{
+        categories: string[];
+        name: string;
+    }>({ categories: [], name: '' });
+    public filterBy$ = this._filterBy$.asObservable();
+
+    private _products$ = new BehaviorSubject<Product[]>([]);
+    public products$ = this._products$.asObservable();
+
     apiUrl = environment.API_URL;
 
-    getProducts(filterBy?: string[]): Observable<Product[]> {
+    getProducts() {
         let queryParams = new HttpParams();
-        if (filterBy) {
-            queryParams = queryParams.append('categories', filterBy.join(','));
+
+        if (this._filterBy$.value.categories.length) {
+            queryParams = queryParams.append(
+                'categories',
+                this._filterBy$.value.categories.join(',')
+            );
         }
 
-        return this.http.get<Product[]>(`${this.apiUrl}products`, {
+        if (this._filterBy$.value.name) {
+            queryParams = queryParams.append(
+                'products',
+                this._filterBy$.value.name
+            );
+        }
+
+        const products$ = this.http.get<Product[]>(`${this.apiUrl}products`, {
             params: queryParams,
         });
+
+        products$.pipe(take(1)).subscribe({
+            next: (products) => {
+                this._setProducts(products);
+            },
+            error: (err) => {
+                console.error('err', err);
+            },
+        });
+    }
+
+    private _setProducts(products: Product[]) {
+        this._products$.next(products);
     }
 
     getProductById(productId: string): Observable<Product> {
@@ -62,5 +95,9 @@ export class ProductsService {
         return this.http.get<Product[]>(
             `${this.apiUrl}products/get/featured/${count}`
         );
+    }
+
+    setFilterBy(filterBy: { categories: string[]; name: string }) {
+        this._filterBy$.next(filterBy);
     }
 }
