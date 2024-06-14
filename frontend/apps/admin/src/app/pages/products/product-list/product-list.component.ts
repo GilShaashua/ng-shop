@@ -55,8 +55,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     getProducts() {
-        this.productsService
-            .getProducts()
+        this.productsService.getProducts();
+
+        this.productsService.products$
             .pipe(
                 map((products) => {
                     return products.map((product) => {
@@ -71,9 +72,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
             .subscribe({
                 next: (products) => {
                     this.products = products;
-                },
-                error: (err) => {
-                    console.error('Cannot get products', err);
                 },
             });
     }
