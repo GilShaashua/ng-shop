@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ProductsService } from '@frontend/shared';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 
 @Component({
     selector: 'ngshop-products-search',
@@ -23,6 +23,9 @@ export class ProductsSearchComponent implements OnInit, OnDestroy {
     filterBySubscription!: Subscription;
     filterBy!: { categories: string[]; name: string };
 
+    private searchTerms = new Subject<string>();
+    private searchTermsSubscription!: Subscription;
+
     ngOnInit(): void {
         this.routerUrlSubscription = this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
@@ -31,6 +34,13 @@ export class ProductsSearchComponent implements OnInit, OnDestroy {
         });
 
         this._getFilterBy();
+
+        this.searchTermsSubscription = this.searchTerms
+            .pipe(debounceTime(500))
+            .subscribe(() => {
+                this.productsService.setFilterBy(this.filterBy);
+                this.productsService.getProducts();
+            });
     }
 
     private _getFilterBy() {
@@ -46,13 +56,12 @@ export class ProductsSearchComponent implements OnInit, OnDestroy {
             this.router.navigate(['/products']);
         }
 
-        this.productsService.setFilterBy(this.filterBy);
-
-        this.productsService.getProducts();
+        this.searchTerms.next(this.filterBy.name);
     }
 
     ngOnDestroy(): void {
         this.routerUrlSubscription?.unsubscribe();
         this.filterBySubscription?.unsubscribe();
+        this.searchTermsSubscription?.unsubscribe();
     }
 }
