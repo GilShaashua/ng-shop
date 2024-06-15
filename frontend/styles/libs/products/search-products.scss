@@ -4,6 +4,11 @@
     background-color: $text-color;
     border-radius: 3px;
     padding-inline-start: 5px;
+    display: none;
+
+    @include respond-to('desktop') {
+        display: flex;
+    }
 
     label {
         display: flex;

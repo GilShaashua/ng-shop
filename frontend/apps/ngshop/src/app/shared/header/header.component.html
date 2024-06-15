@@ -5,18 +5,63 @@
 
     <ngshop-products-search></ngshop-products-search>
 
-    <nav>
-        <ul>
+    <nav [ngClass]="{ navOpen: isNavShown }">
+        <div
+            (click)="isMenuShown = !isMenuShown"
+            class="loggedInUser-mobile-tablet"
+        >
+            <p *ngIf="loggedInUser">{{ loggedInUser.name }}</p>
+
+            <i class="pi pi-user">
+                <ul *ngIf="isMenuShown" class="menu">
+                    <li
+                        (click)="
+                            $event.stopPropagation();
+                            isMenuShown = false;
+                            isNavShown = false
+                        "
+                        *ngIf="!loggedInUser"
+                        routerLink="/login"
+                    >
+                        Login
+                    </li>
+                    <li *ngIf="loggedInUser" (click)="logout($event)">
+                        Logout
+                    </li>
+                </ul>
+            </i>
+        </div>
+
+        <ul class="nav-desktop">
             <li
+                (click)="isNavShown = false"
                 routerLink="/"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
             >
                 Home
             </li>
-            <li routerLink="/products" routerLinkActive="active">Products</li>
-            <li routerLink="/contact" routerLinkActive="active">Contact</li>
+            <li
+                (click)="isNavShown = false"
+                routerLink="/products"
+                routerLinkActive="active"
+            >
+                Products
+            </li>
+            <li
+                (click)="isNavShown = false"
+                routerLink="/contact"
+                routerLinkActive="active"
+            >
+                Contact
+            </li>
         </ul>
+
+        <div
+            class="cover"
+            [ngClass]="{ open: isMenuShown }"
+            (click)="isMenuShown = false"
+        ></div>
     </nav>
 
     <div class="icons">
@@ -39,10 +84,14 @@
             ><span>{{ cartCount }}</span></i
         >
 
+        <i (click)="isNavShown = true" class="pi pi-bars"></i>
+
         <div
             class="cover"
-            [ngClass]="{ open: isCartShown || isMenuShown }"
-            (click)="isCartShown = false; isMenuShown = false"
+            [ngClass]="{ open: isCartShown || isMenuShown || isNavShown }"
+            (click)="
+                isCartShown = false; isMenuShown = false; isNavShown = false
+            "
         ></div>
 
         <orders-cart

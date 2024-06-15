@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     endSubs$ = new Subject();
     isCartShown = false;
     isMenuShown = false;
+    isNavShown = false;
     totalPrice = 0;
     cartCount = 0;
     loggedInUser: User | null = null;

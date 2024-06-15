@@ -3,24 +3,53 @@
 
     .hero {
         display: flex;
+        flex-direction: column-reverse;
         align-items: center;
         justify-content: space-between;
-        gap: 1.5em;
-        height: 450px;
+
+        @include respond-to('desktop') {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5em;
+            height: 450px;
+        }
 
         .left-column {
             display: flex;
             flex-direction: column;
             gap: 1.5em;
+            margin-block-end: 2.5em;
+            align-items: center;
+
+            @include respond-to('desktop') {
+                margin-block-end: unset;
+                align-items: unset;
+            }
 
             .typography {
+                text-align: center;
+
+                @include respond-to('desktop') {
+                    text-align: left;
+                }
+
                 h2 {
-                    font-size: 60px;
+                    font-size: 50px;
+
+                    @include respond-to('desktop') {
+                        font-size: 60px;
+                    }
                 }
 
                 h4 {
-                    font-size: 40px;
+                    font-size: 30px;
                     font-weight: 400;
+
+                    @include respond-to('desktop') {
+                        font-size: 40px;
+                    }
                 }
             }
 
@@ -36,7 +65,11 @@
                 color: $text-color;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 gap: 0.2em;
+
+                @include respond-to('desktop') {
+                }
 
                 i {
                     font-size: 20px;
@@ -57,8 +90,14 @@
                 img {
                     object-fit: cover;
                     aspect-ratio: 1/1;
-                    height: 100%;
-                    width: unset;
+                    width: 50vw;
+
+                    @include respond-to('desktop') {
+                        object-fit: cover;
+                        aspect-ratio: 1/1;
+                        height: 100%;
+                        width: unset;
+                    }
                 }
             }
         }
