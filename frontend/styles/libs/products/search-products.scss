@@ -4,11 +4,6 @@
     background-color: $text-color;
     border-radius: 3px;
     padding-inline-start: 5px;
-    display: none;
-
-    @include respond-to('desktop') {
-        display: flex;
-    }
 
     label {
         display: flex;
@@ -27,7 +22,7 @@
         height: 40px;
         background-color: $text-color;
         padding-inline-end: 7px;
-        width: 180px;
+        width: 100%;
         border-radius: 3px;
     }
 }
