@@ -17,6 +17,10 @@
             overflow: auto;
             width: calc(100vw - 60px);
 
+            @include respond-to('desktop') {
+                width: 100%;
+            }
+
             .category {
                 height: 100px;
                 flex: 1;
