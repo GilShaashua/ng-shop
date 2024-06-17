@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     isMenuShown = false;
     isNavShown = false;
     totalPrice = 0;
-    cartCount = 0;
+    cartCount: number | null = null;
     loggedInUser: User | null = null;
 
     ngOnInit(): void {

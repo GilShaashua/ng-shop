@@ -1,4 +1,7 @@
-<section class="home-page full" *ngIf="categories && featuredProducts">
+<section
+    class="home-page full"
+    *ngIf="categories && featuredProducts; else loader"
+>
     <ngshop-hero></ngshop-hero>
     <products-categories-banner
         [categories]="categories"
@@ -10,3 +13,9 @@
 </section>
 
 <p-toast></p-toast>
+
+<ng-template #loader>
+    <div class="loader">
+        <i class="pi pi-spin pi-spinner"></i>
+    </div>
+</ng-template>
