@@ -3,13 +3,19 @@ import { AuthService } from '@frontend/shared';
 import { Router } from '@angular/router';
 
 export function loginGuard() {
-    const user = inject(AuthService).getToken();
+    const authService = inject(AuthService);
+    const token = authService.getToken();
 
-    if (user) {
-        console.error('User is already logged in');
-
-        inject(Router).navigateByUrl('/');
-        return false;
+    if (token) {
+        const decodedToken = atob(token.split('.')[1]);
+        const jwtToken = JSON.parse(decodedToken);
+        if (authService.isTokenExpried(jwtToken.exp)) {
+            return true;
+        } else {
+            console.error('User is already logged in');
+            inject(Router).navigateByUrl('/');
+            return false;
+        }
     } else {
         return true;
     }

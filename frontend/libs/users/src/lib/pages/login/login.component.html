@@ -2,7 +2,7 @@
     <div class="login-container">
         <div class="img">
             <img
-                src="https://ng-shop-mexf.onrender.com/public/uploads/login.jpg"
+                src="https://s3-bucket-gilshaashua.s3.eu-north-1.amazonaws.com/login.jpg"
                 alt="login"
             />
             <div class="red-cover"></div>
@@ -11,7 +11,13 @@
         <div class="login-inner-container">
             <div class="header">
                 <h1>eShop</h1>
-                <h2>Admin Panel</h2>
+                <h2>
+                    {{
+                        isUsedByNgShop
+                            ? 'The best products in every category'
+                            : 'Admin Panel'
+                    }}
+                </h2>
             </div>
 
             <form
