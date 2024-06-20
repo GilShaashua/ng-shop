@@ -30,6 +30,13 @@ export class ProductsSearchComponent implements OnInit, OnDestroy {
         this.routerUrlSubscription = this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 this.routePath = this.router.url;
+
+                if (!this.routePath.startsWith('/products')) {
+                    this.productsService.setFilterBy({
+                        ...this.filterBy,
+                        name: '',
+                    });
+                }
             }
         });
 

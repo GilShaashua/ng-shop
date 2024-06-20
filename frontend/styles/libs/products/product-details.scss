@@ -24,10 +24,9 @@
             position: relative;
 
             .btn-back {
-                position: absolute;
-                top: 5px;
-                right: 5px;
-                background-color: #fff;
+                position: fixed;
+                top: 100px;
+                right: 25px;
                 border: none;
                 border-radius: 50%;
                 z-index: 99;

@@ -7,8 +7,12 @@
 
     .inner-container {
         display: grid;
-        grid-template-columns: 1fr auto;
         gap: 4em;
+
+        @include respond-to('desktop') {
+            grid-template-columns: 1fr auto;
+            gap: 4em;
+        }
 
         form {
             display: grid;
@@ -85,7 +89,7 @@
         }
 
         .order-summary {
-            width: 350px;
+            width: 100%;
             height: fit-content;
             padding: 1.5em;
             display: flex;
@@ -93,6 +97,10 @@
             gap: 0.7em;
             background-color: $backgroundColorDark3;
             border-radius: 3px;
+
+            @include respond-to('desktop') {
+                width: 350px;
+            }
 
             h2 {
                 margin-block-end: 0.7em;
