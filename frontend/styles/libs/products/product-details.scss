@@ -17,8 +17,39 @@
 
     .main-details {
         display: grid;
-        grid-template-columns: minmax(350px, 1fr) minmax(350px, 1fr);
+        grid-template-rows: 350px 1fr;
         gap: 2em;
+
+        .gallery {
+            position: relative;
+
+            .btn-back {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                background-color: #fff;
+                border: none;
+                border-radius: 50%;
+                z-index: 99;
+                display: flex;
+                align-items: center;
+                padding: 5px;
+
+                i {
+                    font-size: 25px;
+                }
+
+                @include respond-to('desktop') {
+                    display: none;
+                }
+            }
+        }
+
+        @include respond-to('desktop') {
+            grid-template-columns: minmax(350px, 1fr) minmax(350px, 1fr);
+            grid-template-rows: unset;
+            gap: 2em;
+        }
 
         .content {
             height: 100%;
@@ -37,9 +68,13 @@
                     border: none;
                     background-color: transparent;
                     cursor: pointer;
-                    display: flex;
                     align-items: center;
                     border-radius: 4px;
+                    display: none;
+
+                    @include respond-to('desktop') {
+                        display: flex;
+                    }
 
                     &:hover {
                         background-color: $backgroundColorDark2;
@@ -129,8 +164,10 @@
         height: 100%;
 
         p {
-            columns: 2;
-            gap: 1.5em;
+            @include respond-to('desktop') {
+                columns: 2;
+                gap: 1.5em;
+            }
         }
     }
 }

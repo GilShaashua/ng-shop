@@ -4,18 +4,28 @@ p-toast {
 
 .products-list {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr;
     height: 100%;
     gap: 2em;
 
+    @include respond-to('desktop') {
+        grid-template-columns: 250px 1fr;
+        grid-template-rows: unset;
+    }
+
     .categories {
         display: grid;
-        grid-template-columns: minmax(25px, 1fr) minmax(auto, 250px) minmax(
-                25px,
-                1fr
-            );
+        grid-template-columns: 25px minmax(auto, 1fr) 25px;
         background-color: $backgroundColorDark2;
         padding-block: 1.5em;
+
+        @include respond-to('desktop') {
+            grid-template-columns: minmax(25px, 1fr) minmax(auto, 250px) minmax(
+                    25px,
+                    1fr
+                );
+            padding-block: 1.5em;
+        }
 
         h3 {
             grid-column: 2;
@@ -25,13 +35,18 @@ p-toast {
 
         ul {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 1em;
             width: 100%;
             grid-column: 2;
             grid-row: 1/-1;
-            align-self: start;
-            margin-block-start: 6em;
+            margin-block-start: 4em;
+
+            @include respond-to('desktop') {
+                flex-direction: column;
+                margin-block-start: 6em;
+                flex-wrap: unset;
+            }
 
             li {
                 display: flex;

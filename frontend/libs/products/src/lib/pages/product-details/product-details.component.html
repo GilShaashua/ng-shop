@@ -4,6 +4,12 @@
 >
     <div class="main-details">
         <div class="gallery">
+            <div class="btn-back">
+                <button class="btn-back" title="Back" (click)="goBack()">
+                    <i class="pi pi-angle-right"></i>
+                </button>
+            </div>
+
             <ui-gallery [images]="product.images"></ui-gallery>
         </div>
 
