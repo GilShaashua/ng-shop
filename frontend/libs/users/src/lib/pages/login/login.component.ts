@@ -27,6 +27,7 @@ import { AuthService, UsersService } from '@frontend/shared';
     ],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
+    host: { class: 'full' },
 })
 export class LoginComponent implements OnInit, OnDestroy {
     constructor(
