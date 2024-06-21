@@ -13,12 +13,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 2em;
-    height: 120px;
-    padding-inline: 1.5em;
-    padding-block: 1.5em;
+    height: 135px;
+    padding-inline: 1.4em;
+    padding-block: 1.4em;
 
     .column1 {
-        flex: 2;
+        flex: 3;
         display: flex;
         align-items: center;
         gap: 1em;
@@ -33,12 +33,14 @@
         }
 
         .details {
-            flex: 2;
+            flex: 4;
             height: 100%;
             display: grid;
             grid-template-rows: auto auto 1fr;
 
             .product-name {
+                font-size: 18px;
+                font-weight: 100;
             }
 
             .product-price {

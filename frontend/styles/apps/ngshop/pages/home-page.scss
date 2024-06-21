@@ -1,0 +1,20 @@
+p-toast {
+    .p-element {
+        padding: 0.5em;
+
+        .p-toast-message {
+            width: fit-content;
+            translate: 15%;
+
+            .p-toast-message-content {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+            }
+
+            .p-toast-icon-close {
+                margin-inline-end: 1em;
+            }
+        }
+    }
+}
