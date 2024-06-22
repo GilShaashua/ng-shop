@@ -1,12 +1,12 @@
 <section
     class="products-list"
-    *ngIf="products && categories && isParamsInited; else loader"
+    *ngIf="isParamsInited && products && categories; else loader"
 >
     <div class="categories">
         <h3>Categories</h3>
 
         <ul>
-            <li *ngFor="let category of categories">
+            <li *ngFor="let category of categories; trackBy: trackByCategory">
                 <input
                     [(ngModel)]="
                         selectedCategories[category.name.toLowerCase()]
@@ -26,7 +26,7 @@
 
         <ul>
             <products-product-item
-                *ngFor="let product of products"
+                *ngFor="let product of products; trackBy: trackByProduct"
                 [product]="product"
                 (onAddProduct)="onAddProduct($event)"
             ></products-product-item>

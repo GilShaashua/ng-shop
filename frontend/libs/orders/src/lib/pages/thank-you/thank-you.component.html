@@ -13,7 +13,10 @@
     </div>
 
     <ul>
-        <li class="order-item" *ngFor="let item of order.orderItems">
+        <li
+            class="order-item"
+            *ngFor="let item of order.orderItems; trackBy: trackByOrderItem"
+        >
             <div class="inner-container">
                 <h2>{{ item.product.name }}</h2>
                 <img [src]="item.product.image" alt="product" />

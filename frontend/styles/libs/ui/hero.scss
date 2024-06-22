@@ -68,9 +68,6 @@
                 justify-content: center;
                 gap: 0.2em;
 
-                @include respond-to('desktop') {
-                }
-
                 i {
                     font-size: 20px;
                 }
@@ -86,11 +83,19 @@
 
             .hero-img {
                 height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-block-start: 0.5em;
+
+                @include respond-to('desktop') {
+                    margin-block-start: unset;
+                }
 
                 img {
                     object-fit: cover;
                     aspect-ratio: 1/1;
-                    width: 50vw;
+                    width: 90%;
 
                     @include respond-to('desktop') {
                         object-fit: cover;

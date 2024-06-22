@@ -23,7 +23,11 @@
         <div class="images" #imagesContainer>
             <img
                 [ngClass]="{ active: activeImage === image }"
-                *ngFor="let image of images; let idx = index"
+                *ngFor="
+                    let image of images;
+                    let idx = index;
+                    trackBy: trackByImage
+                "
                 (click)="onSelectImage(idx)"
                 [src]="image"
                 alt="image"

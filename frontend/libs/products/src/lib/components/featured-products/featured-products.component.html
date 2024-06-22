@@ -2,7 +2,7 @@
     <h2>Featured Products</h2>
     <ul class="featured-products-list">
         <products-product-item
-            *ngFor="let product of featuredProducts"
+            *ngFor="let product of featuredProducts; trackBy: trackByFn"
             [product]="product"
             (onAddProduct)="onAddProduct.emit($event)"
         ></products-product-item>

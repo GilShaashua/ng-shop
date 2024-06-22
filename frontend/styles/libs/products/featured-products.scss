@@ -5,8 +5,9 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 4em;
-        padding-block: 2.5em;
+        gap: 6em;
+        padding-block-start: 2.5em;
+        padding-block-end: 3em;
 
         h2 {
             font-size: 30px;
@@ -17,7 +18,29 @@
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             grid-auto-rows: 240px;
             column-gap: 1em;
-            row-gap: 4em;
+            row-gap: 5.5em;
+
+            .product-item {
+                @media screen and (max-width: 437px) {
+                    img {
+                        width: 125px;
+                        top: -40px;
+                    }
+
+                    .inner-container {
+                        .btn-add-cart {
+                            padding-inline: 1.5em;
+                            height: 40px;
+                            font-size: 18px;
+                            font-weight: 600;
+
+                            i {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

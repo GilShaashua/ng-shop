@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
     AfterContentChecked,
+    ChangeDetectionStrategy,
     Component,
     ElementRef,
     Input,
@@ -11,6 +12,7 @@ import {
 @Component({
     selector: 'ui-gallery',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule],
     templateUrl: './gallery.component.html',
     styleUrl: './gallery.component.scss',
@@ -60,8 +62,11 @@ export class GalleryComponent implements OnInit, AfterContentChecked {
             this.imagesContainerScrollLeft -= scrollAmount;
 
             if (this.imagesContainerScrollLeft === 0) {
-                this.isRightArrowShown = true;
                 this.isLeftArrowShown = false;
+            }
+
+            if (this.imagesContainerScrollLeft > 0) {
+                this.isRightArrowShown = true;
             }
         } else if (side === 'right') {
             imagesContainer.scrollLeft += scrollAmount; // Scroll right
@@ -78,5 +83,9 @@ export class GalleryComponent implements OnInit, AfterContentChecked {
                 this.isLeftArrowShown = true;
             }
         }
+    }
+
+    trackByImage(index: number, image: string) {
+        return image;
     }
 }

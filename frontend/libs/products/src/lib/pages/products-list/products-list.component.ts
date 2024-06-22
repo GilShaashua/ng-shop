@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { CartItem, Category, Product } from '@frontend/utils';
@@ -16,6 +22,7 @@ import {
 @Component({
     selector: 'products-products-list',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
         RouterModule,
@@ -29,6 +36,7 @@ import {
 })
 export class ProductsListComponent implements OnInit, OnDestroy {
     constructor(
+        private changeDetectorRef: ChangeDetectorRef,
         private productsService: ProductsService,
         private categoriesService: CategoriesService,
         private route: ActivatedRoute,
@@ -70,6 +78,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
                 this.onChangeCategory();
             } else {
                 this.isParamsInited = true;
+                this.changeDetectorRef.detectChanges();
                 this._getProducts();
             }
         });
@@ -79,6 +88,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         this.categoriesService.getCategories().subscribe({
             next: (categories) => {
                 this.categories = categories;
+                this.changeDetectorRef.detectChanges();
                 this.categories.forEach((category) => {
                     this.selectedCategories[category.name.toLowerCase()] =
                         false;
@@ -96,6 +106,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         this.productsService.products$.subscribe({
             next: (products) => {
                 this.products = products;
+                this.changeDetectorRef.detectChanges();
             },
         });
     }
@@ -141,6 +152,14 @@ export class ProductsListComponent implements OnInit, OnDestroy {
             summary: 'Success',
             detail: 'Product added to cart',
         });
+    }
+
+    trackByCategory(index: number, category: Category) {
+        return category.id;
+    }
+
+    trackByProduct(index: number, product: Product) {
+        return product.id;
     }
 
     ngOnDestroy(): void {

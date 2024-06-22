@@ -31,6 +31,7 @@ p-toast {
             grid-column: 2;
             grid-row: 1/-1;
             align-self: start;
+            font-size: 22px;
         }
 
         ul {
@@ -71,7 +72,15 @@ p-toast {
         display: flex;
         flex-direction: column;
         gap: 5em;
-        padding-block: 1.5em;
+        padding-block-end: 2.5em;
+
+        @include respond-to('desktop') {
+            padding-block-start: 1.5em;
+        }
+
+        h3 {
+            font-size: 22px;
+        }
 
         ul {
             display: grid;
@@ -80,8 +89,32 @@ p-toast {
             column-gap: 1.2em;
             row-gap: 5em;
 
+            @media screen and (max-width: 437px) {
+                row-gap: 6em;
+            }
+
             .product-item {
                 background-color: $backgroundColorDark3;
+
+                @media screen and (max-width: 437px) {
+                    img {
+                        width: 125px;
+                        top: -40px;
+                    }
+
+                    .inner-container {
+                        .btn-add-cart {
+                            padding-inline: 1.5em;
+                            height: 40px;
+                            font-weight: 600;
+                            font-size: 18px;
+
+                            i {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

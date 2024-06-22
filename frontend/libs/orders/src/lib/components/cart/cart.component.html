@@ -11,7 +11,7 @@
 
     <ul>
         <orders-cart-item
-            *ngFor="let cartItem of cart"
+            *ngFor="let cartItem of cart; trackBy: trackByCartItem"
             [cartItem]="cartItem"
         ></orders-cart-item>
     </ul>
@@ -27,18 +27,17 @@
                 <span>Packing & Shipping</span>
                 <span class="free">Free</span>
             </div>
-
-            <div class="checkout">
-                <div class="total-price">
-                    <span>Total Price</span>
-                    <span>{{ totalPrice | currency }}</span>
-                </div>
-
-                <button class="btn-checkout" (click)="onCheckout.emit()">
-                    <i class="pi pi-shopping-cart"></i>
-                    Checkout
-                </button>
+        </div>
+        <div class="checkout">
+            <div class="total-price">
+                <span>Total Price</span>
+                <span>{{ totalPrice | currency }}</span>
             </div>
+
+            <button class="btn-checkout" (click)="onCheckout.emit()">
+                <i class="pi pi-shopping-cart"></i>
+                Checkout
+            </button>
         </div>
     </div>
 </div>

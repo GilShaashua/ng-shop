@@ -4,7 +4,7 @@
     <div class="categories-list">
         <div
             class="category"
-            *ngFor="let category of categories"
+            *ngFor="let category of categories; trackBy: trackByFn"
             [ngStyle]="{ backgroundColor: category.color }"
             routerLink="products/{{ category.id }}"
         >
