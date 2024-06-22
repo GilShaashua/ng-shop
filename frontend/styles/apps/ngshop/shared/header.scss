@@ -39,7 +39,7 @@
             }
 
             @include respond-to('desktop') {
-                height: unset;
+                height: 100%;
                 width: unset;
                 position: unset;
                 right: unset;
@@ -49,6 +49,7 @@
                 translate: unset;
                 transition: unset;
                 box-shadow: unset;
+                margin-inline: 4em;
             }
 
             .loggedInUser-mobile-tablet {
@@ -152,7 +153,7 @@
         .icons {
             display: flex;
             align-items: center;
-            gap: 1.2em;
+            gap: 1.5em;
             position: relative;
 
             p {

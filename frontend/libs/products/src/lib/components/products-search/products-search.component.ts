@@ -11,6 +11,9 @@ import { Subject, Subscription, debounceTime } from 'rxjs';
     imports: [CommonModule, FormsModule],
     templateUrl: './products-search.component.html',
     styleUrl: './products-search.component.scss',
+    host: {
+        class: 'products-search-host',
+    },
 })
 export class ProductsSearchComponent implements OnInit, OnDestroy {
     constructor(
