@@ -115,6 +115,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
             });
     }
 
+    trackByProductId(index: number, product: Product) {
+        return product.id;
+    }
+
     ngOnDestroy(): void {
         this.urlChangesSubscription?.unsubscribe();
     }
