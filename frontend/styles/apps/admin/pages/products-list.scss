@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+    padding-block: 1.5em;
+
+    @include respond-to('desktop') {
+        padding-block: unset;
+    }
 
     .name-page {
         display: flex;

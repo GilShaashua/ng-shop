@@ -5,12 +5,49 @@
         </div>
 
         <nav [ngClass]="{ navOpen: isNavOpen }">
-            <i>hi</i>
-            <i>hi</i>
-            <i>hi</i>
-            <i>hi</i>
-            <i>hi</i>
-            <i>hi</i>
+            <ul>
+                <li
+                    routerLink="/"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="isNavOpen = false"
+                >
+                    <a><i class="pi pi-home"></i>Dashboard</a>
+                </li>
+                <li
+                    routerLink="/products"
+                    routerLinkActive="active"
+                    (click)="isNavOpen = false"
+                >
+                    <a><i class="pi pi-briefcase"></i>Products</a>
+                </li>
+                <li
+                    routerLink="/categories"
+                    routerLinkActive="active"
+                    (click)="isNavOpen = false"
+                >
+                    <a><i class="pi pi-list"></i>Categories</a>
+                </li>
+                <li
+                    routerLink="/orders"
+                    routerLinkActive="active"
+                    (click)="isNavOpen = false"
+                >
+                    <a><i class="pi pi-shopping-cart"></i>Orders</a>
+                </li>
+                <li
+                    routerLink="/users"
+                    routerLinkActive="active"
+                    (click)="isNavOpen = false"
+                >
+                    <a><i class="pi pi-users"></i>Users</a>
+                </li>
+            </ul>
+
+            <div class="logout" (click)="onLogout()">
+                <i class="pi pi-sign-out"></i>
+                Logout
+            </div>
         </nav>
 
         <div

@@ -25,6 +25,8 @@
     .admin-header-mobile-tablet-host {
         height: 60px;
         background-color: $primary-color;
+        position: sticky;
+        top: 0;
 
         @include respond-to('desktop') {
             display: none;
@@ -62,9 +64,49 @@
                     translate: 100%;
                     transition: all 0.2s ease-in-out;
                     box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.2);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding-block-end: 2em;
 
                     &.navOpen {
                         translate: 0%;
+                    }
+
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        margin-block-start: 5em;
+
+                        li {
+                            padding-inline-end: 1em;
+                            padding-inline-start: 2.5em;
+                            height: 45px;
+                            display: flex;
+
+                            &.active {
+                                background-color: $primary-color;
+                            }
+
+                            a {
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.8em;
+
+                                i {
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                    }
+
+                    .logout {
+                        height: 30px;
+                        display: flex;
+                        gap: 0.8em;
+                        align-items: center;
+                        padding-inline: 2.5em;
                     }
                 }
 

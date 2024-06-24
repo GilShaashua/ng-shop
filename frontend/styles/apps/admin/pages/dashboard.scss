@@ -2,6 +2,11 @@
     display: flex;
     flex-direction: column;
     gap: 2em;
+    padding-block: 1.5em;
+
+    @include respond-to('desktop') {
+        padding-block: unset;
+    }
 
     .header {
         display: flex;
