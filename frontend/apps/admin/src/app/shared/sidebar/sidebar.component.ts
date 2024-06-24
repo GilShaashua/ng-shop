@@ -8,6 +8,7 @@ import { AuthService } from '@frontend/shared';
     imports: [RouterLink, RouterLinkActive],
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.scss',
+    host: { class: 'admin-sidebar-host' },
 })
 export class SidebarComponent {
     constructor(private authService: AuthService, private router: Router) {}
