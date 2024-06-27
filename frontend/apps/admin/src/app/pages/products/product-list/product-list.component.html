@@ -1,4 +1,7 @@
-<section class="products-page" *ngIf="products; else loader">
+<section
+    class="products-page"
+    *ngIf="products && isDesktop !== undefined; else loader"
+>
     <div class="name-page">
         <h1>Products</h1>
         <p>List of all products</p>
@@ -11,6 +14,7 @@
     </div>
 
     <p-table
+        *ngIf="isDesktop"
         [paginator]="true"
         [rows]="10"
         [showCurrentPageReport]="true"
@@ -86,7 +90,7 @@
         </ng-template>
     </p-table>
 
-    <div class="products-tablet-mobile">
+    <div class="products-tablet-mobile" *ngIf="!isDesktop">
         <ul class="product-list">
             <li
                 class="product"

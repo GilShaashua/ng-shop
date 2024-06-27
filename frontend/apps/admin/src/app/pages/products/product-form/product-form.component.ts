@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -21,6 +27,7 @@ import { Category } from '@frontend/utils';
 @Component({
     selector: 'admin-product-form',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
         FormsModule,
@@ -41,7 +48,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         private messageService: MessageService,
         private router: Router,
         private route: ActivatedRoute,
-        private categoriesService: CategoriesService
+        private categoriesService: CategoriesService,
+        private changeDetectorRef: ChangeDetectorRef
     ) {}
 
     form: FormGroup = this.formBuilder.group({
@@ -150,6 +158,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
                     this.form.get('image')?.updateValueAndValidity();
                     if (fileReader.result) {
                         this.imageSelectedUrl = fileReader.result;
+                        this.changeDetectorRef.markForCheck();
                     }
                 };
 
@@ -182,6 +191,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
                                 this.gallerySelectedUrls.push(
                                     fileReader.result
                                 );
+                                this.changeDetectorRef.markForCheck();
                             }
                         };
 
@@ -204,6 +214,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
                             this.form.patchValue(product);
                             this.form.updateValueAndValidity();
                             this.isCmpInitialized = true;
+                            this.changeDetectorRef.markForCheck();
                         },
                         error: (err) => {
                             console.error('Cannot get product', err);
@@ -211,6 +222,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
                     });
             } else {
                 this.isCmpInitialized = true;
+                this.changeDetectorRef.markForCheck();
             }
         });
     }
@@ -219,6 +231,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         this.categoriesService.getCategories().subscribe({
             next: (categories) => {
                 this.categories = categories;
+                this.changeDetectorRef.markForCheck();
             },
             error: (err) => {
                 console.error('Cannot get categories', err);

@@ -7,6 +7,7 @@ export * from './lib/services/products.service';
 export * from './lib/services/users.service';
 export * from './lib/services/auth.service';
 export * from './lib/services/jwt.interceptor';
+export * from './lib/services/viewport.service';
 
 export * from './lib/+state/users.actions';
 export * from './lib/+state/users.effects';

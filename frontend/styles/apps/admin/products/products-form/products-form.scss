@@ -7,30 +7,29 @@
     }
 }
 
-.loader {
+.loader-products {
     position: fixed;
-    top: 10vh;
-    left: calc(175px + ((100% - 175px) / 2));
-    transform: translate(-50%, 0);
+    top: 15vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     i {
         font-size: 3em;
+    }
+
+    @include respond-to('desktop') {
+        top: 10vh;
+        left: calc(175px + ((100% - 175px) / 2));
+        transform: translate(-50%, 0);
     }
 }
 
 .products-form-modal {
     position: fixed;
-    left: 175px;
     top: 0;
-    max-height: 100vh;
-    width: calc(100% - 175px);
+    left: 0;
     overflow: auto;
-    padding-block: 1em;
-    display: grid;
-    grid-template-columns: minmax(25px, 1fr) minmax(auto, 1200px) minmax(
-            25px,
-            1fr
-        );
+    max-height: 100vh;
 
     & > * {
         &.full {
@@ -42,8 +41,15 @@
         }
     }
 
-    router-outlet {
-        display: none;
+    @include respond-to('desktop') {
+        left: 175px;
+        width: calc(100% - 175px);
+        padding-block: 1em;
+        display: grid;
+        grid-template-columns: minmax(25px, 1fr) minmax(auto, 1200px) minmax(
+                25px,
+                1fr
+            );
     }
 
     .products-form-container {
@@ -376,12 +382,18 @@
             }
 
             .images-container {
-                align-self: flex-start;
                 display: flex;
-                align-items: flex-start;
-                gap: 4em;
-                justify-content: space-between;
+                flex-direction: column;
+                gap: 3em;
                 width: 100%;
+
+                @include respond-to('desktop') {
+                    align-self: flex-start;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    gap: 4em;
+                    justify-content: space-between;
+                }
 
                 .main-image {
                     flex: 1;
@@ -437,10 +449,16 @@
 
             .descriptions-container {
                 display: flex;
-                gap: 1em;
-                align-items: center;
-                width: 100%;
-                margin-block-start: 1em;
+                flex-direction: column;
+                gap: 3em;
+                margin-block-start: 1.5em;
+
+                @include respond-to('desktop') {
+                    flex-direction: row;
+                    gap: 1em;
+                    align-items: center;
+                    width: 100%;
+                }
 
                 .description-input {
                     flex: 1;

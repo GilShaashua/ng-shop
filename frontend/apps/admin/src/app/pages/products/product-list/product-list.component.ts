@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {
     NavigationEnd,
     Router,
@@ -13,11 +19,12 @@ import { TableModule } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { filter, map, Subscription } from 'rxjs';
 import { Category, Column, Product } from '@frontend/utils';
-import { ProductsService } from '@frontend/shared';
+import { ProductsService, ViewportSizeService } from '@frontend/shared';
 
 @Component({
     selector: 'admin-product-list',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
         RouterLink,
@@ -35,7 +42,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
         private confirmationService: ConfirmationService,
         private productsService: ProductsService,
         private messageService: MessageService,
-        private router: Router
+        private router: Router,
+        private viewportSizeService: ViewportSizeService,
+        private changeDetectorRef: ChangeDetectorRef
     ) {}
 
     cols: Column[] = [
@@ -48,10 +57,22 @@ export class ProductListComponent implements OnInit, OnDestroy {
     ];
     products!: Product[];
     urlChangesSubscription!: Subscription;
+    isDesktop!: boolean;
+    viewportSubscription!: Subscription;
 
     ngOnInit(): void {
-        this.getProducts();
         this.listenUrlChanges();
+        this._observeViewportSize();
+        this.getProducts();
+    }
+
+    private _observeViewportSize() {
+        this.viewportSubscription = this.viewportSizeService.viewportWidth$
+            .pipe(map((viewportWidth) => viewportWidth >= 1025))
+            .subscribe((isDesktop) => {
+                this.isDesktop = isDesktop;
+                this.changeDetectorRef.markForCheck();
+            });
     }
 
     getProducts() {
@@ -72,6 +93,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             .subscribe({
                 next: (products) => {
                     this.products = products;
+                    this.changeDetectorRef.markForCheck();
                 },
             });
     }
@@ -92,6 +114,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
                             summary: 'Success',
                             detail: `The product "${deletedProduct.name}" is deleted successfully!`,
                         });
+
+                        this.changeDetectorRef.markForCheck();
                     },
                     error: (err) => {
                         console.error('Cannot delete product', err);
@@ -121,5 +145,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.urlChangesSubscription?.unsubscribe();
+        this.viewportSubscription?.unsubscribe();
     }
 }
