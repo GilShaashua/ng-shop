@@ -1,7 +1,12 @@
 .order-details-page {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 2em;
+    padding-block: 1.5em;
+
+    @include respond-to('desktop') {
+        padding-block: unset;
+    }
 
     button {
         width: fit-content;
@@ -28,7 +33,6 @@
         border-radius: unset;
 
         .p-fieldset-legend {
-            padding: 0.8em;
             background-color: $primary-color;
             border-radius: unset;
 
@@ -43,8 +47,9 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 1em;
+            gap: 2.5em;
             padding-block-end: 1em;
+            padding-inline: 1em;
         }
 
         &.order-details {
@@ -120,12 +125,23 @@
             .order-items {
                 width: 100%;
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: space-between;
-                gap: 1em;
+                gap: 2.5em;
+                padding: 0.8em;
+                border: 1px solid $text-color;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 
                 .order-item {
                     flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+
+                    h4 {
+                        font-size: 17px;
+                    }
 
                     &:nth-child(6) {
                         text-align: end;
@@ -149,8 +165,12 @@
         }
 
         &.order-address {
+            width: 100%;
+            margin-block-start: 1em;
+
             .headers {
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 gap: 1em;
                 justify-content: space-between;
@@ -163,6 +183,7 @@
 
             .content {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 1em;
                 justify-content: space-between;
                 width: 100%;

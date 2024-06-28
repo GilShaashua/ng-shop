@@ -48,33 +48,29 @@
         styleClass="fieldset order-items"
         [toggleable]="true"
     >
-        <div class="headers">
-            <h4>Name</h4>
-            <h4>Brand</h4>
-            <h4>Category</h4>
-            <h4>Price</h4>
-            <h4>Quantity</h4>
-            <h4>Subtotal</h4>
-        </div>
-
         <div class="order-items" *ngFor="let orderItem of order.orderItems">
             <div class="order-item product-name">
-                @if (orderItem.product) { {{ orderItem.product.name }} } @else {
-                Product doesnt exist! }
+                @if (orderItem.product) {
+                <h4>Name</h4>
+                {{ orderItem.product.name }} } @else { Product doesnt exist! }
             </div>
 
             <div class="order-item product-brand">
-                @if(orderItem.product){ {{ orderItem.product.brand }} } @else {
-                Product doesnt exist! }
+                @if(orderItem.product){
+                <h4>Brand</h4>
+                {{ orderItem.product.brand }} } @else { Product doesnt exist! }
             </div>
 
             <div class="order-item product-category">
-                @if(orderItem.product){ {{ orderItem.product.category.name }} }
-                @else { Product doesnt exist! }
+                @if(orderItem.product){
+                <h4>Category</h4>
+                {{ orderItem.product.category.name }} } @else { Product doesnt
+                exist! }
             </div>
 
             <div class="order-item product-price">
                 @if(orderItem.product){
+                <h4>Price</h4>
                 {{
                     orderItem.product.price
                         | currency : 'USD' : 'symbol' : '1.0-0'
@@ -83,11 +79,13 @@
             </div>
 
             <div class="order-item product-quantity">
+                <h4>Quantity</h4>
                 {{ orderItem.quantity }}
             </div>
 
             <div class="order-item subtotal">
                 @if(orderItem.product){
+                <h4>Subtotal</h4>
                 {{
                     orderItem.quantity * orderItem.product.price
                         | currency : 'USD' : 'symbol' : '1.0-0'

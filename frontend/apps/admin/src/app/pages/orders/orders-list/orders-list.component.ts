@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { TagModule } from 'primeng/tag';
-import { OrdersService } from '@frontend/shared';
+import { OrdersService, ViewportSizeService } from '@frontend/shared';
 import { Column, Order, User } from '@frontend/utils';
 
 @Component({
@@ -30,7 +30,8 @@ export class OrdersListComponent implements OnInit, OnDestroy {
     constructor(
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
-        private ordersService: OrdersService
+        private ordersService: OrdersService,
+        private viewportSizeService: ViewportSizeService
     ) {}
 
     cols: Column[] = [
@@ -64,11 +65,19 @@ export class OrdersListComponent implements OnInit, OnDestroy {
     };
 
     orders!: Order[];
-    // urlChangesSubscription!: Subscription;
+    isDesktop!: boolean;
 
     ngOnInit() {
+        this._observeViewportSize();
         this.getOrders();
-        // this.listenUrlChanges();
+    }
+
+    private _observeViewportSize() {
+        this.viewportSizeService.viewportWidth$
+            .pipe(map((viewportWidth) => viewportWidth >= 1025))
+            .subscribe((isDesktop) => {
+                this.isDesktop = isDesktop;
+            });
     }
 
     getOrders() {
@@ -119,20 +128,5 @@ export class OrdersListComponent implements OnInit, OnDestroy {
         });
     }
 
-    // listenUrlChanges() {
-    //     this.urlChangesSubscription = this.router.events
-    //         .pipe(filter((event) => event instanceof NavigationEnd))
-    //         .subscribe({
-    //             next: () => {
-    //                 this.getOrders();
-    //             },
-    //             error: (err) => {
-    //                 console.error('Cannot get url changes!', err);
-    //             },
-    //         });
-    // }
-
-    ngOnDestroy(): void {
-        // this.urlChangesSubscription?.unsubscribe();
-    }
+    ngOnDestroy(): void {}
 }

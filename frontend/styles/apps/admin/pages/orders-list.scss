@@ -2,7 +2,13 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 2em;
+    padding-block: 2em;
+
+    @include respond-to('desktop') {
+        padding-block: unset;
+        gap: 0.5em;
+    }
 
     .name-page {
         display: flex;
@@ -87,6 +93,121 @@
                                     background-color: $primary-color-dark;
                                     border-color: $primary-color-dark;
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .orders-list-tablet-mobile {
+        height: 100%;
+
+        ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            gap: 2em;
+
+            li {
+                display: flex;
+                flex-direction: column;
+                background-color: $backgroundColorDark3;
+                width: 100%;
+
+                .header {
+                    background-color: $primary-color;
+                    padding-inline: 1.5em;
+                    height: 25px;
+                    position: relative;
+
+                    .p-element {
+                        position: absolute;
+                        top: 50%;
+                        translate: 0 -50%;
+                        width: 45px;
+                        height: 45px;
+
+                        &:nth-child(1) {
+                            left: 10px;
+
+                            .p-button {
+                                background-color: $backgroundColorDark;
+                                border: none;
+                            }
+                        }
+
+                        &:nth-child(2) {
+                            left: 65px;
+
+                            .p-button {
+                                background-color: $primary-color-dark;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+
+                .body {
+                    padding-inline: 1.5em;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5em;
+                    justify-content: center;
+                    padding-block: 1.5em;
+
+                    .row-1 {
+                        display: flex;
+                        align-items: center;
+                        gap: 3em;
+                        justify-content: space-between;
+
+                        .user {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5em;
+
+                            span {
+                                font-weight: 700;
+                            }
+                        }
+
+                        .total-price {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5em;
+                            align-items: flex-end;
+
+                            span {
+                                font-weight: 700;
+                            }
+                        }
+                    }
+
+                    .row-2 {
+                        display: flex;
+                        align-items: center;
+                        gap: 3em;
+                        justify-content: space-between;
+
+                        .date-ordered {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5em;
+
+                            span {
+                                font-weight: 700;
+                            }
+                        }
+
+                        .status {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5em;
+                            align-items: flex-end;
+
+                            span {
+                                font-weight: 700;
                             }
                         }
                     }
