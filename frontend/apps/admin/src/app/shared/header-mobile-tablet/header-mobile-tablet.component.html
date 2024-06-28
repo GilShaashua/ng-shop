@@ -1,8 +1,12 @@
 <header class="admin-header-mobile-tablet">
     <div class="inner-container">
-        <div class="logo">
+        <div class="logo" routerLink="/">
             <img src="assets/logo.png" alt="logo" />
         </div>
+
+        <p class="logged-in-user" *ngIf="loggedInUser">
+            Hello <span>{{ loggedInUser.name }}</span>
+        </p>
 
         <nav [ngClass]="{ navOpen: isNavOpen }">
             <ul>

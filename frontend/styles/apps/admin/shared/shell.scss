@@ -5,6 +5,8 @@
             25px,
             1fr
         );
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
 
     & > * {
         grid-column: 2;
@@ -16,6 +18,8 @@
 
     @include respond-to('desktop') {
         grid-template-columns: auto 1fr;
+        height: 100vh;
+        min-height: unset;
 
         & > * {
             grid-column: unset;
@@ -53,13 +57,23 @@
                     }
                 }
 
+                .logged-in-user {
+                    font-size: 18px;
+
+                    span {
+                        font-weight: 600;
+                    }
+                }
+
                 nav {
                     position: fixed;
                     right: 0;
                     top: 0;
                     z-index: 9999;
                     height: 100vh;
-                    width: 200px;
+                    width: 35vw;
+                    max-width: 450px;
+                    min-width: 250px;
                     background-color: $backgroundColorDark3;
                     translate: 100%;
                     transition: all 0.2s ease-in-out;
@@ -67,7 +81,7 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    padding-block-end: 2em;
+                    padding-block: 2.5em;
 
                     &.navOpen {
                         translate: 0%;
@@ -76,12 +90,11 @@
                     ul {
                         display: flex;
                         flex-direction: column;
-                        margin-block-start: 5em;
 
                         li {
                             padding-inline-end: 1em;
                             padding-inline-start: 2.5em;
-                            height: 45px;
+                            height: 55px;
                             display: flex;
 
                             &.active {
@@ -93,6 +106,7 @@
                                 display: flex;
                                 align-items: center;
                                 gap: 0.8em;
+                                font-size: 18px;
 
                                 i {
                                     font-size: 20px;
@@ -131,8 +145,11 @@
                 }
 
                 .icons {
+                    display: flex;
+                    align-items: center;
+
                     i {
-                        font-size: 20px;
+                        font-size: 24px;
                         cursor: pointer;
                     }
                 }
@@ -254,6 +271,8 @@
     }
 
     .admin-main {
+        height: 100%;
+
         @include respond-to('desktop') {
             padding-block: 1.5em;
             display: grid;

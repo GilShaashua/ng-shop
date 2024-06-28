@@ -4,6 +4,9 @@
     flex-direction: column;
     gap: 0.5em;
 
+    @include respond-to('desktop') {
+    }
+
     .name-page {
         display: flex;
         flex-direction: column;
