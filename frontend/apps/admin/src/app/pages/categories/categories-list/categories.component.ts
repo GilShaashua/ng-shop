@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import {
@@ -7,17 +13,18 @@ import {
     RouterLink,
     RouterOutlet,
 } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { filter, map, Subscription } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { CategoriesService } from '@frontend/shared';
+import { CategoriesService, ViewportSizeService } from '@frontend/shared';
 import { Category, Column } from '@frontend/utils';
 
 @Component({
     selector: 'admin-categories',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
         TableModule,
@@ -35,7 +42,9 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         private categoriesService: CategoriesService,
         private router: Router,
         private messageService: MessageService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private viewportSizeService: ViewportSizeService,
+        private changeDetectorRef: ChangeDetectorRef
     ) {}
 
     cols: Column[] = [
@@ -46,16 +55,30 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
     categories!: Category[];
     urlChangesSubscription!: Subscription;
+    isDesktop!: boolean;
 
     ngOnInit() {
+        this._observeViewportSize();
         this.getCategories();
         this.listenUrlChanges();
+    }
+
+    private _observeViewportSize() {
+        this.viewportSizeService.viewportWidth$
+            .pipe(map((viewportWidth) => viewportWidth >= 1025))
+            .subscribe({
+                next: (isDesktop) => {
+                    this.isDesktop = isDesktop;
+                    this.changeDetectorRef.markForCheck();
+                },
+            });
     }
 
     getCategories() {
         this.categoriesService.getCategories().subscribe({
             next: (categories) => {
                 this.categories = categories;
+                this.changeDetectorRef.markForCheck();
             },
             error: (err) => {
                 console.error('Cannot get categories', err);
@@ -79,6 +102,8 @@ export class CategoriesComponent implements OnInit, OnDestroy {
                             summary: 'Success',
                             detail: `The category "${deletedCategory.name}" is deleted successfully!`,
                         });
+
+                        this.changeDetectorRef.markForCheck();
                     },
                     error: (err) => {
                         console.error('Cannot delete category', err);
@@ -100,6 +125,10 @@ export class CategoriesComponent implements OnInit, OnDestroy {
                     console.error('Cannot get url changes!', err);
                 },
             });
+    }
+
+    trackByCategoryId(index: number, category: Category) {
+        return category.id;
     }
 
     ngOnDestroy(): void {

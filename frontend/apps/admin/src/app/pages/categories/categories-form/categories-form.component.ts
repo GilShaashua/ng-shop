@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -11,12 +17,13 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CategoriesService } from '@frontend/shared';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { Subscription, firstValueFrom, timer } from 'rxjs';
+import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { ColorPickerModule } from 'primeng/colorpicker';
 
 @Component({
     selector: 'admin-categories-form',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
         RouterLink,
@@ -34,7 +41,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
         private categoriesService: CategoriesService,
         private messageService: MessageService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private changeDetectorRef: ChangeDetectorRef
     ) {}
 
     form: FormGroup = this.formBuilder.group({
@@ -44,8 +52,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
         color: ['#ffffff', [Validators.required]],
     });
 
-    categoryId: string = '';
-    isCmpInizialized = false;
+    categoryId = '';
+    isCmpInitialized = false;
     isSubmitted = false;
     paramsSubscription!: Subscription;
 
@@ -70,6 +78,7 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
             }
         }
         this.isSubmitted = true;
+        this.changeDetectorRef.markForCheck();
         if (this.form.invalid) return;
 
         // Check if its edit mode or add mode
@@ -89,14 +98,16 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
                         next: (category) => {
                             this.categoryId = category.id!;
                             this.form.patchValue(category);
-                            this.isCmpInizialized = true;
+                            this.isCmpInitialized = true;
+                            this.changeDetectorRef.markForCheck();
                         },
                         error: (err) => {
                             console.error('Cannot get category', err);
                         },
                     });
             } else {
-                this.isCmpInizialized = true;
+                this.isCmpInitialized = true;
+                this.changeDetectorRef.markForCheck();
             }
         });
     }
@@ -109,6 +120,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
                     summary: 'Success',
                     detail: `The category "${addedCategory.name}" is created successfully!`,
                 });
+
+                this.changeDetectorRef.markForCheck();
 
                 await firstValueFrom(timer(2000));
                 this.router.navigateByUrl('/categories');
@@ -133,6 +146,8 @@ export class CategoriesFormComponent implements OnInit, OnDestroy {
                     summary: 'Success',
                     detail: `The category "${editedCategory.name}" is edited successfully!`,
                 });
+
+                this.changeDetectorRef.markForCheck();
 
                 await firstValueFrom(timer(2000));
                 this.router.navigateByUrl('/categories');
