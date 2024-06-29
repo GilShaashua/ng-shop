@@ -73,6 +73,21 @@
     <div class="categories-list-tablet-mobile" *ngIf="!isDesktop">
         <ul>
             <li *ngFor="let category of categories; trackBy: trackByCategoryId">
+                <div class="header">
+                    <div class="actions">
+                        <p-button
+                            styleClass="p-button-trash"
+                            icon="pi pi-trash"
+                            (click)="onDeleteCategory(category.id)"
+                        ></p-button>
+                        <p-button
+                            styleClass="p-button-pencil"
+                            icon="pi pi-pencil"
+                            routerLink="/categories/form/{{ category.id }}"
+                        ></p-button>
+                    </div>
+                </div>
+
                 <div class="inner-container">
                     <div class="icon">
                         <span>Icon</span>
@@ -97,19 +112,6 @@
                             }"
                         ></div>
                     </div>
-                </div>
-
-                <div class="actions">
-                    <p-button
-                        styleClass="p-button-trash"
-                        icon="pi pi-trash"
-                        (click)="onDeleteCategory(category.id)"
-                    ></p-button>
-                    <p-button
-                        styleClass="p-button-pencil"
-                        icon="pi pi-pencil"
-                        routerLink="/categories/form/{{ category.id }}"
-                    ></p-button>
                 </div>
             </li>
         </ul>

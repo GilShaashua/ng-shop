@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+    padding-block: 2em;
+
+    @include respond-to('desktop') {
+        padding-block: unset;
+    }
 
     .name-page {
         display: flex;
@@ -107,6 +112,90 @@
                                     border-color: $primary-color-dark;
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .users-list-tablet-mobile {
+        margin-block-start: 2em;
+        height: 100%;
+
+        ul {
+            display: grid;
+            grid-auto-rows: max-content;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5em;
+            height: 100%;
+
+            li {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                background-color: $backgroundColorDark3;
+
+                .header {
+                    background-color: $primary-color;
+                    height: 25px;
+                    display: flex;
+                    align-items: center;
+                    padding-inline: 1.5em;
+
+                    .actions {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.8em;
+                    }
+                }
+
+                .body {
+                    flex: 1;
+                    padding-inline: 1.5em;
+                    padding-block: 1.5em;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 2em;
+
+                    .row-1 {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 1em;
+
+                        .field {
+                            flex: 1;
+
+                            &:nth-child(2) {
+                                align-items: flex-end;
+                                overflow-x: auto;
+                            }
+                        }
+                    }
+
+                    .row-2 {
+                        display: flex;
+                        justify-content: space-between;
+                        gap: 2em;
+
+                        .field {
+                            flex: 1;
+
+                            &:nth-child(2) {
+                                align-items: flex-end;
+                            }
+                        }
+                    }
+
+                    .field {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5em;
+
+                        span {
+                            font-weight: 700;
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-<section class="dashboard-page" *ngIf="statistics">
+<section class="dashboard-page" *ngIf="statistics; else loader">
     <div class="header">
         <h1>Dashboard</h1>
         <h4>Latest updates</h4>
@@ -46,3 +46,9 @@
         </article>
     </div>
 </section>
+
+<ng-template #loader>
+    <div class="loader-container">
+        <p><i class="pi pi-spin pi-spinner"></i></p>
+    </div>
+</ng-template>

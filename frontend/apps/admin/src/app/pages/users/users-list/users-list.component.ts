@@ -10,11 +10,11 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { filter, Subscription } from 'rxjs';
+import { filter, map, Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TagModule } from 'primeng/tag';
 import { Column, CountryPipe, User } from '@frontend/utils';
-import { UsersService } from '@frontend/shared';
+import { UsersService, ViewportSizeService } from '@frontend/shared';
 
 @Component({
     selector: 'admin-users-list',
@@ -38,7 +38,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
         private usersService: UsersService,
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
-        private router: Router
+        private router: Router,
+        private viewportSizeService: ViewportSizeService
     ) {}
 
     cols: Column[] = [
@@ -47,13 +48,22 @@ export class UsersListComponent implements OnInit, OnDestroy {
         { field: 'isAdmin', header: 'Admin' },
         { field: 'country', header: 'Country' },
     ];
-
     users!: User[];
     urlChangesSubscription!: Subscription;
+    isDesktop!: boolean;
 
     ngOnInit() {
+        this._observeViewportSize();
         this.getUsers();
         this.listenUrlChanges();
+    }
+
+    private _observeViewportSize() {
+        this.viewportSizeService.viewportWidth$
+            .pipe(map((viewportWidth) => viewportWidth >= 1025))
+            .subscribe((isDesktop) => {
+                this.isDesktop = isDesktop;
+            });
     }
 
     getUsers() {
@@ -68,7 +78,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
     }
 
     onDeleteUser(userId: string) {
-        console.log('userId', userId);
         this.confirmationService.confirm({
             header: 'Delete User',
             message: 'Are you sure you want to delete this User?',
