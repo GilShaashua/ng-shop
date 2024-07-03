@@ -1,4 +1,7 @@
-<section class="order-statistics-page" *ngIf="chart && years; else loader">
+<section
+    class="order-statistics-page"
+    *ngIf="chart && years && filterBy.dateOrdered; else loader"
+>
     <div class="header">
         <div class="inner-container">
             <h2>Orders Statistics</h2>
@@ -17,6 +20,10 @@
     </div>
 
     <div class="body">
+        <div class="amount-orders-year">
+            <p>Amount of orders: {{ amountOrdersPerYear }}</p>
+        </div>
+
         <canvas
             baseChart
             [data]="chart.data"
@@ -27,7 +34,7 @@
 </section>
 
 <ng-template #loader>
-    <section class="loader-container">
+    <section class="loader-container-statistics">
         <div class="loader">
             <p><i class="pi pi-spin pi-spinner"></i></p>
         </div>

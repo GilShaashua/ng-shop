@@ -209,34 +209,50 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/get/statistics', async (req, res) => {
     try {
-        const orders = await Order.find({
+        const ordersByYear = await Order.find({
             dateOrdered: {
                 $gte: new Date(`${req.query.dateOrdered}-01-01T00:00:00.000Z`),
                 $lte: new Date(`${req.query.dateOrdered}-12-31T23:59:59.999Z`),
             },
         });
-        console.log('orders', orders);
 
         const ordersMap = {};
-        const years = [];
 
-        if (orders) {
-            orders.forEach((order) => {
+        if (ordersByYear) {
+            ordersByYear.forEach((order) => {
                 if (!ordersMap[order.dateOrdered.getMonth() + 1]) {
                     ordersMap[order.dateOrdered.getMonth() + 1] = 0;
                 }
 
                 ordersMap[order.dateOrdered.getMonth() + 1] += 1;
-
-                if (!years.includes(order.dateOrdered.getFullYear() + '')) {
-                    years.push(order.dateOrdered.getFullYear() + '');
-                }
             });
 
-            res.json({ ordersMap, years });
+            res.json({ ordersMap });
         } else {
             res.json('There are no orders!');
         }
+    } catch (err) {
+        res.status(500).json({ success: false, message: err });
+    }
+});
+
+router.get('/get/years', async (req, res) => {
+    try {
+        const ordersAllYears = await Order.find();
+
+        const years = [];
+
+        if (!ordersAllYears) {
+            return res.json('There are no orders!');
+        }
+
+        ordersAllYears.forEach((order) => {
+            if (!years.includes(order.dateOrdered.getFullYear() + '')) {
+                years.push(order.dateOrdered.getFullYear() + '');
+            }
+        });
+
+        res.json({ years });
     } catch (err) {
         res.status(500).json({ success: false, message: err });
     }

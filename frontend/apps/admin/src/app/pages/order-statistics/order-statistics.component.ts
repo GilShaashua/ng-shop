@@ -39,21 +39,27 @@ export class OrderStatisticsComponent implements OnInit {
     };
 
     chart!: any;
-    years!: number[];
-    filterBy = { dateOrdered: new Date().getFullYear() + '' };
+    years!: string[];
+    amountOrdersPerYear!: number;
+    filterBy = { dateOrdered: '' };
 
     ngOnInit(): void {
-        this.getOrderStatistics();
+        this._getOrdersYears();
+    }
+
+    private _getOrdersYears() {
+        this.ordersService.getOrdersYears().subscribe(({ years }) => {
+            this.years = years;
+            this.filterBy.dateOrdered = this.years[0];
+            this.getOrderStatistics();
+        });
     }
 
     getOrderStatistics() {
         this.ordersService
             .getOrderStatistics(this.filterBy)
             .pipe(
-                tap((data) => {
-                    console.log(data);
-                }),
-                map(({ ordersMap, years }) => {
+                map(({ ordersMap }) => {
                     const modifiedOrdersMap: { [key: string]: number } = {};
 
                     for (const monthKey in ordersMap) {
@@ -62,11 +68,11 @@ export class OrderStatisticsComponent implements OnInit {
                         modifiedOrdersMap[monthName] = ordersMap[monthKey];
                     }
 
-                    return { ordersMap: modifiedOrdersMap, years };
+                    return { ordersMap: modifiedOrdersMap };
                 })
             )
             .subscribe({
-                next: ({ ordersMap, years }) => {
+                next: ({ ordersMap }) => {
                     const chart = {
                         type: 'doughnut',
                         data: {
@@ -104,7 +110,12 @@ export class OrderStatisticsComponent implements OnInit {
                         },
                     };
 
-                    this.years = years;
+                    // Total amount of orders
+                    this.amountOrdersPerYear = Object.values(ordersMap).reduce(
+                        (acc, item) => acc + item,
+                        0
+                    );
+
                     this.chart = chart;
                 },
             });

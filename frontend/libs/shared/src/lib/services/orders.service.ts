@@ -48,12 +48,17 @@ export class OrdersService {
         dateOrdered,
     }: {
         dateOrdered: string;
-    }): Observable<{ ordersMap: { [key: string]: number }; years: number[] }> {
+    }): Observable<{ ordersMap: { [key: string]: number } }> {
         const params = new HttpParams().set('dateOrdered', dateOrdered);
 
         return this.http.get<{
             ordersMap: { [key: string]: number };
-            years: number[];
         }>(`${this.apiUrl}orders/get/statistics`, { params });
+    }
+
+    getOrdersYears() {
+        return this.http.get<{ years: string[] }>(
+            `${this.apiUrl}orders/get/years`
+        );
     }
 }
