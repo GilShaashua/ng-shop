@@ -44,7 +44,7 @@ export class OrdersListComponent implements OnInit, OnDestroy {
     orderStatus: { [klass: string]: { label: string; color: string } } = {
         0: {
             label: 'Pending',
-            color: 'primary',
+            color: 'contrast',
         },
         1: {
             label: 'Processed',

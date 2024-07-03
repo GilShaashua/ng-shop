@@ -1,0 +1,890 @@
+{
+  "10557393178472301524": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run admin:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run admin:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  },
+  "17527345405476118771": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run ngshop:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run ngshop:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  },
+  "9604296568798072616": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run admin:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run admin:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  },
+  "14339632839788543572": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run ngshop:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run ngshop:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  },
+  "5530162792053778109": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run admin:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run admin:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  },
+  "5184396294292587506": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run ngshop:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run ngshop:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  },
+  "3738786943162367853": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run admin:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run admin:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/admin-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/admin-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  },
+  "13567450641084698487": {
+    "targets": {
+      "e2e": {
+        "command": "cypress run",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests"
+        },
+        "configurations": {
+          "production": {
+            "command": "cypress run --env webServerCommand=\"nx run ngshop:serve:production\""
+          }
+        }
+      },
+      "e2e-ci--src/e2e/app.cy.ts": {
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "cache": true,
+        "command": "cypress run --env webServerCommand=\"nx run ngshop:serve-static\" --spec src/e2e/app.cy.ts",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in src/e2e/app.cy.ts in CI"
+        }
+      },
+      "e2e-ci": {
+        "executor": "nx:noop",
+        "cache": true,
+        "inputs": [
+          "default",
+          "^production",
+          {
+            "externalDependencies": [
+              "cypress"
+            ]
+          }
+        ],
+        "outputs": [
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/videos",
+          "{workspaceRoot}/dist/cypress/apps/ngshop-e2e/screenshots"
+        ],
+        "dependsOn": [
+          {
+            "target": "e2e-ci--src/e2e/app.cy.ts",
+            "projects": "self",
+            "params": "forward"
+          }
+        ],
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Runs Cypress Tests in CI"
+        }
+      },
+      "open-cypress": {
+        "command": "cypress open",
+        "options": {
+          "cwd": "apps/ngshop-e2e"
+        },
+        "metadata": {
+          "technologies": [
+            "cypress"
+          ],
+          "description": "Opens Cypress"
+        }
+      }
+    },
+    "metadata": {
+      "targetGroups": {
+        "E2E (CI)": [
+          "e2e-ci--src/e2e/app.cy.ts",
+          "e2e-ci"
+        ]
+      }
+    }
+  }
+}

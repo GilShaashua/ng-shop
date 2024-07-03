@@ -5,7 +5,7 @@ const OrderItem = require('../models/order-item');
 
 router.get('/', async (req, res) => {
     try {
-        let orders = await Order.find()
+        const orders = await Order.find()
             .populate({
                 path: 'orderItems',
                 populate: { path: 'product', populate: 'category' },
@@ -201,6 +201,28 @@ router.delete('/:id', async (req, res) => {
             }
 
             res.send(deletedOrder);
+        }
+    } catch (err) {
+        res.status(500).json({ success: false, message: err });
+    }
+});
+
+router.get('/get/statistics', async (req, res) => {
+    try {
+        const orders = await Order.find();
+
+        const ordersMap = {};
+
+        if (orders) {
+            orders.forEach((order) => {
+                if (!ordersMap[order.dateOrdered.getMonth() + 1]) {
+                    ordersMap[order.dateOrdered.getMonth() + 1] = 0;
+                }
+
+                ordersMap[order.dateOrdered.getMonth() + 1] += 1;
+            });
+
+            res.send(ordersMap);
         }
     } catch (err) {
         res.status(500).json({ success: false, message: err });

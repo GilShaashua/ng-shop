@@ -9,6 +9,7 @@ import { UsersEffects, jwtInterceptor, reducer } from '@frontend/shared';
 import { provideStore } from '@ngrx/store';
 import { UsersFacade } from '@frontend/shared';
 import { provideEffects } from '@ngrx/effects';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
         provideRouter(appRoutes, withHashLocation()),
         provideAnimations(),
         provideHttpClient(withInterceptors([jwtInterceptor])),
+        provideCharts(withDefaultRegisterables()),
         MessageService,
         ConfirmationService,
         UsersFacade,

@@ -1,0 +1,18 @@
+<section class="order-statistics-page" *ngIf="chart">
+    <div class="header">
+        <h2>Orders Statistics</h2>
+
+        <button class="btn-close" routerLink="/">
+            <i class="pi pi-times"></i>
+        </button>
+    </div>
+
+    <div class="body">
+        <canvas
+            baseChart
+            [data]="chart.data"
+            [type]="chart.type"
+            [options]="chart.options"
+        ></canvas>
+    </div>
+</section>

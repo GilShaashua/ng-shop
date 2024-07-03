@@ -43,4 +43,10 @@ export class OrdersService {
             `${this.apiUrl}orders/get/total-sales`
         );
     }
+
+    getOrderStatistics(): Observable<{ [key: string]: number }> {
+        return this.http.get<{ [key: string]: number }>(
+            `${this.apiUrl}orders/get/statistics`
+        );
+    }
 }

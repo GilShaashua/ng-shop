@@ -11,6 +11,16 @@ export const adminRoutes: Route[] = [
         component: DashboardComponent,
         title: 'Dashboard | Admin Panel',
         canActivate: [authGuard],
+        children: [
+            {
+                path: 'order-statistics',
+                loadComponent: () =>
+                    import(
+                        './pages/order-statistics/order-statistics.component'
+                    ).then((component) => component.OrderStatisticsComponent),
+                title: 'Orders Statistics | Admin Panel',
+            },
+        ],
     },
     {
         path: 'products',
