@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Order } from '@frontend/utils';
 import { environment } from '@frontend/utils';
 
@@ -44,9 +44,16 @@ export class OrdersService {
         );
     }
 
-    getOrderStatistics(): Observable<{ [key: string]: number }> {
-        return this.http.get<{ [key: string]: number }>(
-            `${this.apiUrl}orders/get/statistics`
-        );
+    getOrderStatistics({
+        dateOrdered,
+    }: {
+        dateOrdered: string;
+    }): Observable<{ ordersMap: { [key: string]: number }; years: number[] }> {
+        const params = new HttpParams().set('dateOrdered', dateOrdered);
+
+        return this.http.get<{
+            ordersMap: { [key: string]: number };
+            years: number[];
+        }>(`${this.apiUrl}orders/get/statistics`, { params });
     }
 }

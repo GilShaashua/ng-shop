@@ -1,10 +1,19 @@
-<section class="order-statistics-page" *ngIf="chart">
+<section class="order-statistics-page" *ngIf="chart && years; else loader">
     <div class="header">
-        <h2>Orders Statistics</h2>
+        <div class="inner-container">
+            <h2>Orders Statistics</h2>
 
-        <button class="btn-close" routerLink="/">
-            <i class="pi pi-times"></i>
-        </button>
+            <button class="btn-close" routerLink="/">
+                <i class="pi pi-times"></i>
+            </button>
+        </div>
+
+        <p-dropdown
+            [options]="years"
+            [(ngModel)]="filterBy.dateOrdered"
+            placeholder="Select a Year"
+            (onChange)="getOrderStatistics()"
+        />
     </div>
 
     <div class="body">
@@ -16,3 +25,11 @@
         ></canvas>
     </div>
 </section>
+
+<ng-template #loader>
+    <section class="loader-container">
+        <div class="loader">
+            <p><i class="pi pi-spin pi-spinner"></i></p>
+        </div>
+    </section>
+</ng-template>

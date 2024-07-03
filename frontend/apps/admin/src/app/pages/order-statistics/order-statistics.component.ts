@@ -3,12 +3,20 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { OrdersService } from '@frontend/shared';
 import { BaseChartDirective } from 'ng2-charts';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'admin-order-statistics',
     standalone: true,
-    imports: [CommonModule, BaseChartDirective, RouterModule],
+    imports: [
+        CommonModule,
+        BaseChartDirective,
+        RouterModule,
+        DropdownModule,
+        FormsModule,
+    ],
     templateUrl: './order-statistics.component.html',
     styleUrl: './order-statistics.component.scss',
 })
@@ -31,16 +39,21 @@ export class OrderStatisticsComponent implements OnInit {
     };
 
     chart!: any;
+    years!: number[];
+    filterBy = { dateOrdered: new Date().getFullYear() + '' };
 
     ngOnInit(): void {
-        this._getOrderStatistics();
+        this.getOrderStatistics();
     }
 
-    private _getOrderStatistics() {
+    getOrderStatistics() {
         this.ordersService
-            .getOrderStatistics()
+            .getOrderStatistics(this.filterBy)
             .pipe(
-                map((ordersMap) => {
+                tap((data) => {
+                    console.log(data);
+                }),
+                map(({ ordersMap, years }) => {
                     const modifiedOrdersMap: { [key: string]: number } = {};
 
                     for (const monthKey in ordersMap) {
@@ -49,11 +62,11 @@ export class OrderStatisticsComponent implements OnInit {
                         modifiedOrdersMap[monthName] = ordersMap[monthKey];
                     }
 
-                    return modifiedOrdersMap;
+                    return { ordersMap: modifiedOrdersMap, years };
                 })
             )
             .subscribe({
-                next: (ordersMap) => {
+                next: ({ ordersMap, years }) => {
                     const chart = {
                         type: 'doughnut',
                         data: {
@@ -91,8 +104,7 @@ export class OrderStatisticsComponent implements OnInit {
                         },
                     };
 
-                    console.log(chart);
-
+                    this.years = years;
                     this.chart = chart;
                 },
             });

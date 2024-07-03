@@ -39,8 +39,6 @@ testem.log
 Thumbs.db
 
 .nx
-.nx/workspace-data
-frontend/.nx/workspace-data
 .angular
 .env
 backend/public/uploads

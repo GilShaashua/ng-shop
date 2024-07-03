@@ -1,3 +1,23 @@
+.loader-container {
+    width: 100%;
+    position: fixed;
+    height: 100vh;
+    background-color: $backgroundColorDark3;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+    .loader {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+
+        p {
+            margin-block-start: unset;
+        }
+    }
+}
+
 .order-statistics-page {
     position: fixed;
     top: 0;
@@ -11,7 +31,7 @@
     align-items: center;
     padding-block: 2em;
     display: grid;
-    grid-template-columns: minmax(25px, 1fr) minmax(auto, 450px) minmax(
+    grid-template-columns: minmax(25px, 1fr) minmax(150px, 350px) minmax(
             25px,
             1fr
         );
@@ -23,30 +43,43 @@
 
     .header {
         display: flex;
-        gap: 0.4em;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 1em;
 
-        .btn-close {
-            border: none;
-            background-color: $backgroundColorDark2;
+        .inner-container {
             display: flex;
+            gap: 0.5em;
             align-items: center;
-            padding: 0.5em;
-            border-radius: 50%;
-            color: $text-color;
+            justify-content: space-between;
 
-            &:hover {
-                cursor: pointer;
-                background-color: $backgroundColorDark;
+            .btn-close {
+                border: none;
+                background-color: $backgroundColorDark2;
+                display: flex;
+                align-items: center;
+                padding: 0.5em;
+                border-radius: 50%;
+                color: $text-color;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: $backgroundColorDark;
+                }
+            }
+
+            h2 {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
 
-        h2 {
-            flex: 1;
+        p-dropdown {
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
         }
     }
 

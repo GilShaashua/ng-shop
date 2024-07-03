@@ -28,7 +28,7 @@
             width: 100%;
             height: 110px;
             padding: 1em;
-            border-radius: 2px;
+            border-radius: 4px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             background: #ed213a; /* fallback for old browsers */
             background: -webkit-linear-gradient(
@@ -46,6 +46,11 @@
             align-items: center;
             justify-content: space-between;
             gap: 1em;
+
+            &:hover {
+                cursor: pointer;
+                background: linear-gradient(to right, #9b2417, #f10f2a);
+            }
 
             .icon-heading {
                 display: flex;

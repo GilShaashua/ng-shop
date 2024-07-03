@@ -209,9 +209,16 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/get/statistics', async (req, res) => {
     try {
-        const orders = await Order.find();
+        const orders = await Order.find({
+            dateOrdered: {
+                $gte: new Date(`${req.query.dateOrdered}-01-01T00:00:00.000Z`),
+                $lte: new Date(`${req.query.dateOrdered}-12-31T23:59:59.999Z`),
+            },
+        });
+        console.log('orders', orders);
 
         const ordersMap = {};
+        const years = [];
 
         if (orders) {
             orders.forEach((order) => {
@@ -220,9 +227,15 @@ router.get('/get/statistics', async (req, res) => {
                 }
 
                 ordersMap[order.dateOrdered.getMonth() + 1] += 1;
+
+                if (!years.includes(order.dateOrdered.getFullYear() + '')) {
+                    years.push(order.dateOrdered.getFullYear() + '');
+                }
             });
 
-            res.send(ordersMap);
+            res.json({ ordersMap, years });
+        } else {
+            res.json('There are no orders!');
         }
     } catch (err) {
         res.status(500).json({ success: false, message: err });
