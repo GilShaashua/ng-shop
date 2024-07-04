@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { OrdersService } from '@frontend/shared';
 import { BaseChartDirective } from 'ng2-charts';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 

@@ -20,6 +20,14 @@ export const adminRoutes: Route[] = [
                     ).then((component) => component.OrderStatisticsComponent),
                 title: 'Orders Statistics | Admin Panel',
             },
+            {
+                path: 'user-statistics',
+                loadComponent: () =>
+                    import(
+                        './pages/user-statistics/user-statistics.component'
+                    ).then((component) => component.UserStatisticsComponent),
+                title: 'Users Statistics | Admin Panel',
+            },
         ],
     },
     {

@@ -147,4 +147,26 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.get('/get/statistics', async (req, res) => {
+    try {
+        const users = await User.find();
+
+        if (!users) return res.status(500).send('users was not found!');
+
+        const usersMap = {
+            admin: 0,
+            notAdmin: 0,
+        };
+
+        users.forEach((user) => {
+            if (user.isAdmin) usersMap.admin++;
+            else usersMap.notAdmin++;
+        });
+
+        res.status(200).json(usersMap);
+    } catch (err) {
+        return res.status(500).json({ success: false, message: err });
+    }
+});
+
 module.exports = router;

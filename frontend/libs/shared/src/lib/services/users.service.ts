@@ -64,4 +64,10 @@ export class UsersService {
     observeCurrentUser() {
         return this.usersFacade.currentUser$;
     }
+
+    getUserStatistics(): Observable<{ admin: number; notAdmin: number }> {
+        return this.http.get<{ admin: number; notAdmin: number }>(
+            `${this.apiUrl}users/get/statistics`
+        );
+    }
 }

@@ -27,11 +27,11 @@
     background-color: $backgroundColorDark3;
     overflow: auto;
     z-index: 999;
-    gap: 3.5em;
+    gap: 1.5em;
     align-items: center;
     padding-block: 2em;
     display: grid;
-    grid-template-columns: minmax(25px, 1fr) minmax(150px, 350px) minmax(
+    grid-template-columns: minmax(25px, 1fr) minmax(250px, 350px) minmax(
             25px,
             1fr
         );
@@ -54,16 +54,16 @@
 
             .btn-close {
                 border: none;
-                background-color: $backgroundColorDark2;
                 display: flex;
                 align-items: center;
                 padding: 0.5em;
                 border-radius: 50%;
-                color: $text-color;
+                transition: all 0.1s ease-in-out;
 
                 &:hover {
                     cursor: pointer;
                     background-color: $backgroundColorDark;
+                    color: $text-color;
                 }
             }
 
