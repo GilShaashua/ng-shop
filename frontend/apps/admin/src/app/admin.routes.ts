@@ -36,6 +36,16 @@ export const adminRoutes: Route[] = [
                     ).then((component) => component.ProductStatisticsComponent),
                 title: 'Products Statistics | Admin Panel',
             },
+            {
+                path: 'total-sales-statistics',
+                loadComponent: () =>
+                    import(
+                        './pages/total-sales-statistics/total-sales-statistics.component'
+                    ).then(
+                        (component) => component.TotalSalesStatisticsComponent
+                    ),
+                title: 'Total Sales Statistics | Admin Panel',
+            },
         ],
     },
     {

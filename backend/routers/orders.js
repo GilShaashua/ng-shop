@@ -258,4 +258,33 @@ router.get('/get/years', async (req, res) => {
     }
 });
 
+router.get('/get/total-sales-statistics', async (req, res) => {
+    try {
+        const ordersByYear = await Order.find({
+            dateOrdered: {
+                $gte: new Date(`${req.query.dateOrdered}-01-01T00:00:00.000Z`),
+                $lte: new Date(`${req.query.dateOrdered}-12-31T23:59:59.999Z`),
+            },
+        });
+
+        const ordersMap = {};
+
+        if (ordersByYear) {
+            ordersByYear.forEach((order) => {
+                if (!ordersMap[order.dateOrdered.getMonth() + 1]) {
+                    ordersMap[order.dateOrdered.getMonth() + 1] = 0;
+                }
+
+                ordersMap[order.dateOrdered.getMonth() + 1] += order.totalPrice;
+            });
+
+            res.json(ordersMap);
+        } else {
+            res.json('There are no orders!');
+        }
+    } catch (err) {
+        res.status(500).json({ success: false, message: err });
+    }
+});
+
 module.exports = router;

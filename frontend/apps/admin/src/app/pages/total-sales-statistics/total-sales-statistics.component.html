@@ -1,0 +1,37 @@
+<section class="total-sales-statistics" *ngIf="chart; else loader">
+    <div class="header">
+        <div class="inner-container">
+            <h2>Total Sales Statistics</h2>
+
+            <button class="btn-close" routerLink="/">
+                <i class="pi pi-times"></i>
+            </button>
+        </div>
+
+        <div class="dropdoown">
+            <p-dropdown
+                [options]="years"
+                [(ngModel)]="filterBy.dateOrdered"
+                placeholder="Select a Year"
+                (onChange)="getTotalSalesStatistics()"
+            />
+        </div>
+    </div>
+
+    <div class="body">
+        <canvas
+            baseChart
+            [data]="chart.data"
+            [type]="chart.type"
+            [options]="chart.options"
+        ></canvas>
+    </div>
+</section>
+
+<ng-template #loader>
+    <section class="loader-container-statistics">
+        <div class="loader">
+            <p><i class="pi pi-spin pi-spinner"></i></p>
+        </div>
+    </section>
+</ng-template>

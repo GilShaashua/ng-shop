@@ -61,4 +61,17 @@ export class OrdersService {
             `${this.apiUrl}orders/get/years`
         );
     }
+
+    getTotalSalesStatistics({
+        dateOrdered,
+    }: {
+        dateOrdered: string;
+    }): Observable<{ [key: string]: number }> {
+        const params = new HttpParams().set('dateOrdered', dateOrdered);
+
+        return this.http.get<{ [key: string]: number }>(
+            `${this.apiUrl}orders/get/total-sales-statistics`,
+            { params }
+        );
+    }
 }
