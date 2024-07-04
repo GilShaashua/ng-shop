@@ -100,4 +100,12 @@ export class ProductsService {
     setFilterBy(filterBy: { categories: string[]; name: string }) {
         this._filterBy$.next(filterBy);
     }
+
+    getProductStatistics(): Observable<{
+        [key: string]: { categoryColor: string; count: number };
+    }> {
+        return this.http.get<{
+            [key: string]: { categoryColor: string; count: number };
+        }>(`${this.apiUrl}products/get/statistics`);
+    }
 }

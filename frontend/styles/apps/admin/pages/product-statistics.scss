@@ -1,0 +1,50 @@
+.product-statistics {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: $backgroundColorDark3;
+    z-index: 999;
+    overflow: auto;
+    padding-block: 2em;
+    display: grid;
+    grid-template-columns: minmax(25px, 1fr) minmax(250px, 350px) minmax(
+            25px,
+            1fr
+        );
+    grid-template-rows: auto 1fr;
+    gap: 1.5em;
+
+    & > * {
+        grid-column: 2;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5em;
+
+        h2 {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-close {
+            border: none;
+            display: flex;
+            align-items: center;
+            padding: 0.5em;
+            border-radius: 50%;
+            transition: all 0.1s ease-in-out;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $backgroundColorDark;
+                color: $text-color;
+            }
+        }
+    }
+}

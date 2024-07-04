@@ -28,6 +28,14 @@ export const adminRoutes: Route[] = [
                     ).then((component) => component.UserStatisticsComponent),
                 title: 'Users Statistics | Admin Panel',
             },
+            {
+                path: 'product-statistics',
+                loadComponent: () =>
+                    import(
+                        './pages/product-statistics/product-statistics.component'
+                    ).then((component) => component.ProductStatisticsComponent),
+                title: 'Products Statistics | Admin Panel',
+            },
         ],
     },
     {

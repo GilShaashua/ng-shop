@@ -272,4 +272,29 @@ router.get('/get/featured/:count', async (req, res) => {
     }
 });
 
+router.get('/get/statistics', async (req, res) => {
+    try {
+        const products = await Product.find().populate('category');
+
+        if (!products.length) return 'There are no products';
+
+        const productsMap = {};
+
+        products.forEach((product) => {
+            if (!productsMap[product.category.name.toLowerCase()]) {
+                productsMap[product.category.name.toLowerCase()] = {
+                    count: 0,
+                    categoryColor: product.category.color,
+                };
+            }
+
+            productsMap[product.category.name.toLowerCase()].count += 1;
+        });
+
+        res.status(200).json(productsMap);
+    } catch (err) {
+        return res.status(500).json({ success: false, message: err });
+    }
+});
+
 module.exports = router;
