@@ -58,9 +58,26 @@ router.get('/', async (req, res) => {
             };
         }
 
-        const products = await Product.find(filterBy).populate('category');
+        let products = await Product.find(filterBy).populate('category');
 
-        res.json(products);
+        if (!products.length)
+            return res.status(500).send('There are no products!');
+
+        if (req.query.pageSize && req.query.currPage) {
+            const pageSize = +req.query.pageSize;
+            const currPage = +req.query.currPage - 1;
+
+            products = await Product.find(filterBy)
+                .populate('category')
+                .limit(pageSize)
+                .skip(currPage * pageSize);
+        }
+
+        const pageCount = Math.ceil(
+            (await Product.countDocuments(filterBy)) / req.query.pageSize
+        );
+
+        res.json({ products, pageCount: pageCount || 0 });
     } catch (err) {
         res.status(500).json({ error: err, success: false });
     }

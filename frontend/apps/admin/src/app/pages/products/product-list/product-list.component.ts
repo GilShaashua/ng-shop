@@ -7,10 +7,10 @@ import {
     OnInit,
 } from '@angular/core';
 import {
+    ActivatedRoute,
     NavigationEnd,
     Router,
-    RouterLink,
-    RouterOutlet,
+    RouterModule,
 } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -27,8 +27,7 @@ import { ProductsService, ViewportSizeService } from '@frontend/shared';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
-        RouterLink,
-        RouterOutlet,
+        RouterModule,
         ButtonModule,
         ToastModule,
         ConfirmDialogModule,
@@ -44,7 +43,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
         private messageService: MessageService,
         private router: Router,
         private viewportSizeService: ViewportSizeService,
-        private changeDetectorRef: ChangeDetectorRef
+        private changeDetectorRef: ChangeDetectorRef,
+        private route: ActivatedRoute
     ) {}
 
     cols: Column[] = [
@@ -59,11 +59,52 @@ export class ProductListComponent implements OnInit, OnDestroy {
     urlChangesSubscription!: Subscription;
     isDesktop!: boolean;
     viewportSubscription!: Subscription;
+    queryParamsSubscription!: Subscription;
+    productsSubscription!: Subscription;
+    currPage = '1';
+    pageSize = '10';
+    pageCount!: number;
+    isFirstOnInit = true;
+    isLoading = false;
 
     ngOnInit(): void {
-        this.listenUrlChanges();
+        this._observeProducts();
         this._observeViewportSize();
-        this.getProducts();
+        this.listenUrlChanges();
+
+        if (!this.isDesktop) {
+            this._observeQueryParams();
+            this.setQueryParams({ currPage: this.currPage });
+        }
+
+        if (this.isDesktop) {
+            this._observeQueryParams();
+        }
+    }
+
+    private _observeQueryParams() {
+        this.queryParamsSubscription = this.route.queryParams.subscribe(
+            (params) => {
+                this.currPage = params['currPage'] || this.currPage;
+                this.pageSize = params['pageSize'] || this.pageSize;
+
+                this.getProducts();
+            }
+        );
+    }
+
+    setQueryParams(queryParams: { currPage?: string; pageSize?: string } = {}) {
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: {
+                currPage: queryParams.currPage,
+                pageSize:
+                    queryParams.pageSize === ''
+                        ? queryParams.pageSize
+                        : this.pageSize,
+            },
+            queryParamsHandling: 'merge',
+        });
     }
 
     private _observeViewportSize() {
@@ -71,29 +112,63 @@ export class ProductListComponent implements OnInit, OnDestroy {
             .pipe(map((viewportWidth) => viewportWidth >= 1025))
             .subscribe((isDesktop) => {
                 this.isDesktop = isDesktop;
-                this.changeDetectorRef.markForCheck();
+
+                if (isDesktop)
+                    this.setQueryParams({ currPage: '', pageSize: '' });
+                else
+                    this.setQueryParams({
+                        currPage: this.currPage,
+                        pageSize: this.pageSize,
+                    });
+
+                // this.changeDetectorRef.markForCheck();
             });
     }
 
     getProducts() {
-        this.productsService.getProducts();
+        if (!this.isDesktop)
+            this.productsService.getProducts({
+                currPage: this.currPage,
+                pageSize: this.pageSize,
+            });
+        else this.productsService.getProducts();
+    }
 
-        this.productsService.products$
+    private _observeProducts() {
+        this.productsSubscription = this.productsService.products$
             .pipe(
                 map((products) => {
-                    return products.map((product) => {
-                        return {
-                            ...product,
-                            category: product.category
-                                .name as unknown as Category,
-                        };
-                    });
+                    if (products instanceof Array && !products.length)
+                        return [];
+
+                    this.pageCount = (
+                        products as { products: Product[]; pageCount: number }
+                    ).pageCount;
+
+                    return (products as { products: Product[] }).products.map(
+                        (product) => {
+                            return {
+                                ...product,
+                                category: product.category
+                                    .name as unknown as Category,
+                            };
+                        }
+                    );
                 })
             )
             .subscribe({
                 next: (products) => {
+                    if (this.isFirstOnInit) {
+                        this.isFirstOnInit = false;
+                        return;
+                    }
+
                     this.products = products;
+                    this.isLoading = false;
                     this.changeDetectorRef.markForCheck();
+                },
+                error: (err) => {
+                    console.error('Cannot get products', err);
                 },
             });
     }
@@ -127,11 +202,22 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     listenUrlChanges() {
+        let previousUrl = this.router.url.split('?')[0]; // Initialize with the current path ignoring query params
+
         this.urlChangesSubscription = this.router.events
-            .pipe(filter((event) => event instanceof NavigationEnd))
+            .pipe(
+                filter(
+                    (event): event is NavigationEnd =>
+                        event instanceof NavigationEnd
+                )
+            )
             .subscribe({
-                next: () => {
-                    this.getProducts();
+                next: (event) => {
+                    const currentUrl = event.url.split('?')[0];
+                    if (currentUrl !== previousUrl) {
+                        this.getProducts(); // Only call getProducts if the path has changed
+                        previousUrl = currentUrl; // Update previousUrl for the next event
+                    }
                 },
                 error: (err) => {
                     console.error('Cannot get url changes!', err);
@@ -146,5 +232,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.urlChangesSubscription?.unsubscribe();
         this.viewportSubscription?.unsubscribe();
+        this.queryParamsSubscription?.unsubscribe();
+        this.productsSubscription?.unsubscribe();
     }
 }

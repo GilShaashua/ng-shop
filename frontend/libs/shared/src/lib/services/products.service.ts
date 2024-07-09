@@ -16,12 +16,20 @@ export class ProductsService {
     }>({ categories: [], name: '' });
     public filterBy$ = this._filterBy$.asObservable();
 
-    private _products$ = new BehaviorSubject<Product[]>([]);
+    private _products$ = new BehaviorSubject<
+        Product[] | { products: Product[]; pageCount: number }
+    >([]);
     public products$ = this._products$.asObservable();
 
     apiUrl = environment.API_URL;
 
-    getProducts() {
+    getProducts({
+        currPage,
+        pageSize,
+    }: {
+        currPage?: string;
+        pageSize?: string;
+    } = {}): void {
         let queryParams = new HttpParams();
 
         if (this._filterBy$.value.categories.length) {
@@ -38,7 +46,15 @@ export class ProductsService {
             );
         }
 
-        const products$ = this.http.get<Product[]>(`${this.apiUrl}products`, {
+        if (currPage && pageSize) {
+            queryParams = queryParams.append('currPage', currPage);
+            queryParams = queryParams.append('pageSize', pageSize);
+        }
+
+        const products$ = this.http.get<{
+            products: Product[];
+            pageCount: number;
+        }>(`${this.apiUrl}products`, {
             params: queryParams,
         });
 
@@ -52,7 +68,9 @@ export class ProductsService {
         });
     }
 
-    private _setProducts(products: Product[]) {
+    private _setProducts(
+        products: Product[] | { products: Product[]; pageCount: number }
+    ) {
         this._products$.next(products);
     }
 

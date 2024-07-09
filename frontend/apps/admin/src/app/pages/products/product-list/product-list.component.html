@@ -91,7 +91,22 @@
     </p-table>
 
     <div class="products-tablet-mobile" *ngIf="!isDesktop">
-        <ul class="product-list">
+        <ul class="pages" *ngIf="pageCount !== undefined">
+            @for (page of [].constructor(pageCount); track $index) {
+            <li [ngClass]="{ active: $index + 1 + '' === currPage }">
+                <button
+                    (click)="
+                        setQueryParams({ currPage: $index + 1 + '' });
+                        isLoading = true
+                    "
+                >
+                    {{ $index + 1 }}
+                </button>
+            </li>
+            }
+        </ul>
+
+        <ul class="product-list" *ngIf="!isLoading; else loader">
             <li
                 class="product"
                 *ngFor="let product of products; trackBy: trackByProductId"
@@ -106,11 +121,13 @@
                 <div class="row-2">
                     <div class="price-stock-container">
                         <p class="price">
-                            <span>Price</span> {{ product.price | currency }}
+                            <span>Price</span>
+                            {{ product.price | currency }}
                         </p>
 
                         <p class="stock">
-                            <span>Stock</span> {{ product.countInStock }}
+                            <span>Stock</span>
+                            {{ product.countInStock }}
                         </p>
                     </div>
 
@@ -143,6 +160,27 @@
                 </div>
             </li>
         </ul>
+
+        <ul class="pages" *ngIf="pageCount !== undefined">
+            @for (page of [].constructor(pageCount); track $index) {
+            <li [ngClass]="{ active: $index + 1 + '' === currPage }">
+                <button
+                    (click)="
+                        setQueryParams({ currPage: $index + 1 + '' });
+                        isLoading = true
+                    "
+                >
+                    {{ $index + 1 }}
+                </button>
+            </li>
+            }
+        </ul>
+
+        <ng-template #loader>
+            <div class="loader-container">
+                <p><i class="pi pi-spin pi-spinner"></i></p>
+            </div>
+        </ng-template>
     </div>
 </section>
 
