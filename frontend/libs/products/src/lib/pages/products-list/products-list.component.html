@@ -24,13 +24,20 @@
     <div class="products">
         <h3>Products</h3>
 
+        @if (products.products.length) {
         <ul>
             <products-product-item
-                *ngFor="let product of products; trackBy: trackByProduct"
+                *ngFor="
+                    let product of products.products;
+                    trackBy: trackByProduct
+                "
                 [product]="product"
                 (onAddProduct)="onAddProduct($event)"
             ></products-product-item>
         </ul>
+        } @else {
+        <p>No Products found</p>
+        }
     </div>
 </section>
 

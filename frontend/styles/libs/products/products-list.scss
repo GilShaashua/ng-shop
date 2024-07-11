@@ -82,6 +82,10 @@ p-toast {
             font-size: 22px;
         }
 
+        p {
+            margin-block-start: -4em;
+        }
+
         ul {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));

@@ -16,9 +16,10 @@ export class ProductsService {
     }>({ categories: [], name: '' });
     public filterBy$ = this._filterBy$.asObservable();
 
-    private _products$ = new BehaviorSubject<
-        Product[] | { products: Product[]; pageCount: number }
-    >([]);
+    private _products$ = new BehaviorSubject<{
+        products: Product[];
+        pageCount: number;
+    }>({ products: [], pageCount: 0 });
     public products$ = this._products$.asObservable();
 
     apiUrl = environment.API_URL;
@@ -68,9 +69,7 @@ export class ProductsService {
         });
     }
 
-    private _setProducts(
-        products: Product[] | { products: Product[]; pageCount: number }
-    ) {
+    private _setProducts(products: { products: Product[]; pageCount: number }) {
         this._products$.next(products);
     }
 

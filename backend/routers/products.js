@@ -60,8 +60,7 @@ router.get('/', async (req, res) => {
 
         let products = await Product.find(filterBy).populate('category');
 
-        if (!products.length)
-            return res.status(500).send('There are no products!');
+        if (!products.length) return res.json({ products: [], pageCount: 0 });
 
         if (req.query.pageSize && req.query.currPage) {
             const pageSize = +req.query.pageSize;

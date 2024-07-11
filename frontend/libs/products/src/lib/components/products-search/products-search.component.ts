@@ -30,6 +30,18 @@ export class ProductsSearchComponent implements OnInit, OnDestroy {
     private searchTermsSubscription!: Subscription;
 
     ngOnInit(): void {
+        this._observeRouterUrl();
+        this._getFilterBy();
+
+        this.searchTermsSubscription = this.searchTerms
+            .pipe(debounceTime(500))
+            .subscribe(() => {
+                this.productsService.setFilterBy(this.filterBy);
+                this.productsService.getProducts();
+            });
+    }
+
+    private _observeRouterUrl() {
         this.routerUrlSubscription = this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 this.routePath = this.router.url;
@@ -42,15 +54,6 @@ export class ProductsSearchComponent implements OnInit, OnDestroy {
                 }
             }
         });
-
-        this._getFilterBy();
-
-        this.searchTermsSubscription = this.searchTerms
-            .pipe(debounceTime(500))
-            .subscribe(() => {
-                this.productsService.setFilterBy(this.filterBy);
-                this.productsService.getProducts();
-            });
     }
 
     private _getFilterBy() {

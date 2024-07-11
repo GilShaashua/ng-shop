@@ -44,13 +44,14 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         private messageService: MessageService
     ) {}
 
-    products!: Product[];
+    products!: { products: Product[]; pageCount: number };
     categories!: Category[];
     selectedCategories: { [klass: string]: boolean | string } = {};
     filterBy!: { categories: string[]; name: string };
     isParamsInited = false;
     categoryId = '';
     filterBySubscription!: Subscription;
+    isFirstInit = true;
 
     ngOnInit(): void {
         this._getFilterBy();
@@ -71,14 +72,15 @@ export class ProductsListComponent implements OnInit, OnDestroy {
                 const category = await firstValueFrom(
                     this.categoriesService.getCategoryById(params['categoryId'])
                 );
+
                 this.selectedCategories[category.name.toLowerCase()] =
                     params['categoryId'];
+
                 this.categoryId = params['categoryId'];
                 this.isParamsInited = true;
                 this.onChangeCategory();
             } else {
                 this.isParamsInited = true;
-                this.changeDetectorRef.detectChanges();
                 this._getProducts();
             }
         });
@@ -103,12 +105,20 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
     private _getProducts() {
         this.productsService.getProducts();
-        this.productsService.products$.subscribe({
-            next: (products) => {
-                this.products = products;
-                this.changeDetectorRef.detectChanges();
-            },
-        });
+
+        if (this.isFirstInit) {
+            this.isFirstInit = false;
+
+            this.productsService.products$.subscribe({
+                next: (products) => {
+                    this.products = products;
+                    this.changeDetectorRef.detectChanges();
+                },
+                error: (err) => {
+                    console.error('Cannot get products', err);
+                },
+            });
+        }
     }
 
     onChangeCategory() {
