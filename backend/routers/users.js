@@ -88,7 +88,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/fast-login/:userId', async (req, res) => {
-    console.log(req.params.userId);
     try {
         const user = await User.findOne({ _id: req.params.userId });
         const secret = process.env.SECRET;

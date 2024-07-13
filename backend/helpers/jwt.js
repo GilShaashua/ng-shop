@@ -21,7 +21,6 @@ function authJwt() {
 }
 
 async function isRevoked(req, token) {
-    console.log(JSON.parse(req.query.isLoginFast));
     if (JSON.parse(req.query.isLoginFast)) {
         return false;
     }

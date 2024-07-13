@@ -11,6 +11,20 @@
         <button routerLink="/products/form" class="btn-create-edit-product">
             <i class="pi pi-plus"></i><span>New</span>
         </button>
+
+        <form class="search-form">
+            <input
+                type="text"
+                name="name"
+                placeholder="Search Products..."
+                [(ngModel)]="filterBy.name"
+                (ngModelChange)="onSearchProducts()"
+            />
+
+            <div class="loader-container" *ngIf="isDesktop && isLoading">
+                <p><i class="pi pi-spin pi-spinner"></i></p>
+            </div>
+        </form>
     </div>
 
     <p-table
@@ -90,8 +104,15 @@
         </ng-template>
     </p-table>
 
+    @if(isDesktop && !products.length){
+    <div class="no-products">No Products were found!</div>
+    }
+
     <div class="products-tablet-mobile" *ngIf="!isDesktop">
-        <ul class="pages" *ngIf="pageCount !== undefined">
+        <ul
+            class="pages"
+            *ngIf="pageCount !== undefined && products.length && !isLoading"
+        >
             @for (page of [].constructor(pageCount); track $index) {
             <li [ngClass]="{ active: $index + 1 + '' === currPage }">
                 <button (click)="onClickPage($index)">
@@ -154,9 +175,16 @@
                     </div>
                 </div>
             </li>
+
+            @if(!products.length){
+            <div class="no-products">No Products were found!</div>
+            }
         </ul>
 
-        <ul class="pages" *ngIf="pageCount !== undefined">
+        <ul
+            class="pages"
+            *ngIf="pageCount !== undefined && products.length && !isLoading"
+        >
             @for (page of [].constructor(pageCount); track $index) {
             <li [ngClass]="{ active: $index + 1 + '' === currPage }">
                 <button

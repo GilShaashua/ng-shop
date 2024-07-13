@@ -17,9 +17,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { filter, map, Subscription } from 'rxjs';
+import { debounceTime, filter, map, Subject, Subscription } from 'rxjs';
 import { Category, Column, Product } from '@frontend/utils';
 import { ProductsService, ViewportSizeService } from '@frontend/shared';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'admin-product-list',
@@ -32,6 +33,7 @@ import { ProductsService, ViewportSizeService } from '@frontend/shared';
         ToastModule,
         ConfirmDialogModule,
         TableModule,
+        FormsModule,
     ],
     templateUrl: './product-list.component.html',
     styleUrl: './product-list.component.scss',
@@ -66,11 +68,17 @@ export class ProductListComponent implements OnInit, OnDestroy {
     pageCount!: number;
     isFirstOnInit = true;
     isLoading = false;
+    filterBy = {
+        categories: [],
+        name: '',
+    };
+    searchProductsSubject = new Subject<string>();
 
     ngOnInit(): void {
         this._observeProducts();
         this._observeViewportSize();
         this.listenUrlChanges();
+        this._observeSearchProducts();
 
         if (!this.isDesktop) {
             this._observeQueryParams();
@@ -80,6 +88,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
         if (this.isDesktop) {
             this._observeQueryParams();
         }
+    }
+
+    private _observeSearchProducts() {
+        this.searchProductsSubject.pipe(debounceTime(500)).subscribe({
+            next: () => {
+                this.productsService.setFilterBy(this.filterBy);
+                this.getProducts();
+            },
+        });
+    }
+
+    onSearchProducts() {
+        this.isLoading = true;
+        this.searchProductsSubject.next('');
     }
 
     private _observeQueryParams() {
@@ -127,8 +149,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
                         currPage: this.currPage,
                         pageSize: this.pageSize,
                     });
-
-                // this.changeDetectorRef.markForCheck();
             });
     }
 
