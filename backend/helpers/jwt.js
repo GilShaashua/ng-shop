@@ -12,17 +12,20 @@ function authJwt() {
                 url: /\/api\/v1\/orders(.*)/,
                 methods: ['POST', 'OPTIONS'],
             },
-            {
-                url: /\/public\/uploads(.*)/,
-                methods: ['GET', 'OPTIONS'],
-            },
             `${api}/users/login`,
+            /\/api\/v1\/users\/fast-login(.*)/,
+            `${api}/users`,
             `${api}/users/register`,
         ],
     });
 }
 
 async function isRevoked(req, token) {
+    console.log(JSON.parse(req.query.isLoginFast));
+    if (JSON.parse(req.query.isLoginFast)) {
+        return false;
+    }
+
     if (!token.payload.isAdmin) {
         return true;
     }

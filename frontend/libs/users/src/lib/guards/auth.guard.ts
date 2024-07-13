@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { AuthService } from '@frontend/shared';
 import { Router } from '@angular/router';
 
-export function authGuard() {
+export async function authGuard() {
     const authService = inject(AuthService);
 
     const jwtToken = authService.getToken();
@@ -13,6 +13,10 @@ export function authGuard() {
     }
 
     try {
+        if (authService.getIsLoginFast()) {
+            return true;
+        }
+
         const decodedToken = atob(jwtToken.split('.')[1]);
         const token = JSON.parse(decodedToken);
 

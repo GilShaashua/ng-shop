@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, take } from 'rxjs';
 import { Product } from '@frontend/utils';
 import { environment } from '@frontend/utils';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ProductsService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private authService: AuthService) {}
 
     private _filterBy$ = new BehaviorSubject<{
         categories: string[];
@@ -78,13 +79,26 @@ export class ProductsService {
     }
 
     addProduct(productData: FormData): Observable<Product> {
-        return this.http.post<Product>(`${this.apiUrl}products`, productData);
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
+        return this.http.post<Product>(`${this.apiUrl}products`, productData, {
+            params,
+        });
     }
 
     editProduct(productData: FormData): Observable<Product> {
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
         return this.http.put<Product>(
             `${this.apiUrl}products/${productData.get('id')}`,
-            productData
+            productData,
+            { params }
         );
     }
 
@@ -92,19 +106,39 @@ export class ProductsService {
         productData: FormData,
         productId: string
     ): Observable<Product> {
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
         return this.http.put<Product>(
             `${this.apiUrl}products/gallery-images/${productId}`,
-            productData
+            productData,
+            { params }
         );
     }
 
     deleteProduct(productId: string): Observable<Product> {
-        return this.http.delete<Product>(`${this.apiUrl}products/${productId}`);
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
+        return this.http.delete<Product>(
+            `${this.apiUrl}products/${productId}`,
+            { params }
+        );
     }
 
     getProductsCount(): Observable<{ productsCount: number }> {
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
         return this.http.get<{ productsCount: number }>(
-            `${this.apiUrl}products/get/count`
+            `${this.apiUrl}products/get/count`,
+            { params }
         );
     }
 
@@ -121,8 +155,13 @@ export class ProductsService {
     getProductStatistics(): Observable<{
         [key: string]: { categoryColor: string; count: number };
     }> {
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
         return this.http.get<{
             [key: string]: { categoryColor: string; count: number };
-        }>(`${this.apiUrl}products/get/statistics`);
+        }>(`${this.apiUrl}products/get/statistics`, { params });
     }
 }

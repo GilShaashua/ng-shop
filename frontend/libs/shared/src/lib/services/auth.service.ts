@@ -13,8 +13,12 @@ export class AuthService {
 
     private _loggedInUser$: BehaviorSubject<string | null> =
         new BehaviorSubject(this.getToken());
-
     public loggedInUser$ = this._loggedInUser$.asObservable();
+
+    private _isFastLogin$: BehaviorSubject<boolean> = new BehaviorSubject(
+        this.getLoginFastStorage()
+    );
+    public isFastLogin$ = this._isFastLogin$.asObservable();
 
     apiUrl = environment.API_URL;
 
@@ -34,6 +38,11 @@ export class AuthService {
     logout() {
         localStorage.removeItem('jwtToken');
         this._loggedInUser$.next(null);
+
+        if (this._isFastLogin$.value) {
+            localStorage.removeItem('isFastLogin');
+            this._isFastLogin$.next(false);
+        }
     }
 
     logoutNgShop() {
@@ -42,6 +51,34 @@ export class AuthService {
 
     loginNgShop(user: User) {
         this.usersFacade.userSessionLogin(user);
+    }
+
+    loginFast(userId: string): Observable<{ user: string; token: string }> {
+        return this.http.post<{ user: string; token: string }>(
+            `${this.apiUrl}users/fast-login/${userId}`,
+            ''
+        );
+    }
+
+    getLoginFastStorage() {
+        return JSON.parse(localStorage.getItem('isFastLogin') || 'false');
+    }
+
+    getIsLoginFast() {
+        return this._isFastLogin$.value;
+    }
+
+    setIsLoginFast(isFastLogin: boolean) {
+        this._isFastLogin$.next(isFastLogin);
+        localStorage.setItem('isFastLogin', JSON.stringify(isFastLogin));
+    }
+
+    saveTokenLoginFast(token: string) {
+        const decodedToken = atob(token.split('.')[1]);
+        const jwtToken = JSON.parse(decodedToken);
+
+        if (!this.isTokenExpried(jwtToken.exp))
+            localStorage.setItem('jwtToken', token);
     }
 
     saveTokenAdminPanel(token: string) {

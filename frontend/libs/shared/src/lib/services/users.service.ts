@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '@frontend/utils';
 import { Observable } from 'rxjs';
@@ -6,12 +6,17 @@ import * as countriesLib from 'i18n-iso-countries';
 import registerLocale from 'i18n-iso-countries/langs/en.json';
 import { UsersFacade } from '../+state/users.facade';
 import { environment } from '@frontend/utils';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UsersService {
-    constructor(private http: HttpClient, private usersFacade: UsersFacade) {
+    constructor(
+        private http: HttpClient,
+        private usersFacade: UsersFacade,
+        private authService: AuthService
+    ) {
         countriesLib.registerLocale(registerLocale);
     }
 
@@ -22,24 +27,52 @@ export class UsersService {
     }
 
     getUserById(userId: string): Observable<User> {
-        return this.http.get<User>(`${this.apiUrl}users/${userId}`);
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
+        return this.http.get<User>(`${this.apiUrl}users/${userId}`, { params });
     }
 
     addUser(user: User): Observable<User> {
-        return this.http.post(`${this.apiUrl}users/register`, user);
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
+        return this.http.post(`${this.apiUrl}users/register`, user, { params });
     }
 
     editUser(user: User): Observable<User> {
-        return this.http.put(`${this.apiUrl}users/${user.id}`, user);
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
+        return this.http.put(`${this.apiUrl}users/${user.id}`, user, {
+            params,
+        });
     }
 
     deleteUser(userId: string): Observable<User> {
-        return this.http.delete(`${this.apiUrl}users/${userId}`);
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
+        return this.http.delete(`${this.apiUrl}users/${userId}`, { params });
     }
 
     getUsersCount(): Observable<{ usersCount: number }> {
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
         return this.http.get<{ usersCount: number }>(
-            `${this.apiUrl}users/get/count`
+            `${this.apiUrl}users/get/count`,
+            { params }
         );
     }
 
@@ -66,8 +99,14 @@ export class UsersService {
     }
 
     getUserStatistics(): Observable<{ admin: number; notAdmin: number }> {
+        const params = new HttpParams().append(
+            'isLoginFast',
+            this.authService.getIsLoginFast()
+        );
+
         return this.http.get<{ admin: number; notAdmin: number }>(
-            `${this.apiUrl}users/get/statistics`
+            `${this.apiUrl}users/get/statistics`,
+            { params }
         );
     }
 }

@@ -107,6 +107,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
         });
     }
 
+    onClickPage(idx: number) {
+        if (idx + 1 === +this.currPage) return;
+
+        this.setQueryParams({ currPage: idx + 1 + '' });
+        this.isLoading = true;
+    }
+
     private _observeViewportSize() {
         this.viewportSubscription = this.viewportSizeService.viewportWidth$
             .pipe(map((viewportWidth) => viewportWidth >= 1025))

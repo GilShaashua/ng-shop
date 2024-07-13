@@ -12,8 +12,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, firstValueFrom, takeUntil, timer } from 'rxjs';
-import { UtilsService } from '@frontend/utils';
+import { User, UtilsService } from '@frontend/utils';
 import { AuthService, UsersService } from '@frontend/shared';
+import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
 
 @Component({
     selector: 'users-login',
@@ -24,6 +25,7 @@ import { AuthService, UsersService } from '@frontend/shared';
         FormsModule,
         ReactiveFormsModule,
         ToastModule,
+        DropdownModule,
     ],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
@@ -50,8 +52,45 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     endSubs$ = new Subject();
 
+    users!: User[];
+
     ngOnInit(): void {
         this._checkFromNgShop();
+        this._getUsers();
+    }
+
+    private _getUsers() {
+        this.usersService.getUsers().subscribe({
+            next: (users) => {
+                this.users = users;
+            },
+            error: (err) => {
+                console.error('Cannot get users!', err);
+            },
+        });
+    }
+
+    onLoginFast(ev: DropdownChangeEvent) {
+        this.authService.loginFast(ev.value).subscribe({
+            next: async (user) => {
+                this.authService.setIsLoginFast(true);
+
+                this.authService.saveTokenLoginFast(user.token);
+
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: `You are logged in successfully!`,
+                });
+
+                await firstValueFrom(timer(2000));
+
+                this.router.navigateByUrl('/');
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 
     onSubmitLogin() {

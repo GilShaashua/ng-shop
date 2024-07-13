@@ -94,12 +94,7 @@
         <ul class="pages" *ngIf="pageCount !== undefined">
             @for (page of [].constructor(pageCount); track $index) {
             <li [ngClass]="{ active: $index + 1 + '' === currPage }">
-                <button
-                    (click)="
-                        setQueryParams({ currPage: $index + 1 + '' });
-                        isLoading = true
-                    "
-                >
+                <button (click)="onClickPage($index)">
                     {{ $index + 1 }}
                 </button>
             </li>

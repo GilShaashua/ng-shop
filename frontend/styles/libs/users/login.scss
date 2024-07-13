@@ -20,7 +20,7 @@
             flex-direction: row;
             align-items: flex-start;
             max-width: 550px;
-            height: 400px;
+            height: 450px;
         }
 
         .img {
@@ -56,15 +56,16 @@
             display: flex;
             flex-direction: column;
             gap: 3em;
-            padding-block: 1em;
-            padding-inline: 1em;
+            padding-block: 1.5em;
+            padding-inline: 1.5em;
 
             @include respond-to('desktop') {
                 flex: 1;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
-                gap: 3em;
+                gap: 1.5em;
+                justify-content: space-between;
             }
 
             .header {
@@ -203,6 +204,12 @@
                     }
                 }
             }
+        }
+
+        .fast-login {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7em;
         }
     }
 }

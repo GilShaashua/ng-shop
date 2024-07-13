@@ -100,6 +100,18 @@
 
                 <button type="submit" class="btn-login">Login</button>
             </form>
+
+            <div class="fast-login">
+                <h3>Fast Login</h3>
+
+                <p-dropdown
+                    [options]="users"
+                    optionLabel="name"
+                    optionValue="id"
+                    placeholder="Select a User"
+                    (onChange)="onLoginFast($event)"
+                />
+            </div>
         </div>
     </div>
 </section>

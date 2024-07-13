@@ -3,8 +3,6 @@ const User = require('../models/user');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Product = require('../models/product');
-const Category = require('../models/category');
 
 router.get('/', async (req, res) => {
     try {
@@ -86,6 +84,29 @@ router.post('/login', async (req, res) => {
         res.status(200).send({ user: user.email, token });
     } else {
         res.status(400).send('Password is wrong!');
+    }
+});
+
+router.post('/fast-login/:userId', async (req, res) => {
+    console.log(req.params.userId);
+    try {
+        const user = await User.findOne({ _id: req.params.userId });
+        const secret = process.env.SECRET;
+
+        const token = jwt.sign(
+            { userId: user.id, isAdmin: user.isAdmin },
+            secret,
+            {
+                expiresIn: '1d',
+            }
+        );
+
+        res.status(200).send({ user: user.email, token });
+    } catch (err) {
+        res.status(500).json({
+            error: err,
+            success: false,
+        });
     }
 });
 
