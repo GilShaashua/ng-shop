@@ -13,12 +13,15 @@ export async function authGuard() {
     }
 
     try {
-        if (authService.getIsLoginFast()) {
-            return true;
-        }
-
         const decodedToken = atob(jwtToken.split('.')[1]);
         const token = JSON.parse(decodedToken);
+
+        if (
+            authService.getIsLoginFast() &&
+            !authService.isTokenExpried(token.exp)
+        ) {
+            return true;
+        }
 
         if (token.isAdmin && !authService.isTokenExpried(token.exp)) {
             return true;

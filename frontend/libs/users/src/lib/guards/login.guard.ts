@@ -10,6 +10,7 @@ export function loginGuard() {
         const decodedToken = atob(token.split('.')[1]);
         const jwtToken = JSON.parse(decodedToken);
         if (authService.isTokenExpried(jwtToken.exp)) {
+            authService.logout();
             return true;
         } else {
             console.error('User is already logged in');
