@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this._checkFromNgShop();
-        this._getUsers();
     }
 
     private _getUsers() {
@@ -74,8 +73,18 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authService.loginFast(ev.value).subscribe({
             next: async (user) => {
                 this.authService.setIsLoginFast(true);
-
                 this.authService.saveTokenLoginFast(user.token);
+
+                if (this.isUsedByNgShop) {
+                    const userId = this.authService.getUserIdFromToken();
+
+                    if (userId) {
+                        const user$ = this.usersService.getUserById(userId);
+                        const user = await firstValueFrom(user$);
+
+                        this.authService.loginNgShop(user);
+                    }
+                }
 
                 this.messageService.add({
                     severity: 'success',
@@ -188,6 +197,8 @@ export class LoginComponent implements OnInit, OnDestroy {
                     if (isUsedByNgShop) {
                         this.isUsedByNgShop = isUsedByNgShop;
                     }
+
+                    this._getUsers();
                 },
                 error: (err) => {
                     console.error('Cannot get UsedByNgShop', err);

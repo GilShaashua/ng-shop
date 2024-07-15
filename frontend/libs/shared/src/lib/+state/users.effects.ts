@@ -55,6 +55,7 @@ export class UsersEffects {
                 ofType(UsersActions.userSessionLogout),
                 tap(() => {
                     localStorage.removeItem('jwtToken');
+                    localStorage.removeItem('isFastLogin');
                 })
             ),
         { dispatch: false }
