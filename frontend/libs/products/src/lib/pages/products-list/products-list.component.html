@@ -1,6 +1,9 @@
 <section
     class="products-list"
-    *ngIf="isParamsInited && products && categories; else loader"
+    *ngIf="
+        isParamsInited && products && categories && isLoading !== undefined;
+        else loader
+    "
 >
     <div class="categories">
         <h3>Categories</h3>
@@ -24,7 +27,11 @@
     <div class="products">
         <h3>Products</h3>
 
-        @if (products.products.length) {
+        @if(isLoading){
+        <div class="loader">
+            <i class="pi pi-spin pi-spinner"></i>
+        </div>
+        }@else { @if (products.products.length) {
         <ul>
             <products-product-item
                 *ngFor="
@@ -37,7 +44,7 @@
         </ul>
         } @else {
         <p>No Products found</p>
-        }
+        } }
     </div>
 </section>
 

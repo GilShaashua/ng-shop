@@ -133,4 +133,9 @@ p-toast {
     i {
         font-size: 50px;
     }
+
+    @include respond-to('desktop') {
+        left: calc(250px + ((100% - 250px) / 2));
+        top: 30%;
+    }
 }

@@ -46,16 +46,27 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
     products!: { products: Product[]; pageCount: number };
     categories!: Category[];
-    selectedCategories: { [klass: string]: boolean | string } = {};
+    selectedCategories: { [key: string]: boolean | string } = {};
     filterBy!: { categories: string[]; name: string };
     isParamsInited = false;
     categoryId = '';
     filterBySubscription!: Subscription;
     isFirstInit = true;
+    isLoading!: boolean;
 
     ngOnInit(): void {
         this._getFilterBy();
         this._getCategories();
+        this._observeProductsLoading();
+    }
+
+    private _observeProductsLoading() {
+        this.productsService.isNgShopProductsLoading$.subscribe({
+            next: (isLoading) => {
+                this.isLoading = isLoading;
+                this.changeDetectorRef.markForCheck();
+            },
+        });
     }
 
     private _getFilterBy() {
@@ -90,11 +101,11 @@ export class ProductsListComponent implements OnInit, OnDestroy {
         this.categoriesService.getCategories().subscribe({
             next: (categories) => {
                 this.categories = categories;
-                this.changeDetectorRef.detectChanges();
                 this.categories.forEach((category) => {
                     this.selectedCategories[category.name.toLowerCase()] =
                         false;
                 });
+                this.changeDetectorRef.markForCheck();
                 this._checkParams();
             },
             error: (err) => {
@@ -112,7 +123,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
             this.productsService.products$.subscribe({
                 next: (products) => {
                     this.products = products;
-                    this.changeDetectorRef.detectChanges();
+                    this.changeDetectorRef.markForCheck();
                 },
                 error: (err) => {
                     console.error('Cannot get products', err);

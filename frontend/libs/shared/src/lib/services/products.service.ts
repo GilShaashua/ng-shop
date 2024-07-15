@@ -23,6 +23,10 @@ export class ProductsService {
     }>({ products: [], pageCount: 0 });
     public products$ = this._products$.asObservable();
 
+    private _isNgShopProductsLoading$ = new BehaviorSubject<boolean>(false);
+    public isNgShopProductsLoading$ =
+        this._isNgShopProductsLoading$.asObservable();
+
     apiUrl = environment.API_URL;
 
     getProducts({
@@ -32,6 +36,8 @@ export class ProductsService {
         currPage?: string;
         pageSize?: string;
     } = {}): void {
+        this.setNgShopProductsLoading(true);
+
         let queryParams = new HttpParams();
 
         if (this._filterBy$.value.categories.length) {
@@ -63,6 +69,7 @@ export class ProductsService {
         products$.pipe(take(1)).subscribe({
             next: (products) => {
                 this._setProducts(products);
+                this.setNgShopProductsLoading(false);
             },
             error: (err) => {
                 console.error('err', err);
@@ -72,6 +79,10 @@ export class ProductsService {
 
     private _setProducts(products: { products: Product[]; pageCount: number }) {
         this._products$.next(products);
+    }
+
+    setNgShopProductsLoading(isLoading: boolean) {
+        this._isNgShopProductsLoading$.next(isLoading);
     }
 
     getProductById(productId: string): Observable<Product> {
