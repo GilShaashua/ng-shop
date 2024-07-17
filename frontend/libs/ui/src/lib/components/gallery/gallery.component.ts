@@ -1,13 +1,18 @@
 import { CommonModule } from '@angular/common';
 import {
     AfterContentChecked,
+    AfterViewInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     Input,
+    OnDestroy,
     OnInit,
     ViewChild,
 } from '@angular/core';
+import { ViewportSizeService } from '@frontend/shared';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'ui-gallery',
@@ -18,7 +23,12 @@ import {
     styleUrl: './gallery.component.scss',
     host: { class: 'host-gallery' },
 })
-export class GalleryComponent implements OnInit, AfterContentChecked {
+export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
+    constructor(
+        private viewportSizeService: ViewportSizeService,
+        private changeDetectorRef: ChangeDetectorRef
+    ) {}
+
     @Input() images?: string[];
     @ViewChild('imagesContainer') elImages!: ElementRef;
 
@@ -27,6 +37,11 @@ export class GalleryComponent implements OnInit, AfterContentChecked {
     isRightArrowShown = true;
     imagesContainerScrollLeft = 0;
     activeImage = '';
+    subscriptionSubject = new Subject<null>();
+
+    containerWidth!: number;
+    scrollWidth!: number;
+    scrollAmount!: number;
 
     ngOnInit(): void {
         if (this.images) {
@@ -35,14 +50,30 @@ export class GalleryComponent implements OnInit, AfterContentChecked {
         }
     }
 
-    ngAfterContentChecked(): void {
-        if (
-            this.elImages &&
-            this.elImages.nativeElement.scrollWidth ===
-                this.elImages.nativeElement.offsetWidth
-        ) {
-            this.isRightArrowShown = false;
-        }
+    ngAfterViewInit(): void {
+        this.viewportSizeService.viewportWidth$
+            .pipe(takeUntil(this.subscriptionSubject))
+            .subscribe({
+                next: () => {
+                    this.containerWidth =
+                        this.elImages.nativeElement.offsetWidth;
+
+                    this.scrollWidth = this.elImages.nativeElement.scrollWidth;
+                    this.scrollAmount =
+                        this.elImages.nativeElement.scrollWidth * 0.15; // Scroll amount based on 15% of container width
+
+                    this.imagesContainerScrollLeft = 0;
+                    this.isLeftArrowShown = false;
+                    this.isRightArrowShown = true;
+                    if (this.images) {
+                        this.selectedImage = this.images[0];
+                        this.activeImage = this.images[0];
+                        this.elImages.nativeElement.scrollLeft = 0;
+                    }
+
+                    this.changeDetectorRef.markForCheck();
+                },
+            });
     }
 
     onSelectImage(idx: number) {
@@ -52,29 +83,26 @@ export class GalleryComponent implements OnInit, AfterContentChecked {
         }
     }
 
-    onClickArrowBtn(side: string, imagesContainer: HTMLElement) {
-        const containerWidth = imagesContainer.offsetWidth;
-        const scrollWidth = imagesContainer.scrollWidth;
-        const scrollAmount = scrollWidth * 0.15; // Scroll amount based on 15% of container width
-
+    onClickArrowBtn(side: string) {
         if (side === 'left') {
-            imagesContainer.scrollLeft -= scrollAmount; // Scroll left
-            this.imagesContainerScrollLeft -= scrollAmount;
+            this.elImages.nativeElement.scrollLeft -= this.scrollAmount; // Scroll left
+            this.imagesContainerScrollLeft -= this.scrollAmount;
 
             if (this.imagesContainerScrollLeft === 0) {
                 this.isLeftArrowShown = false;
+                this.isRightArrowShown = true;
             }
 
             if (this.imagesContainerScrollLeft > 0) {
                 this.isRightArrowShown = true;
             }
         } else if (side === 'right') {
-            imagesContainer.scrollLeft += scrollAmount; // Scroll right
-            this.imagesContainerScrollLeft += scrollAmount;
+            this.elImages.nativeElement.scrollLeft += this.scrollAmount; // Scroll right
+            this.imagesContainerScrollLeft += this.scrollAmount;
 
             if (
                 this.imagesContainerScrollLeft >=
-                scrollWidth - containerWidth
+                this.scrollWidth - this.containerWidth
             ) {
                 this.isRightArrowShown = false;
             }
@@ -87,5 +115,10 @@ export class GalleryComponent implements OnInit, AfterContentChecked {
 
     trackByImage(index: number, image: string) {
         return image;
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptionSubject.next(null);
+        this.subscriptionSubject.complete();
     }
 }
