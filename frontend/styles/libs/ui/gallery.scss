@@ -37,10 +37,12 @@
             align-items: center;
             justify-content: center;
             width: 100%;
+            padding-inline: 1.5em;
 
             @include respond-to('desktop') {
                 position: relative;
                 justify-content: unset;
+                padding-inline: unset;
             }
 
             .btn-left {
@@ -106,36 +108,42 @@
             }
 
             .images {
-                display: flex;
-                align-items: center;
-                gap: 1em;
-                height: 110px;
+                width: 100%;
                 padding-inline: 0.5em;
                 scroll-behavior: smooth;
                 overflow: auto;
-                width: calc(100% - 4em);
 
                 @include respond-to('desktop') {
                     overflow: hidden;
-                    width: 100%;
                 }
 
-                img {
-                    width: 75px;
-                    height: 75px;
-                    aspect-ratio: 1/1;
-                    object-fit: cover;
-                    cursor: pointer;
-                    transition: all 0.1s ease-in-out;
-                    border-radius: 5px;
+                .inner-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+                    height: 110px;
 
-                    &:hover {
-                        opacity: 0.8;
-                        scale: 1.1;
+                    @include respond-to('desktop') {
+                        width: fit-content;
                     }
 
-                    &.active {
-                        scale: 1.2;
+                    img {
+                        width: 75px;
+                        height: 75px;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                        cursor: pointer;
+                        transition: all 0.1s ease-in-out;
+                        border-radius: 5px;
+
+                        &:hover {
+                            opacity: 0.8;
+                            scale: 1.1;
+                        }
+
+                        &.active {
+                            scale: 1.2;
+                        }
                     }
                 }
             }

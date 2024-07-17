@@ -31,6 +31,7 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @Input() images?: string[];
     @ViewChild('imagesContainer') elImages!: ElementRef;
+    @ViewChild('imagesInnerContainer') elImagesInner!: ElementRef;
 
     selectedImage = '';
     isLeftArrowShown = false;
@@ -69,6 +70,14 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
                         this.selectedImage = this.images[0];
                         this.activeImage = this.images[0];
                         this.elImages.nativeElement.scrollLeft = 0;
+                    }
+
+                    if (
+                        this.elImagesInner.nativeElement.offsetWidth <
+                        this.elImages.nativeElement.offsetWidth
+                    ) {
+                        this.isRightArrowShown = false;
+                        this.isLeftArrowShown = false;
                     }
 
                     this.changeDetectorRef.markForCheck();

@@ -184,6 +184,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.productsService.setFilterBy({ categories: [], name: '' });
         this.filterBySubscription?.unsubscribe();
     }
 }
