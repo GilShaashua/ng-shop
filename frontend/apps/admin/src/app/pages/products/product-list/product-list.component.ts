@@ -17,7 +17,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { debounceTime, filter, map, Subject, Subscription } from 'rxjs';
+import {
+    debounceTime,
+    filter,
+    map,
+    Subject,
+    Subscription,
+    takeUntil,
+} from 'rxjs';
 import { Category, Column, Product } from '@frontend/utils';
 import { ProductsService, ViewportSizeService } from '@frontend/shared';
 import { FormsModule } from '@angular/forms';
@@ -58,27 +65,22 @@ export class ProductListComponent implements OnInit, OnDestroy {
         { field: 'dateCreated', header: 'Created at' },
     ];
     products!: Product[];
-    urlChangesSubscription!: Subscription;
     isDesktop!: boolean;
-    viewportSubscription!: Subscription;
-    queryParamsSubscription!: Subscription;
-    productsSubscription!: Subscription;
     currPage = '1';
     pageSize = '10';
     pageCount!: number;
     isFirstOnInit = true;
     isLoading = false;
-    filterBy = {
-        categories: [],
-        name: '',
-    };
+    filterBy!: { categories: string[]; name: string };
     searchProductsSubject = new Subject<string>();
+    subscriptionSubject = new Subject<null>();
 
     ngOnInit(): void {
         this._observeProducts();
         this._observeViewportSize();
         this.listenUrlChanges();
         this._observeSearchProducts();
+        this._getFilterBy();
 
         if (!this.isDesktop) {
             this._observeQueryParams();
@@ -90,13 +92,25 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
     }
 
+    private _getFilterBy() {
+        this.productsService.filterBy$
+            .pipe(takeUntil(this.subscriptionSubject))
+            .subscribe({
+                next: (filterBy) => {
+                    this.filterBy = filterBy;
+                },
+            });
+    }
+
     private _observeSearchProducts() {
-        this.searchProductsSubject.pipe(debounceTime(500)).subscribe({
-            next: () => {
-                this.productsService.setFilterBy(this.filterBy);
-                this.getProducts();
-            },
-        });
+        this.searchProductsSubject
+            .pipe(takeUntil(this.subscriptionSubject), debounceTime(500))
+            .subscribe({
+                next: () => {
+                    this.productsService.setFilterBy(this.filterBy);
+                    this.getProducts();
+                },
+            });
     }
 
     onSearchProducts() {
@@ -105,14 +119,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     private _observeQueryParams() {
-        this.queryParamsSubscription = this.route.queryParams.subscribe(
-            (params) => {
+        this.route.queryParams
+            .pipe(takeUntil(this.subscriptionSubject))
+            .subscribe((params) => {
                 this.currPage = params['currPage'] || this.currPage;
                 this.pageSize = params['pageSize'] || this.pageSize;
 
                 this.getProducts();
-            }
-        );
+            });
     }
 
     setQueryParams(queryParams: { currPage?: string; pageSize?: string } = {}) {
@@ -137,8 +151,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     private _observeViewportSize() {
-        this.viewportSubscription = this.viewportSizeService.viewportWidth$
-            .pipe(map((viewportWidth) => viewportWidth >= 1025))
+        this.viewportSizeService.viewportWidth$
+            .pipe(
+                takeUntil(this.subscriptionSubject),
+                map((viewportWidth) => viewportWidth >= 1025)
+            )
             .subscribe((isDesktop) => {
                 this.isDesktop = isDesktop;
 
@@ -162,8 +179,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     private _observeProducts() {
-        this.productsSubscription = this.productsService.products$
+        this.productsService.products$
             .pipe(
+                takeUntil(this.subscriptionSubject),
                 map((products) => {
                     if (products instanceof Array && !products.length)
                         return [];
@@ -231,8 +249,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
     listenUrlChanges() {
         let previousUrl = this.router.url.split('?')[0]; // Initialize with the current path ignoring query params
 
-        this.urlChangesSubscription = this.router.events
+        this.router.events
             .pipe(
+                takeUntil(this.subscriptionSubject),
                 filter(
                     (event): event is NavigationEnd =>
                         event instanceof NavigationEnd
@@ -257,9 +276,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.urlChangesSubscription?.unsubscribe();
-        this.viewportSubscription?.unsubscribe();
-        this.queryParamsSubscription?.unsubscribe();
-        this.productsSubscription?.unsubscribe();
+        this.productsService.setFilterBy({ categories: [], name: '' });
+        this.subscriptionSubject.next(null);
+        this.subscriptionSubject.complete();
     }
 }

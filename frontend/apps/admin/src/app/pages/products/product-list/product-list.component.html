@@ -1,6 +1,9 @@
 <section
     class="products-page"
-    *ngIf="products && isDesktop !== undefined; else loader"
+    *ngIf="
+        products && isDesktop !== undefined && filterBy !== undefined;
+        else loader
+    "
 >
     <div class="name-page">
         <h1>Products</h1>
