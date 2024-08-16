@@ -45,9 +45,9 @@ npx nx serve ngshop
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845084/checkout-ngshop_wun56m.png"/>
 
 ## Screenshots - Mobile
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845150/homepage-mobile-ngshop_iqloeo.png" width="25%" style="float: left"/>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845215/product-list-mobile-ngshop_mlphnb.png" width="25%" style="float: left"/>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845262/product-details-mobile-ngshop_lq7yob.png" width="25%" style="float: left"/>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845333/login-mobile-ngshop_askvbr.png" width="25%" style="float: left"/>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845424/cart-mobile-ngshop_iaap5m.png" width="25%" style="float: left"/>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845485/checkout-mobile-ngshop_aiv3yi.png" width="25%" style="float: left"/>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845150/homepage-mobile-ngshop_iqloeo.png" width="25%" style="float: left;"/>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845215/product-list-mobile-ngshop_mlphnb.png" width="25%" style="float: left;"/>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845262/product-details-mobile-ngshop_lq7yob.png" width="25%" style="float: left;"/>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845333/login-mobile-ngshop_askvbr.png" width="25%" style="float: left;"/>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845424/cart-mobile-ngshop_iaap5m.png" width="25%" style="float: left;"/>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845485/checkout-mobile-ngshop_aiv3yi.png" width="25%" style="float: left;"/>
