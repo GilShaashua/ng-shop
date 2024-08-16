@@ -1,4 +1,4 @@
-# Skello - pixel perfect, E2E clone of Trello (React + Node.js). 
+# Ng Shop - E-Commerce Shop (Angular + Node.js). 
 
 https://gilshaashua.github.io/ng-shop/
 
@@ -15,3 +15,25 @@ https://gilshaashua.github.io/ng-shop/
   <img alt="CSS3" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" height="30px" />
   <img alt="SASS" src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" height="30px" />
 </p>
+
+## Getting started
+
+Head to the repository on top and clone the project or download the files.
+
+```
+git clone https://github.com/GilShaashua/ng-shop.git
+```
+
+```
+cd backend
+npm i 
+npm start
+```
+
+You shuold get a console ouput that the server is up and running at port 3030.
+Enter the frontend folder and repeat the same process.
+
+```
+cd frontend
+npm i 
+npm start
