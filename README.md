@@ -36,4 +36,7 @@ Enter the frontend folder and repeat the same process.
 ```
 cd frontend
 npm i 
-npm start
+npx nx serve ngshop
+
+## Screenshots - Desktop
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723844662/homepage-ngshop_grtnch.png"/>
