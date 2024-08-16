@@ -32,6 +32,7 @@ npm start
 cd frontend
 npm i 
 npx nx serve ngshop
+npx nx serve admin
 ```
 
 ## Screenshots - Desktop
