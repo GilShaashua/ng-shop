@@ -46,7 +46,7 @@ npx nx serve ngshop
 
 ## Screenshots - Mobile
 <div style="display:flex;>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845150/homepage-mobile-ngshop_iqloeo.png" width="60%"/>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845150/homepage-mobile-ngshop_iqloeo.png" width="20%"/>
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845215/product-list-mobile-ngshop_mlphnb.png" width="20%"/>
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845262/product-details-mobile-ngshop_lq7yob.png" width="20%"/>
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723845333/login-mobile-ngshop_askvbr.png"  width="20%"/>
