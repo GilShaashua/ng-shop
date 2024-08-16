@@ -1,8 +1,6 @@
 # Ng Shop - E-Commerce Shop (Angular + Node.js). 
 
-https://gilshaashua.github.io/ng-shop/
-
-
+[Ng shop](https://gilshaashua.github.io/ng-shop/#)
 ## Technologies
 <p>
   <img alt="Angular" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" height="30px" />
